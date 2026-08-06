@@ -1,0 +1,25 @@
+# 개인 참고용 문서 (팀 공유 안 함, README.md만 공유 대상)
+docs/design-notes-kernel-cc1101-spi-es.md
+
+# 커널 모듈 빌드 산출물
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.symvers
+*.order
+*.cmd
+.tmp_versions/
+.*.cmd
+modules.order
+Module.symvers
+
+# 디바이스트리 컴파일 결과
+*.dtbo
+
+# 테스트 도구 빌드 결과
+examples/cc1101_test
+
+# macOS
+.DS_Store
