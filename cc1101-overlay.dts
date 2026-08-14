@@ -1,0 +1,44 @@
+/dts-v1/;
+/plugin/;
+/* 부팅 시 Device Tree 읽기
+   -> SPI0, CS0, GPIO 정보 확인
+   -> 커널이 spi_device 객체 생성
+   -> compatible = "ti,cc1101"로 드라이버 검색
+   -> 드라이버와 일치하면 probe() 호출
+   -> probe() 에서 실제 SPI 통신 시작.
+   */
+
+
+/ {
+    compatible = "brcm,bcm2835"; 
+
+    fragment@0 {
+        target = <&spi0>; //SPI0 사용
+
+        __overlay__ {
+            status = "okay"; 
+
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            cc1101@0 {
+                compatible = "ti,cc1101";
+                reg = <0>;                    // SPI0 CS0
+                spi-max-frequency = <4000000>; //최대 SPI 속도
+
+                gdo0-gpios = <&gpio 25 0>;    // 예시 GPIO25 gdo는 이벤트를 알리는 출력핀. 핀 전압 변화를 gpio에서 인터럽트로 감지.
+                gdo2-gpios = <&gpio 24 0>;    // 예시 GPIO24
+
+                status = "okay";
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&spidev0>;
+
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+};
