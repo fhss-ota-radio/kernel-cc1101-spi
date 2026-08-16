@@ -571,8 +571,12 @@ err_free_fifo:
 
 /* spi_driver.remove가 void를 반환하는 최신 API (커널 6.5+) 기준. 이전 커널이면
  * `int cc1101_remove(...)` 로 바꾸고 마지막에 `return 0;`을 추가해야 한다.
+ *
+ * [2026-08-16] 실제로 타겟 커널(6.12.92-v7l+)이 6.5+ API라 위 주석대로
+ * void로 고쳐야 컴파일됨 (int로 두면 "incompatible pointer type" 에러).
+ * 라즈베리파이 실기기에서 크로스컴파일 검증 완료.
  */
-static int cc1101_remove(struct spi_device *spi)
+static void cc1101_remove(struct spi_device *spi)
 {
 	struct cc1101 *cc = spi_get_drvdata(spi);
 
@@ -583,7 +587,6 @@ static int cc1101_remove(struct spi_device *spi)
 
 	misc_deregister(&cc->miscdev);
 	kfifo_free(&cc->rx_fifo);
-	return 0;
 }
 
 static const struct of_device_id cc1101_of_match[] = {
