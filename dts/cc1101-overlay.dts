@@ -16,7 +16,13 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/gpio/gpio.h>
+/*
+ * [2026-08-16] 원래 여기서 <dt-bindings/gpio/gpio.h>를 #include해서
+ * GPIO_ACTIVE_HIGH 상수를 썼는데, dtc(디바이스트리 컴파일러)는 C
+ * 전처리기가 아니라서 #include 구문 자체를 못 읽음 (라즈베리파이
+ * 실기기에서 "syntax error"로 확인됨). 그 헤더가 정의하는 값은
+ * GPIO_ACTIVE_HIGH=0 뿐이라서, include 없이 그냥 리터럴 0으로 직접 씀.
+ */
 
 / {
 	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
@@ -34,8 +40,8 @@
 				spi-max-frequency = <4000000>;
 				status = "okay";
 
-				gdo0-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
-				gdo2-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
+				gdo0-gpios = <&gpio 24 0>;    /* 0 = GPIO_ACTIVE_HIGH */
+				gdo2-gpios = <&gpio 25 0>;    /* 0 = GPIO_ACTIVE_HIGH */
 			};
 		};
 	};
