@@ -49,8 +49,14 @@ static int cc1101_handle_rx_packet(struct cc1101 *cc)
 		goto out_unlock;
 	}
 
-	if ((rxbytes & CC1101_RXBYTES_MASK) < 1)
+	if ((rxbytes & CC1101_RXBYTES_MASK) < 1) {
+		/* [2026-08-16 임시 디버그] GDO2 인터럽트는 울렸는데(카운트 증가),
+		 * 정작 SPI로 RXBYTES를 읽어보니 0인 경우 — 인터럽트 발생 시점과
+		 * 실제 SPI 읽기 시점 사이의 타이밍/레이스 의심 지점. */
+		dev_warn(&cc->spi->dev,
+			 "[임시디버그] GDO2 울렸는데 RXBYTES=0x%02x (빈 FIFO)\n", rxbytes);
 		goto out_rearm;
+	}
 
 	ret = cc1101_read_burst(cc, CC1101_RXFIFO, &len, 1);
 	if (ret)
