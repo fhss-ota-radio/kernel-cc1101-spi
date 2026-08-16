@@ -73,8 +73,13 @@ static int cc1101_handle_rx_packet(struct cc1101 *cc)
 	if (ret)
 		goto out_unlock;
 
+	/* [2026-08-16 임시 디버그] dynamic_debug가 이 커널엔 안 켜져 있어서
+	 * dev_dbg는 dmesg에 절대 안 보임 -> 원인 파악을 위해 잠깐 dev_warn으로
+	 * 올려서 항상 보이게 함. 원인 확인되면 dev_dbg로 되돌릴 것. */
 	if (!(status[1] & CC1101_LQI_CRC_OK)) {
-		dev_dbg(&cc->spi->dev, "CRC 오류, 패킷 폐기 (len=%u)\n", len);
+		dev_warn(&cc->spi->dev,
+			 "[임시디버그] CRC 오류, 패킷 폐기 (len=%u, rssi_raw=0x%02x, status=0x%02x)\n",
+			 len, status[0], status[1]);
 		goto out_rearm;
 	}
 
@@ -82,6 +87,9 @@ static int cc1101_handle_rx_packet(struct cc1101 *cc)
 		kfifo_in(&cc->rx_fifo, &len, 1);
 		kfifo_in(&cc->rx_fifo, payload, len);
 		wake_up_interruptible(&cc->rx_wait);
+		dev_warn(&cc->spi->dev,
+			 "[임시디버그] 패킷 큐에 넣음 (len=%u, rssi_raw=0x%02x, first_byte=0x%02x)\n",
+			 len, status[0], payload[0]);
 	} else {
 		dev_warn(&cc->spi->dev, "RX 소프트웨어 큐 가득 참, 패킷 폐기\n");
 	}
