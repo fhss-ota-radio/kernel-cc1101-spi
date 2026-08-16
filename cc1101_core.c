@@ -126,7 +126,13 @@ static const u8 cc1101_default_regs[CC1101_NUM_CONFIG_REGS] = {
 	[CC1101_SYNC1]    = 0xD3,
 	[CC1101_SYNC0]    = 0x91,
 	[CC1101_PKTLEN]   = CC1101_MAX_PACKET_LEN,	/* 하드웨어 FIFO(64B) 한도에 맞춘 상한 */
-	[CC1101_PKTCTRL1] = 0x0D,	/* APPEND_STATUS=1, CRC_AUTOFLUSH=1, ADR_CHK=주소일치 */
+	/* [2026-08-16] ADR_CHK를 "주소일치"로 켜두면, ota_protocol.h 패킷은
+	 * 페이로드 첫 바이트가 CC1101 주소필터용 주소 바이트가 아니라서 하드웨어가
+	 * CRC 검사도 하기 전에 죄다 버림 (GDO2 "CRC OK 수신" 인터럽트가 한 번도
+	 * 안 울리는 것으로 실기기 확인). SpidevTransport 임시 우회 코드에서도
+	 * 이미 같은 이유로 꺼뒀던 것과 동일 — 주소필터 자체를 꺼서 모든 패킷을
+	 * 받도록 함. */
+	[CC1101_PKTCTRL1] = 0x0C,	/* APPEND_STATUS=1, CRC_AUTOFLUSH=1, ADR_CHK=끔(필터 없음) */
 	[CC1101_PKTCTRL0] = 0x05,	/* 가변 길이 패킷, CRC enable */
 	[CC1101_ADDR]     = 0x00,
 	[CC1101_CHANNR]   = 0x00,
