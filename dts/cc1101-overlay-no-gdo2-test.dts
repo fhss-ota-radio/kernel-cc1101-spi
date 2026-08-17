@@ -1,0 +1,76 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * cc1101-overlay-no-gdo2-test.dts - GDO2 배선/신호 문제 진단용 임시 오버레이
+ *
+ * [진단 목적, 2026-08-16] GDO2(수신 감지) 인터럽트가 실기기에서 한 번도
+ * 안 울리는 문제를 오실로스코프 없이 좁혀보기 위한 실험용 오버레이입니다.
+ * 원본(cc1101-overlay.dts)에서 gdo2-gpios 줄만 뺐습니다.
+ *
+ * 왜 이걸로 뭔가 알 수 있는가:
+ *   cc1101_main.c의 probe()는 gdo2를 devm_gpiod_get_optional()로 가져오는데,
+ *   디바이스트리에 gdo2-gpios가 아예 없으면 이 값이 NULL이 되고, 드라이버는
+ *   GDO2 인터럽트 등록 자체를 건너뜁니다. 대신 cc1101_gdo0_thread()의
+ *   "GDO2가 없는 보드" 폴백 경로(!cc->gdo2 && !level일 때
+ *   cc1101_handle_rx_packet() 호출)가 대신 동작합니다 — 이건 GDO0의 falling
+ *   edge(IOCFG0=0x06, "동기워드 송/수신 시 assert, 패킷 끝에서 deassert")를
+ *   그대로 재사용하는 거라, 이미 GDO0으로 TX완료 감지가 정상 작동한다고
+ *   확인된 배선/인터럽트 경로를 수신 감지에도 그대로 씁니다.
+ *
+ *   즉 이 오버레이로 테스트했을 때:
+ *   - 수신이 잡히면       -> GDO2 쪽 배선 또는 그 핀 특유의 신호(펄스폭 등)
+ *                            문제로 확정. GDO2 배선 재점검(멀티미터 연속성
+ *                            테스트 등) 우선순위 올릴 것.
+ *   - 그래도 안 잡히면    -> 배선 문제가 아니라 더 근본적인 문제(RX 처리
+ *                            로직, 타이밍 등)로 봐야 함.
+ *
+ * 사용법 (진단 후 반드시 원래 오버레이로 되돌릴 것):
+ *   dtc -@ -I dts -O dtb -o cc1101-no-gdo2-test.dtbo dts/cc1101-overlay-no-gdo2-test.dts
+ *   sudo cp cc1101-no-gdo2-test.dtbo /boot/firmware/overlays/
+ *   sudo sed -i 's/^dtoverlay=cc1101$/dtoverlay=cc1101-no-gdo2-test/' /boot/firmware/config.txt
+ *   sudo reboot
+ *   (테스트 후 되돌리기: 위 sed 반대로 dtoverlay=cc1101로 복구 + reboot)
+ *
+ * 확인 방법: 송신측에서 계속 보내면서 수신측에서
+ *   grep cc1101 /proc/interrupts
+ *   dmesg | grep -i '\[임시디버그\]'   (32d2a34/6340e75에서 추가한 로그)
+ *   두 개를 같이 보면서 cc1101-gdo0 카운트가 늘고 [임시디버그] 패킷 수신
+ *   로그가 찍히는지 확인.
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+	fragment@0 {
+		target = <&spi0>;
+		__overlay__ {
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			cc1101: cc1101@0 {
+				compatible = "ti,cc1101";
+				reg = <0>;
+				spi-max-frequency = <4000000>;
+				status = "okay";
+
+				gdo0-gpios = <&gpio 24 0>;    /* 0 = GPIO_ACTIVE_HIGH */
+				/* gdo2-gpios 의도적으로 뺌 — 진단 목적, 위 설명 참고 */
+			};
+		};
+	};
+
+	/* SPI0 CE0에 기본 등록된 spidev와의 충돌 방지 */
+	fragment@1 {
+		target = <&spidev0>;
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	__overrides__ {
+		gdo0_pin = <&cc1101>, "gdo0-gpios:4";
+		speed = <&cc1101>, "spi-max-frequency:0";
+	};
+};
