@@ -46,3 +46,20 @@ gcc -o examples/cc1101_test examples/cc1101_test.c
 > 반영하거나 ioctl(`CC1101_IOC_WRITE_REG`, `CC1101_IOC_SET_FREQ`)로 런타임에 조정하세요.
 > macOS 등 커널 헤더가 없는 환경에서는 컴파일 검증이 불가능하므로, 실제 라즈베리파이
 > 또는 크로스 툴체인 환경에서 `make`로 빌드를 확인해야 합니다.
+
+## 문서
+
+- [`docs/troubleshooting-cc1101.md`](docs/troubleshooting-cc1101.md) — **증상별 트러블슈팅
+  가이드.** 안 될 때 여기부터 보세요 (안테나/전원/배선/SPI/설정/큐/인터럽트 폭주,
+  진단 기법 포함)
+- [`docs/pi-bringup-guide.md`](docs/pi-bringup-guide.md) — 커널 모듈 빌드/적재 상세 가이드
+  (커스텀 커널·크로스컴파일 대응)
+- [`docs/driver-changes-handoff-2026-08-17.md`](docs/driver-changes-handoff-2026-08-17.md) —
+  2026-08-16~17 변경 내역과 담당자 리뷰 요청 사항
+- `tools/cc1101_diag.c` — 칩 레지스터/`MARCSTATE`를 직접 읽는 진단 도구.
+  문제 생기면 추측하기 전에 먼저 돌려보세요
+
+> **⚠️ 싱크워드 주의**: `SYNC1/SYNC0`이 OTA 전용 값 `0x2D/0xD4`로 설정돼 있습니다
+> (팀 공용 기본값 `0xD3/0x91`에서 변경 — 팀원들끼리 서로 패킷을 받는 문제가 있었음).
+> `gateway-ota`의 `spidevtransport.cpp` 레지스터 배열과 **같은 값이어야** 합니다.
+> 자세한 경위는 위 인수 문서 0장 참고.
