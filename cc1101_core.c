@@ -156,6 +156,22 @@ static const u8 cc1101_default_regs[CC1101_NUM_CONFIG_REGS] = {
 	[CC1101_PKTCTRL1] = 0x0C,	/* APPEND_STATUS=1, CRC_AUTOFLUSH=1, ADR_CHK=끔(필터 없음) */
 	[CC1101_PKTCTRL0] = 0x05,	/* 가변 길이 패킷, CRC enable */
 	[CC1101_ADDR]     = 0x00,
+	/* 채널 0 = 기준 주파수 그대로(433.92MHz).
+	 *
+	 * [검토했다가 안 쓴 것, 2026-08-16] 다른 팀과의 물리적 분리를 위해
+	 * 채널 이동을 검토했으나, 싱크워드 분리(위 SYNC1/SYNC0)로 충분하다고
+	 * 판단해 0을 유지한다.
+	 *
+	 * 나중에 채널을 옮길 일이 있으면 아래 제약을 반드시 확인할 것:
+	 *   주파수 = 433.92MHz + CHANNR x 채널간격
+	 *   채널간격 = (26MHz/2^18) x (256 + CHANSPC_M) x 2^CHANSPC_E ~= 200kHz
+	 *              (CHANSPC_E = MDMCFG1[1:0] = 2, CHANSPC_M = MDMCFG0 = 0xF8)
+	 *
+	 * 국내 433MHz ISM 밴드가 433.05~434.79MHz이므로 **채널 4(434.72MHz)가
+	 * 상한**이다. 채널 5는 밴드를 벗어나 전파법 위반이고, 큰 값(예: 200)은
+	 * 473.92MHz로 CC1101 지원 밴드(387~464MHz)조차 벗어나 PLL이 락을 못 걸어
+	 * 송수신이 통째로 죽는다. 채널 번호를 함부로 올리면 안 된다.
+	 */
 	[CC1101_CHANNR]   = 0x00,
 	[CC1101_FSCTRL1]  = 0x06,
 	[CC1101_FSCTRL0]  = 0x00,
