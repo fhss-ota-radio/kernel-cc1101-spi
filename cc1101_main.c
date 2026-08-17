@@ -89,6 +89,41 @@ static int cc1101_handle_rx_packet(struct cc1101 *cc)
 		goto out_rearm;
 	}
 
+	/* [버그 수정 2026-08-16] 큐가 가득 차면 "새 패킷"이 아니라 "오래된
+	 * 패킷"부터 버린다.
+	 *
+	 * 이전 코드는 자리가 없으면 방금 받은 패킷을 그냥 버렸다. 그러면 한 번
+	 * 큐가 차는 순간부터 영원히 새 패킷이 못 들어와서, 유저 프로그램이
+	 * 큐를 다 비워주기 전까지 수신이 완전히 마비된다(실기기에서 실제로
+	 * 이 상태에 빠짐 — 같은 대역을 쓰는 다른 팀 패킷이 큐를 채워버렸고,
+	 * 그 뒤로 우리 OTA 패킷이 하나도 안 올라옴).
+	 *
+	 * 통신에서는 "오래된 데이터"가 "새 데이터"보다 가치가 낮다. 어차피
+	 * 놓칠 거라면 지나간 것을 버리는 쪽이 맞다.
+	 */
+	while (kfifo_avail(&cc->rx_fifo) < (unsigned int)(len + 1)) {
+		u8 drop_len;
+		u8 scratch[CC1101_MAX_PACKET_LEN];
+
+		if (kfifo_out(&cc->rx_fifo, &drop_len, 1) != 1)
+			break;			/* 큐가 비었는데도 자리가 없으면 포기 */
+		if (drop_len > CC1101_MAX_PACKET_LEN) {
+			/* 큐 내용이 깨졌다는 뜻 — 통째로 비우고 새로 시작 */
+			kfifo_reset(&cc->rx_fifo);
+			dev_warn(&cc->spi->dev,
+				 "RX 큐 내용 손상(len=%u), 큐 초기화\n", drop_len);
+			break;
+		}
+		if (kfifo_out(&cc->rx_fifo, scratch, drop_len) != drop_len) {
+			/* 길이바이트는 있었는데 본문이 모자람 = 큐 내용 깨짐 */
+			kfifo_reset(&cc->rx_fifo);
+			dev_warn(&cc->spi->dev, "RX 큐 내용 불일치, 큐 초기화\n");
+			break;
+		}
+		dev_warn_ratelimited(&cc->spi->dev,
+				      "RX 큐 가득 참 — 오래된 패킷 1개 버림\n");
+	}
+
 	if (kfifo_avail(&cc->rx_fifo) >= (unsigned int)(len + 1)) {
 		kfifo_in(&cc->rx_fifo, &len, 1);
 		kfifo_in(&cc->rx_fifo, payload, len);
@@ -97,7 +132,8 @@ static int cc1101_handle_rx_packet(struct cc1101 *cc)
 			 "[임시디버그] 패킷 큐에 넣음 (len=%u, rssi_raw=0x%02x, first_byte=0x%02x)\n",
 			 len, status[0], payload[0]);
 	} else {
-		dev_warn(&cc->spi->dev, "RX 소프트웨어 큐 가득 참, 패킷 폐기\n");
+		dev_warn_ratelimited(&cc->spi->dev,
+				      "RX 큐 확보 실패, 패킷 폐기 (len=%u)\n", len);
 	}
 
 out_rearm:
@@ -189,6 +225,22 @@ static int cc1101_open(struct inode *inode, struct file *filp)
 
 	if (atomic_cmpxchg(&cc->open_count, 0, 1) != 0)
 		return -EBUSY;
+
+	/* [버그 수정 2026-08-16] 열 때 RX 큐를 비운다.
+	 *
+	 * 드라이버는 probe()에서 RX에 들어간 순간부터 계속 수신해서 kfifo에
+	 * 쌓는다. 그런데 그걸 꺼내가는 유저 프로그램은 한참 뒤에야 붙는다.
+	 * 그 사이에 쌓인 데이터는 이미 지나간 남의 패킷이라 쓸모가 없는데,
+	 * 큐를 차지한 채로 남아서 정작 필요한 패킷이 들어올 자리를 막는다.
+	 *
+	 * 실기기 확인(2026-08-16): 같은 433.92MHz/같은 싱크워드를 쓰는 다른
+	 * 팀 장비들의 패킷("FHSS"=0x46485353 로 시작하는 것 등)이 계속 잡혀서
+	 * kfifo(512byte)가 가득 찬 상태로 유지됐고, 그 결과 우리 OTA 패킷은
+	 * 도착해도 전부 "RX 소프트웨어 큐 가득 참"으로 폐기됐다.
+	 */
+	mutex_lock(&cc->lock);
+	kfifo_reset(&cc->rx_fifo);
+	mutex_unlock(&cc->lock);
 
 	filp->private_data = cc;
 	return 0;
