@@ -127,9 +127,41 @@ static irqreturn_t cc1101_gdo0_thread(int irq, void *data)
 	mutex_lock(&cc->lock);
 	if (cc->state == CC1101_STATE_TX) {
 		if (!level) {
-			/* falling edge: 송신 완료 */
+			/* falling edge: 송신 완료
+			 *
+			 * [버그 수정 2026-08-16] 여기서 cc1101_enter_rx()로 SRX를
+			 * 강제로 스트로브하면 안 됨.
+			 *
+			 * GDO0(IOCFG0=0x06)의 falling edge는 "패킷 끝"을 알리지만,
+			 * 이 시점에도 마지막 몇 바이트가 아직 안테나로 나가는 중일
+			 * 수 있다. 그 순간 SRX를 강제로 때리면 칩이 애매한 상태에
+			 * 빠져서 이후 수신이 전혀 안 된다(송신은 정상인데 그 뒤로
+			 * GDO2가 한 번도 안 울림).
+			 *
+			 * 실기기 증상(2026-08-16): 송신측 pi24가 OTA_START는 정상
+			 * 송신하고 수신측 pi06도 정상 수신·ACK 응답까지 하는데,
+			 * pi24의 /proc/interrupts에서 cc1101-gdo0=34(송신 정상)인 반면
+			 * cc1101-gdo2=0 — ACK를 단 한 번도 못 잡아 핸드셰이크가
+			 * 매번 타임아웃.
+			 *
+			 * gateway-ota의 SpidevTransport(유저공간 우회 구현)에서도
+			 * 2026-08-15에 완전히 동일한 버그를 겪고 같은 방식으로
+			 * 고쳤음(gateway-ota/docs/note/design-notes-gateway-ota-es.md
+			 * 17절 "send() 버그 2개 발견/수정" 2번 참고).
+			 *
+			 * 대응: MCSM1=0x3F는 TXOFF_MODE=11(송신 끝나면 자동 RX 복귀)
+			 * 이므로 칩이 알아서 RX로 돌아간다. 소프트웨어는 상태만
+			 * 맞춰두고 SRX는 건드리지 않는다.
+			 *
+			 * [!!! 미검증 !!!] 이 변경이 위 증상을 실제로 고치는지는
+			 * 아직 실기기로 확인하지 못했다. 수정 직후 테스트에서 수신측
+			 * pi06이 GDO0/GDO2 인터럽트가 아예 한 번도 안 울리는(=전파를
+			 * 아예 못 듣는) 물리 계층 문제에 빠져서, 이 코드 경로까지
+			 * 도달을 못 했기 때문. 수정 전 버전(6340e75)으로 되돌려
+			 * A/B 테스트한 결과도 동일하게 실패해서 이 변경이 원인이
+			 * 아니라는 것만 확인됨. 물리 문제 해결 후 반드시 재검증할 것.
+			 */
 			cc->state = CC1101_STATE_RX;
-			cc1101_enter_rx(cc);
 			mutex_unlock(&cc->lock);
 			complete(&cc->tx_done);
 			return IRQ_HANDLED;
