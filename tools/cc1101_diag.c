@@ -46,6 +46,7 @@ static const struct expected_reg kExpected[] = {
 	{ 0x06, 0x3D, "PKTLEN" },
 	{ 0x07, 0x0C, "PKTCTRL1 (주소필터 꺼짐이어야 함)" },
 	{ 0x08, 0x05, "PKTCTRL0 (가변길이 + CRC)" },
+	{ 0x0A, 0x00, "CHANNR   (채널 0 = 433.92MHz)" },
 	{ 0x0D, 0x10, "FREQ2    (433.92MHz)" },
 	{ 0x0E, 0xB0, "FREQ1" },
 	{ 0x0F, 0x71, "FREQ0" },
