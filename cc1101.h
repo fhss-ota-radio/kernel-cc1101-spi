@@ -110,13 +110,15 @@
 
 #define CC1101_RXBYTES_OVERFLOW	BIT(7)
 #define CC1101_RXBYTES_MASK	0x7F
+#define CC1101_MARCSTATE_MASK	0x1F
+#define CC1101_MARCSTATE_RXFIFO_OVERFLOW	0x11
 #define CC1101_LQI_CRC_OK	BIT(7)
 #define CC1101_LQI_MASK	0x7F
 
 /* PKTCTRL1 주소 필터 모드 (bit1:0, ADR_CHK) */
 #define CC1101_ADRCHK_NONE		0x00	/* 필터 비활성화 - 1:N 브로드캐스트 */
 #define CC1101_ADRCHK_ADDR		0x01
-#define CC1101_ADRCHK_ADDR_BCAST0	0x02
+#define CC1101_ADRCHK_ADDR_BCAST0	0xs02
 #define CC1101_ADRCHK_ADDR_BCAST0_FF	0x03
 #define CC1101_PKTCTRL1_ADRCHK_MASK	0x03
 
@@ -132,6 +134,10 @@ enum cc1101_state {
 
 /* read()가 반환하는 한 개의 수신 패킷을 rx_fifo에 넣을 때 쓰는 프레이밍: [len][payload...] */
 #define CC1101_RX_FIFO_SIZE	4096
+
+struct cc1101;
+struct cc1101_fhss;
+int cc1101_switch_channel(struct cc1101 *cc, u8 channel);
 
 struct cc1101 {
 	struct spi_device	*spi;
@@ -151,6 +157,7 @@ struct cc1101 {
 	struct kfifo		rx_fifo;
 
 	atomic_t		open_count;
+	struct cc1101_fhss	*fhss;
 };
 
 /* cc1101_core.c 에서 제공 */
@@ -164,8 +171,10 @@ int cc1101_strobe(struct cc1101 *cc, u8 strobe);
 int cc1101_hw_reset(struct cc1101 *cc);
 int cc1101_load_default_config(struct cc1101 *cc);
 int cc1101_enter_rx(struct cc1101 *cc);
+int cc1101_enter_rx_recover(struct cc1101 *cc);
 int cc1101_enter_idle(struct cc1101 *cc);
 int cc1101_set_freq_hz(struct cc1101 *cc, u32 freq_hz);
+int cc1101_set_channel_spacing_hz(struct cc1101 *cc, u32 spacing_hz);
 int cc1101_set_addr_filter(struct cc1101 *cc, u8 mode);
 int cc1101_read_rssi_dbm(struct cc1101 *cc, s8 *dbm);
 

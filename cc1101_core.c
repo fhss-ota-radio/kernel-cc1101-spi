@@ -108,6 +108,34 @@ int cc1101_hw_reset(struct cc1101 *cc)
 	return 0;
 }
 
+int cc1101_switch_channel(struct cc1101 *cc, u8 channel)
+{
+	enum cc1101_state previous = cc->state;
+	int ret;
+
+	ret = cc1101_enter_idle(cc);
+	if (ret)
+		return ret;
+
+	ret = cc1101_write_reg(cc, CC1101_CHANNR, channel);
+	if (ret)
+		goto restore;
+
+	ret = cc1101_strobe(cc, CC1101_SFRX);
+	if (ret)
+		goto restore;
+
+restore:
+	if (previous == CC1101_STATE_RX) {
+		int rx_ret = cc1101_enter_rx(cc);
+
+		if (!ret)
+			ret = rx_ret;
+	}
+
+	return ret;
+}
+
 /*
  * 433.92MHz / 2-FSK / 38.4kbps 기준 참고 레지스터 값 (TI SmartRF Studio에서
  * 흔히 쓰이는 표준 설정과 동일한 계산식/상수를 사용). 실제 RF 환경에 맞춰
@@ -241,6 +269,31 @@ int cc1101_enter_rx(struct cc1101 *cc)
 	return ret;
 }
 
+/* RXFIFO_OVERFLOW에서는 SRX만으로 복구되지 않으므로 IDLE에서 FIFO를 비운다. */
+int cc1101_enter_rx_recover(struct cc1101 *cc)
+{
+	u8 marc_state;
+	int ret;
+
+	ret = cc1101_read_status_reg(cc, CC1101_MARCSTATE, &marc_state);
+	if (ret)
+		return ret;
+
+	if ((marc_state & CC1101_MARCSTATE_MASK) ==
+	    CC1101_MARCSTATE_RXFIFO_OVERFLOW) {
+		dev_warn(&cc->spi->dev,
+			 "RX FIFO overflow 상태 감지, FIFO 복구\n");
+		ret = cc1101_enter_idle(cc);
+		if (ret)
+			return ret;
+		ret = cc1101_strobe(cc, CC1101_SFRX);
+		if (ret)
+			return ret;
+	}
+
+	return cc1101_enter_rx(cc);
+}
+
 int cc1101_enter_idle(struct cc1101 *cc)
 {
 	int ret = cc1101_strobe(cc, CC1101_SIDLE);
@@ -279,6 +332,43 @@ int cc1101_set_freq_hz(struct cc1101 *cc, u32 freq_hz)
 		ret = cc1101_enter_rx(cc);
 
 	return ret;
+}
+
+/* CHANSPC = f_xosc / 2^18 * (256 + M) * 2^E, datasheet 13.5 */
+int cc1101_set_channel_spacing_hz(struct cc1101 *cc, u32 spacing_hz)
+{
+	u64 best_diff = ~0ULL;
+	u8 best_e = 0, best_m = 0;
+	u8 mdmcfg1;
+	int e, m, ret;
+
+	if (!spacing_hz)
+		return -EINVAL;
+
+	for (e = 0; e <= 3; e++) {
+		for (m = 0; m <= 255; m++) {
+			u64 actual = div_u64((u64)CC1101_XOSC_HZ *
+					     (256 + m) * (1U << e), 1U << 18);
+			u64 diff = actual > spacing_hz ?
+				actual - spacing_hz : spacing_hz - actual;
+
+			if (diff < best_diff) {
+				best_diff = diff;
+				best_e = e;
+				best_m = m;
+			}
+		}
+	}
+
+	ret = cc1101_read_reg(cc, CC1101_MDMCFG1, &mdmcfg1);
+	if (ret)
+		return ret;
+	mdmcfg1 = (mdmcfg1 & ~0x03) | best_e;
+
+	ret = cc1101_write_reg(cc, CC1101_MDMCFG1, mdmcfg1);
+	if (ret)
+		return ret;
+	return cc1101_write_reg(cc, CC1101_MDMCFG0, best_m);
 }
 
 int cc1101_set_addr_filter(struct cc1101 *cc, u8 mode)

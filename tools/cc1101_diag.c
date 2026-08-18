@@ -15,6 +15,7 @@
  * 실행:
  *   sudo ./cc1101_diag            # 현재 상태만 확인
  *   sudo ./cc1101_diag --set-rx   # SET_RX 시킨 뒤 상태 확인
+ *   sudo ./cc1101_diag --flush-rx # RX FIFO를 비우고 RX 재진입
  */
 
 #include <fcntl.h>
@@ -91,10 +92,13 @@ int main(int argc, char *argv[])
 {
 	const char *path = "/dev/cc1101";
 	int set_rx = 0;
+	int flush_rx = 0;
 
 	for (int i = 1; i < argc; ++i) {
 		if (strcmp(argv[i], "--set-rx") == 0)
 			set_rx = 1;
+		else if (strcmp(argv[i], "--flush-rx") == 0)
+			flush_rx = 1;
 		else
 			path = argv[i];
 	}
@@ -111,6 +115,14 @@ int main(int argc, char *argv[])
 			perror("  SET_RX 실패");
 		else
 			printf("  SET_RX 성공\n");
+		usleep(10000);
+	}
+	if (flush_rx) {
+		printf("FLUSH_RX 실행...\n");
+		if (ioctl(fd, CC1101_IOC_FLUSH_RX) < 0)
+			perror("  FLUSH_RX 실패");
+		else
+			printf("  FLUSH_RX 성공\n");
 		usleep(10000);
 	}
 

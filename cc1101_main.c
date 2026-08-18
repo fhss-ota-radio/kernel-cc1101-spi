@@ -27,6 +27,7 @@
 #include <linux/err.h>
 
 #include "cc1101.h"
+#include "cc1101_fhss.h"
 #include "cc1101_ioctl.h"
 
 static int cc1101_handle_rx_packet(struct cc1101 *cc)
@@ -319,6 +320,11 @@ static ssize_t cc1101_write(struct file *filp, const char __user *buf,
 
 	cc->state = CC1101_STATE_TX;//드라이버 상태를 TX로 변경.
 	ret = cc1101_strobe(cc, CC1101_STX);//idle 상태 strobe 명령. 
+	if (ret) {
+		cc1101_enter_idle(cc);
+		cc1101_strobe(cc, CC1101_SFTX);
+		cc1101_enter_rx(cc);
+	}
 	mutex_unlock(&cc->lock); //SPI 작업 끝났으니 lock 해제.
 	if (ret)
 		return ret;
@@ -491,7 +497,7 @@ static long cc1101_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	}
 	case CC1101_IOC_SET_RX:
 		mutex_lock(&cc->lock);
-		ret = cc1101_enter_rx(cc);
+		ret = cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
 		break;
 	case CC1101_IOC_SET_IDLE:
@@ -518,6 +524,35 @@ static long cc1101_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 			ret = cc1101_enter_rx(cc);
 		mutex_unlock(&cc->lock);
 		break;
+	case CC1101_IOC_FHSS_SET_CONFIG: {
+		struct cc1101_fhss_config config;
+
+		if (copy_from_user(&config, argp, sizeof(config)))
+			return -EFAULT;
+		ret = cc1101_fhss_set_config(cc, &config);
+		break;
+	}
+	case CC1101_IOC_FHSS_START: {
+		u8 role;
+
+		if (copy_from_user(&role, argp, sizeof(role)))
+			return -EFAULT;
+		ret = cc1101_fhss_start(cc, role);
+		break;
+	}
+
+	case CC1101_IOC_FHSS_STOP:
+		ret = cc1101_fhss_stop(cc);
+		break;
+
+	case CC1101_IOC_FHSS_GET_STATUS: {
+		struct cc1101_fhss_status status;
+
+		cc1101_fhss_get_status(cc, &status);
+		if (copy_to_user(argp, &status, sizeof(status)))
+			return -EFAULT;
+		break;
+	}
 	default:
 		return -ENOTTY;
 	}
@@ -642,6 +677,7 @@ static int cc1101_probe(struct spi_device *spi)
 		dev_err(dev, "misc_register 실패: %d\n", ret);
 		goto err_free_fifo;
 	}
+	spi_set_drvdata(spi, cc);
 
 	mutex_lock(&cc->lock);
 	ret = cc1101_enter_rx(cc);
@@ -651,10 +687,15 @@ static int cc1101_probe(struct spi_device *spi)
 		goto err_free_fifo;
 	}
 
-	spi_set_drvdata(spi, cc);
+	ret = cc1101_fhss_init(cc);
+	if (ret)
+		goto err_deregister_misc;
+
 	dev_info(dev, "/dev/%s 등록 완료\n", cc->miscdev_name);
 	return 0;
 
+err_deregister_misc:
+	misc_deregister(&cc->miscdev);
 err_free_fifo:
 	kfifo_free(&cc->rx_fifo);
 	return ret;
@@ -671,12 +712,14 @@ static void cc1101_remove(struct spi_device *spi)
 {
 	struct cc1101 *cc = spi_get_drvdata(spi);
 
+	cc1101_fhss_destroy(cc);
+	misc_deregister(&cc->miscdev);
+
 	mutex_lock(&cc->lock);
 	cc1101_enter_idle(cc);
 	cc1101_strobe(cc, CC1101_SPWD);
 	mutex_unlock(&cc->lock);
 
-	misc_deregister(&cc->miscdev);
 	kfifo_free(&cc->rx_fifo);
 }
 
