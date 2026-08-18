@@ -664,7 +664,7 @@ err_free_fifo:
  * void로 고쳐야 컴파일됨 (int로 두면 "incompatible pointer type" 에러).
  * 라즈베리파이 실기기에서 크로스컴파일 검증 완료.
  */
-static void cc1101_remove(struct spi_device *spi)
+static int cc1101_remove(struct spi_device *spi)
 {
 	struct cc1101 *cc = spi_get_drvdata(spi);
 
@@ -675,6 +675,8 @@ static void cc1101_remove(struct spi_device *spi)
 
 	misc_deregister(&cc->miscdev);
 	kfifo_free(&cc->rx_fifo);
+
+	return 0;
 }
 
 static const struct of_device_id cc1101_of_match[] = {
