@@ -197,8 +197,11 @@ static irqreturn_t cc1101_gdo0_thread(int irq, void *data)
 	}
 	mutex_unlock(&cc->lock);
 
-	/* GDO2가 없는 보드에서는 GDO0의 falling edge를 RX 완료로도 사용 */
-	if (!cc->gdo2 && !level)
+	/* RX 완료는 GDO0(IOCFG0=0x06)의 falling edge를 사용한다. 일부 보드에서
+	 * DT에 GDO2가 선언되어도 실제 GDO2 IRQ가 발생하지 않아 RX FIFO가 영원히
+	 * drain되지 않았다. TX 상태는 위에서 처리하고 return하므로 여기서는 RX
+	 * 패킷 종료만 처리한다. */
+	if (!level)
 		cc1101_handle_rx_packet(cc);
 
 	return IRQ_HANDLED;

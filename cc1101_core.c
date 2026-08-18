@@ -115,11 +115,11 @@ int cc1101_hw_reset(struct cc1101 *cc)
  *
  * IOCFG0 = 0x06 : 동기워드 송/수신 시 assert, 패킷 끝에서 deassert
  *                 -> TX 완료 및 (GDO2 미배선 시) RX 완료 알림에 공용으로 사용
- * IOCFG2 = 0x07 : CRC OK 패킷 수신 시 assert, FIFO 첫 바이트 읽으면 deassert
+ * IOCFG2 = 0x29 : high impedance; RX completion uses GDO0 falling edge
  *                 -> GDO2가 배선된 경우 RX 완료 전용 알림으로 사용
  */
 static const u8 cc1101_default_regs[CC1101_NUM_CONFIG_REGS] = {
-	[CC1101_IOCFG2]   = 0x07,
+	[CC1101_IOCFG2]   = 0x29,
 	[CC1101_IOCFG1]   = 0x2E,	/* 미사용: 3-state */
 	[CC1101_IOCFG0]   = 0x06,
 	[CC1101_FIFOTHR]  = 0x47,
@@ -144,8 +144,8 @@ static const u8 cc1101_default_regs[CC1101_NUM_CONFIG_REGS] = {
 	 * 레지스터 배열과 반드시 같아야 한다. 한쪽만 바꾸면 두 경로가 서로
 	 * 통신하지 못한다.
 	 */
-	[CC1101_SYNC1]    = 0x2D,
-	[CC1101_SYNC0]    = 0xD4,
+	[CC1101_SYNC1]    = 0xD3,
+	[CC1101_SYNC0]    = 0x91,
 	[CC1101_PKTLEN]   = CC1101_MAX_PACKET_LEN,	/* 하드웨어 FIFO(64B) 한도에 맞춘 상한 */
 	/* [2026-08-16] ADR_CHK를 "주소일치"로 켜두면, ota_protocol.h 패킷은
 	 * 페이로드 첫 바이트가 CC1101 주소필터용 주소 바이트가 아니라서 하드웨어가
@@ -153,7 +153,7 @@ static const u8 cc1101_default_regs[CC1101_NUM_CONFIG_REGS] = {
 	 * 안 울리는 것으로 실기기 확인). SpidevTransport 임시 우회 코드에서도
 	 * 이미 같은 이유로 꺼뒀던 것과 동일 — 주소필터 자체를 꺼서 모든 패킷을
 	 * 받도록 함. */
-	[CC1101_PKTCTRL1] = 0x0C,	/* APPEND_STATUS=1, CRC_AUTOFLUSH=1, ADR_CHK=끔(필터 없음) */
+	[CC1101_PKTCTRL1] = 0x04,	/* APPEND_STATUS=1, CRC_AUTOFLUSH=0, ADR_CHK=끔(필터 없음) */
 	[CC1101_PKTCTRL0] = 0x05,	/* 가변 길이 패킷, CRC enable */
 	[CC1101_ADDR]     = 0x00,
 	/* 채널 0 = 기준 주파수 그대로(433.92MHz).
@@ -180,7 +180,7 @@ static const u8 cc1101_default_regs[CC1101_NUM_CONFIG_REGS] = {
 	[CC1101_FREQ0]    = 0x71,
 	[CC1101_MDMCFG4]  = 0xCA,
 	[CC1101_MDMCFG3]  = 0x83,
-	[CC1101_MDMCFG2]  = 0x13,	/* 2-FSK, 16/16 sync word */
+	[CC1101_MDMCFG2]  = 0x03,	/* 2-FSK, 30/32 sync word; ESP OTA parity */
 	[CC1101_MDMCFG1]  = 0x22,
 	[CC1101_MDMCFG0]  = 0xF8,
 	[CC1101_DEVIATN]  = 0x35,

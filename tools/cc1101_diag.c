@@ -38,13 +38,13 @@ struct expected_reg {
  * 깨졌다는 뜻이다.
  */
 static const struct expected_reg kExpected[] = {
-	{ 0x00, 0x07, "IOCFG2   (GDO2: CRC OK 수신 시 assert)" },
+	{ 0x00, 0x29, "IOCFG2   (high impedance; RX completion uses GDO0 falling)" },
 	{ 0x02, 0x06, "IOCFG0   (GDO0: 동기워드 송/수신 시 assert)" },
 	{ 0x03, 0x47, "FIFOTHR" },
-	{ 0x04, 0x2D, "SYNC1    (OTA 전용, 팀 공용 0xD3 아님)" },
-	{ 0x05, 0xD4, "SYNC0    (OTA 전용, 팀 공용 0x91 아님)" },
+	{ 0x04, 0xD3, "SYNC1    (ESP OTA parity)" },
+	{ 0x05, 0x91, "SYNC0    (ESP OTA parity)" },
 	{ 0x06, 0x3D, "PKTLEN" },
-	{ 0x07, 0x0C, "PKTCTRL1 (주소필터 꺼짐이어야 함)" },
+	{ 0x07, 0x04, "PKTCTRL1 (APPEND_STATUS, 주소필터/CRC_AUTOFLUSH 꺼짐)" },
 	{ 0x08, 0x05, "PKTCTRL0 (가변길이 + CRC)" },
 	{ 0x0A, 0x00, "CHANNR   (채널 0 = 433.92MHz)" },
 	{ 0x0D, 0x10, "FREQ2    (433.92MHz)" },
@@ -52,7 +52,7 @@ static const struct expected_reg kExpected[] = {
 	{ 0x0F, 0x71, "FREQ0" },
 	{ 0x10, 0xCA, "MDMCFG4" },
 	{ 0x11, 0x83, "MDMCFG3" },
-	{ 0x12, 0x13, "MDMCFG2  (2-FSK, 16/16 sync)" },
+	{ 0x12, 0x03, "MDMCFG2  (2-FSK, 30/32 sync; ESP OTA parity)" },
 	{ 0x17, 0x3F, "MCSM1    (TX/RX 종료 후 RX 유지)" },
 	{ 0x18, 0x18, "MCSM0    (IDLE->RX/TX 자동 캘리브레이션)" },
 };
