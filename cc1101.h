@@ -153,6 +153,7 @@ struct cc1101 {
 	int			irq_gdo2;
 
 	struct completion	tx_done;
+	int			tx_result;
 	wait_queue_head_t	rx_wait;
 	struct kfifo		rx_fifo;
 

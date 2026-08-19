@@ -150,8 +150,9 @@ static irqreturn_t cc1101_gdo2_thread(int irq, void *data)
 {
 	struct cc1101 *cc = data;
 
-	if (gpiod_get_value(cc->gdo2))
-		cc1101_handle_rx_packet(cc);
+	/* rising-edge IRQ 자체가 이벤트이므로 스레드 실행 시점의 레벨을
+	 * 다시 읽지 않는다. 짧은 펄스라면 그 사이 low로 바뀔 수 있다. */
+	cc1101_handle_rx_packet(cc);
 
 	return IRQ_HANDLED;
 }
@@ -159,12 +160,13 @@ static irqreturn_t cc1101_gdo2_thread(int irq, void *data)
 static irqreturn_t cc1101_gdo0_thread(int irq, void *data)
 {
 	struct cc1101 *cc = data;
-	bool level = gpiod_get_value(cc->gdo0);
 
 	mutex_lock(&cc->lock);
 	if (cc->state == CC1101_STATE_TX) {
-		if (!level) {
-			/* falling edge: 송신 완료 -> 명시적으로 RX 재진입
+		/* GDO0은 falling edge만 등록한다. IOCFG0=0x06에서 이 에지는
+		 * 송신 또는 수신 패킷의 끝을 의미한다.
+		 *
+		 * 송신 완료 -> 명시적으로 RX 재진입
 			 *
 			 * [되돌림 2026-08-16] 한때 여기서 cc1101_enter_rx() 호출을
 			 * 제거했다가 되돌렸다. 경위를 남긴다.
@@ -186,14 +188,10 @@ static irqreturn_t cc1101_gdo0_thread(int irq, void *data)
 			 *
 			 * 결론: MCSM1의 자동 복귀만 믿으면 안 되고, 명시적 SRX로
 			 * 상태를 확정시켜야 한다. 원래 코드가 맞았다.
-			 */
-			cc->state = CC1101_STATE_RX;
-			cc1101_enter_rx(cc);
-			mutex_unlock(&cc->lock);
-			complete(&cc->tx_done);
-			return IRQ_HANDLED;
-		}
+		 */
+		cc->tx_result = cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
+		complete(&cc->tx_done);
 		return IRQ_HANDLED;
 	}
 	mutex_unlock(&cc->lock);
@@ -202,8 +200,7 @@ static irqreturn_t cc1101_gdo0_thread(int irq, void *data)
 	 * DT에 GDO2가 선언되어도 실제 GDO2 IRQ가 발생하지 않아 RX FIFO가 영원히
 	 * drain되지 않았다. TX 상태는 위에서 처리하고 return하므로 여기서는 RX
 	 * 패킷 종료만 처리한다. */
-	if (!level)
-		cc1101_handle_rx_packet(cc);
+	cc1101_handle_rx_packet(cc);
 
 	return IRQ_HANDLED;
 }
@@ -305,6 +302,7 @@ static ssize_t cc1101_write(struct file *filp, const char __user *buf,
 	}
 
 	reinit_completion(&cc->tx_done);//tx 완료상태 초기화.
+	cc->tx_result = 0;
 
 	cc1101_enter_idle(cc);
 	cc1101_strobe(cc, CC1101_SFTX);	/* 이전 잔여 데이터 flush (IDLE 상태 필수) */
@@ -341,6 +339,17 @@ static ssize_t cc1101_write(struct file *filp, const char __user *buf,
 		mutex_unlock(&cc->lock);
 		return -ETIMEDOUT;
 	}
+
+	mutex_lock(&cc->lock);
+	ret = cc->tx_result;
+	if (ret) {
+		cc1101_enter_idle(cc);
+		cc1101_strobe(cc, CC1101_SFTX);
+		cc1101_enter_rx_recover(cc);
+	}
+	mutex_unlock(&cc->lock);
+	if (ret)
+		return ret;
 
 	return count;
 }
@@ -636,8 +645,7 @@ static int cc1101_probe(struct spi_device *spi)
 
 	ret = devm_request_threaded_irq(dev, cc->irq_gdo0, NULL,
 					 cc1101_gdo0_thread,
-					 IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING |
-					 IRQF_ONESHOT,
+					 IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
 					 "cc1101-gdo0", cc);
 	if (ret) {
 		dev_err(dev, "gdo0 IRQ 요청 실패: %d\n", ret);
