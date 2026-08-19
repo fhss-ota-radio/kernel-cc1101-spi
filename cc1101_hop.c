@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 #include <linux/errno.h>
+#include <linux/math64.h>
 
 #include "cc1101_fhss.h"
 #include "cc1101_hop.h"
@@ -42,11 +43,16 @@ static int cc1101_seeded_channel_for_slot(struct cc1101_fhss *fhss,
 					   u64 slot, u8 *channel)
 {
 	u16 count = fhss->config.hop.channel_count;
+	u64 slot_tmp;
+	u32 index;
 
 	if (!count)
 		return -EINVAL;
 
-	*channel = fhss->permutation[slot % count];
+	/* 32비트 ARM 커널에서 일반 u64 나눗셈 런타임 심볼을 만들지 않는다. */
+	slot_tmp = slot;
+	index = do_div(slot_tmp, count);
+	*channel = fhss->permutation[index];
 	return 0;
 }
 
