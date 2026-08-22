@@ -8,6 +8,8 @@
 - GDO0/GDO2 인터럽트 기반 수신 알림
 - `/dev/cc1101` 캐릭터 디바이스 노드
 - 주소 필터링 비활성화 모드로 1:N 브로드캐스트 지원
+- 커널 hrtimer/kthread 기반 FHSS 자동 채널 전환
+- MASTER SYNC 송신, SLAVE 동기 획득·시간 보정·상실 후 랑데부 재탐색
 
 ## 담당
 팀원3, 4
@@ -47,6 +49,24 @@ gcc -o examples/cc1101_test examples/cc1101_test.c
 > macOS 등 커널 헤더가 없는 환경에서는 컴파일 검증이 불가능하므로, 실제 라즈베리파이
 > 또는 크로스 툴체인 환경에서 `make`로 빌드를 확인해야 합니다.
 
+## FHSS 동작 방식
+
+사용자 앱은 매 슬롯마다 `SET_CHANNEL`을 호출하지 않습니다. 세션을 시작할 때
+`CC1101_IOC_FHSS_SET_CONFIG`와 `CC1101_IOC_FHSS_START`만 호출한 뒤에는 기존처럼
+`read()`/`write()`를 사용합니다.
+
+1. MASTER와 SLAVE에 같은 `generation`, seed, 채널 범위, 슬롯 시간을 설정합니다.
+2. SLAVE를 먼저 시작하면 랑데부 채널에서 SYNC를 기다립니다.
+3. MASTER를 시작하면 랑데부 채널에서 SYNC를 세 번 보내고 자동 호핑합니다.
+4. SLAVE는 유효한 SYNC 세 개를 받은 뒤 MASTER의 슬롯 번호에 맞춰 호핑합니다.
+5. SYNC를 다섯 슬롯 동안 놓치면 랑데부 채널로 돌아가 다시 찾습니다.
+6. `CC1101_IOC_FHSS_STOP`을 호출하면 호핑을 멈추고 OTA용 `reserved_channel`로
+   자동 복귀합니다.
+
+현재 공용 프로토콜과 맞는 대표 설정은 seed `0x46485353`, 슬롯 `300000us`,
+전환 guard `5000us`, 알고리즘 버전 1입니다. 실제 사용할 채널 범위는 안테나
+대역과 지역 전파 규정을 확인한 뒤 정해야 합니다.
+
 ## 문서
 
 - [`docs/troubleshooting-cc1101.md`](docs/troubleshooting-cc1101.md) — **증상별 트러블슈팅
@@ -59,7 +79,6 @@ gcc -o examples/cc1101_test examples/cc1101_test.c
 - `tools/cc1101_diag.c` — 칩 레지스터/`MARCSTATE`를 직접 읽는 진단 도구.
   문제 생기면 추측하기 전에 먼저 돌려보세요
 
-> **⚠️ 싱크워드 주의**: `SYNC1/SYNC0`이 OTA 전용 값 `0x2D/0xD4`로 설정돼 있습니다
-> (팀 공용 기본값 `0xD3/0x91`에서 변경 — 팀원들끼리 서로 패킷을 받는 문제가 있었음).
-> `gateway-ota`의 `spidevtransport.cpp` 레지스터 배열과 **같은 값이어야** 합니다.
-> 자세한 경위는 위 인수 문서 0장 참고.
+> **싱크워드 주의**: 현재 `SYNC1/SYNC0`은 ESP32와 같은 `0xD3/0x91`입니다.
+> `firmware-esp32`와 `gateway-ota`의 우회 SPI 설정도 반드시 같은 값이어야 하며,
+> 한쪽만 바꾸면 CC1101 하드웨어 단계에서 서로의 패킷을 받지 못합니다.

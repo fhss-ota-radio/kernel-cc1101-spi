@@ -11,11 +11,17 @@
 #include <linux/ioctl.h>
 
 #define CC1101_IOC_MAGIC	0xC1
-#define CC1101_FHSS_VERSION	1
-#define CC1101_FHSS_MAX_CHANNELS	256
+#define CC1101_FHSS_VERSION	2
+#define CC1101_FHSS_MAX_CHANNELS	255
 #define CC1101_FHSS_ALGORITHM_SEEDED_PERMUTATION	1
 #define CC1101_FHSS_ROLE_MASTER	1
 #define CC1101_FHSS_ROLE_SLAVE	2
+#define CC1101_FHSS_ALGORITHM_VERSION	1
+#define CC1101_FHSS_SYNC_VERSION	1
+#define CC1101_FHSS_DEFAULT_SEED	0x46485353U
+#define CC1101_FHSS_ZERO_SEED_FALLBACK	0x6D2B79F5U
+#define CC1101_FHSS_SYNC_PACKET_TYPE	10
+#define CC1101_FHSS_SYNC_PACKET_SIZE	13
 
 struct cc1101_reg_io {
 	__u8 addr;	/* 0x00-0x2E config reg, 0x3E PATABLE */
@@ -46,15 +52,20 @@ struct cc1101_fhss_rf_profile {
 };
 
 struct cc1101_fhss_hop_policy {
-	__u32 seed;
-	__u32 slot_duration_us;
+	__u32 seed;			/* ESP32와 공유할 호핑 순서 seed */
+	__u32 slot_duration_us;		/* 한 채널을 사용하는 시간, 현재 300000us */
+	__u32 channel_switch_guard_us;	/* 슬롯 경계보다 먼저 채널을 바꿀 시간 */
 	__u16 channel_count;
-	__u8 first_channel;
+	__u8 first_channel;		/* 순서의 첫 채널이자 랑데부 채널 */
+	__u8 rendezvous_channel;	/* 동기 상실 시 돌아와 SYNC를 찾는 채널 */
+	__u8 reserved_channel;		/* OTA 전용 등 호핑에서 제외할 채널 */
+	__u8 algorithm_version;		/* 반드시 CC1101_FHSS_ALGORITHM_VERSION */
+	__u8 channel_profile_id;	/* 팀에서 정한 주파수/채널 묶음 식별자 */
 	__u8 reserved;
 };
 
 struct cc1101_fhss_config {
-	__u16 version;		/* 구조체 버전 (현재 1) */
+	__u16 version;		/* 구조체 버전 (현재 CC1101_FHSS_VERSION=2) */
 	__u16 size;
 	__u32 generation;
 	__u32 algorithm_id;
@@ -72,6 +83,8 @@ struct cc1101_fhss_status {
 	__u32 generation;		/* 현재 FHSS 세션의 generation 값 */
 	__u64 current_slot;		/* 현재 FHSS 세션에서의 슬롯 번호 */
 	__s32 last_error;		/* 마지막 FHSS 오류 코드 (0이면 정상) */
+	__u32 sync_misses;		/* 연속으로 놓친 SYNC 개수 */
+	__u32 sync_packets;		/* 정상 처리한 SYNC 개수 */
 };
 
 #define CC1101_IOC_FHSS_SET_CONFIG _IOW(CC1101_IOC_MAGIC, 14, struct cc1101_fhss_config)

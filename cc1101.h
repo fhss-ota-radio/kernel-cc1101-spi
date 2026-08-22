@@ -118,7 +118,7 @@
 /* PKTCTRL1 주소 필터 모드 (bit1:0, ADR_CHK) */
 #define CC1101_ADRCHK_NONE		0x00	/* 필터 비활성화 - 1:N 브로드캐스트 */
 #define CC1101_ADRCHK_ADDR		0x01
-#define CC1101_ADRCHK_ADDR_BCAST0	0xs02
+#define CC1101_ADRCHK_ADDR_BCAST0	0x02
 #define CC1101_ADRCHK_ADDR_BCAST0_FF	0x03
 #define CC1101_PKTCTRL1_ADRCHK_MASK	0x03
 
@@ -138,6 +138,7 @@ enum cc1101_state {
 struct cc1101;
 struct cc1101_fhss;
 int cc1101_switch_channel(struct cc1101 *cc, u8 channel);
+int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len);
 
 struct cc1101 {
 	struct spi_device	*spi;

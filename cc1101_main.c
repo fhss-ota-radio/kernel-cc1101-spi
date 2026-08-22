@@ -91,6 +91,20 @@ static int cc1101_handle_rx_packet(struct cc1101 *cc)
 		goto out_rearm;
 	}
 
+	/* SLAVE가 동작 중이면 SYNC 제어 패킷은 사용자 앱으로 올리지 않고
+	 * 드라이버가 직접 처리한다. 그래야 앱은 평소처럼 read/write만 하면 된다.
+	 * config_lock은 cc->lock보다 먼저 잡는 규칙이므로 여기서 두 락을 겹쳐
+	 * 잡지 않고, 라디오를 재무장하고 cc->lock을 푼 다음 처리한다. */
+	if (cc1101_fhss_is_sync_packet(cc, payload, len)) {
+		u64 rx_time_ns = ktime_get_ns();
+
+		if (cc->state != CC1101_STATE_TX)
+			cc1101_enter_rx_recover(cc);
+		mutex_unlock(&cc->lock);
+		cc1101_fhss_handle_sync(cc, payload, len, rx_time_ns);
+		return 0;
+	}
+
 	/* [버그 수정 2026-08-16] 큐가 가득 차면 "새 패킷"이 아니라 "오래된
 	 * 패킷"부터 버린다.
 	 *
@@ -277,66 +291,74 @@ static ssize_t cc1101_read(struct file *filp, char __user *buf, size_t count,
 	return len;
 }
 
-static ssize_t cc1101_write(struct file *filp, const char __user *buf,
-			     size_t count, loff_t *ppos)
+/* 사용자 데이터와 드라이버가 만드는 FHSS SYNC가 같은 안전한 TX 경로를 쓴다.
+ * 이 함수는 TX 완료 GDO0까지 기다리므로 호출이 끝나면 다시 RX 상태이다. */
+int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 {
-	struct cc1101 *cc = filp->private_data;
-	u8 kbuf[CC1101_MAX_PACKET_LEN];
 	u8 txbuf[CC1101_MAX_PACKET_LEN + 1];
 	long timeout;
 	int ret;
 
-	if (count == 0)
+	/* write(fd, ..., 0)은 정상적인 빈 쓰기지만, 데이터가 있는데 주소가
+	 * NULL인 경우는 드라이버 내부 호출 오류이므로 구분해서 반환한다. */
+	if (len == 0)
 		return 0;
-	if (count > CC1101_MAX_PACKET_LEN)
+	if (!payload)
+		return -EINVAL;
+	if (len > CC1101_MAX_PACKET_LEN)
 		return -EMSGSIZE;
-	if (copy_from_user(kbuf, buf, count))//사용자 프로그램의 내용 복사해오기.
-		return -EFAULT;
 
-	ret = mutex_lock_interruptible(&cc->lock); //mutex lock 잡기.
+	ret = mutex_lock_interruptible(&cc->lock);
 	if (ret)
 		return ret;
 
-	if (cc->state == CC1101_STATE_TX) {//이미 송신중인지 검사.
+	if (cc->state == CC1101_STATE_TX) {
 		mutex_unlock(&cc->lock);
 		return -EBUSY;
 	}
 
-	reinit_completion(&cc->tx_done);//tx 완료상태 초기화.
+	reinit_completion(&cc->tx_done);
 	cc->tx_result = 0;
 
-	cc1101_enter_idle(cc);
-	cc1101_strobe(cc, CC1101_SFTX);	/* 이전 잔여 데이터 flush (IDLE 상태 필수) */
-
-	txbuf[0] = (u8)count;
-	memcpy(&txbuf[1], kbuf, count);
-	ret = cc1101_write_burst(cc, CC1101_TXFIFO, txbuf, count + 1);//TXFIFO에 데이터 넣기.
+	ret = cc1101_enter_idle(cc);
+	if (!ret)
+		ret = cc1101_strobe(cc, CC1101_SFTX);
 	if (ret) {
-		cc1101_enter_rx(cc); //cc 1101 idle 변경.
+		cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
 		return ret;
 	}
 
-	cc->state = CC1101_STATE_TX;//드라이버 상태를 TX로 변경.
-	ret = cc1101_strobe(cc, CC1101_STX);//idle 상태 strobe 명령. 
+	txbuf[0] = (u8)len;
+	memcpy(&txbuf[1], payload, len);
+	ret = cc1101_write_burst(cc, CC1101_TXFIFO, txbuf, len + 1);
+	if (ret) {
+		cc1101_enter_rx_recover(cc);
+		mutex_unlock(&cc->lock);
+		return ret;
+	}
+
+	cc->state = CC1101_STATE_TX;
+	ret = cc1101_strobe(cc, CC1101_STX);
 	if (ret) {
 		cc1101_enter_idle(cc);
 		cc1101_strobe(cc, CC1101_SFTX);
-		cc1101_enter_rx(cc);
+		cc1101_enter_rx_recover(cc);
 	}
-	mutex_unlock(&cc->lock); //SPI 작업 끝났으니 lock 해제.
+	mutex_unlock(&cc->lock);
 	if (ret)
 		return ret;
 
 	timeout = wait_for_completion_timeout(&cc->tx_done,
 					       msecs_to_jiffies(CC1101_TX_TIMEOUT_MS));
-						   //GDO0에서 TX 완료 신호 올때까지 대기. timeout 설정.
 	if (!timeout) {
 		dev_warn(&cc->spi->dev, "TX 타임아웃\n");
 		mutex_lock(&cc->lock);
 		cc1101_enter_idle(cc);
 		cc1101_strobe(cc, CC1101_SFTX);//TX FIFO 비우기.
-		cc1101_enter_rx(cc);
+		/* TX 실패 뒤 RX FIFO도 비정상 상태일 수 있으므로 단순 SRX가
+		 * 아니라 IDLE -> SFRX -> SRX 복구 순서를 사용한다. */
+		cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
 		return -ETIMEDOUT;
 	}
@@ -352,7 +374,25 @@ static ssize_t cc1101_write(struct file *filp, const char __user *buf,
 	if (ret)
 		return ret;
 
-	return count;
+	return 0;
+}
+
+static ssize_t cc1101_write(struct file *filp, const char __user *buf,
+			     size_t count, loff_t *ppos)
+{
+	struct cc1101 *cc = filp->private_data;
+	u8 kbuf[CC1101_MAX_PACKET_LEN];
+	int ret;
+
+	if (count == 0)
+		return 0;
+	if (count > CC1101_MAX_PACKET_LEN)
+		return -EMSGSIZE;
+	if (copy_from_user(kbuf, buf, count))
+		return -EFAULT;
+
+	ret = cc1101_transmit_packet(cc, kbuf, count);
+	return ret ? ret : count;
 }
 
 static __poll_t cc1101_poll(struct file *filp, poll_table *wait)
@@ -710,7 +750,11 @@ err_free_fifo:
 	return ret;
 }
 
-/* Linux 6.1부터 spi_driver.remove의 반환형이 int에서 void로 바뀌었다. */
+/*
+ * 라즈베리파이에 올라가는 Linux 5.15.92는 remove 함수가 int를 반환해야 한다.
+ * Linux 6.1부터는 void로 바뀌었기 때문에 버전에 맞는 함수 모양을 선택한다.
+ * 이 조건을 없애면 한쪽 커널에서 모듈 빌드가 실패한다.
+ */
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
 static void cc1101_remove(struct spi_device *spi)
 #else
@@ -730,6 +774,7 @@ static int cc1101_remove(struct spi_device *spi)
 	kfifo_free(&cc->rx_fifo);
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(6, 1, 0)
+	/* Linux 5.15.92의 spi_driver.remove 계약에 필요한 성공 반환값이다. */
 	return 0;
 #endif
 }
