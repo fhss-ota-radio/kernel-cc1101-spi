@@ -19,6 +19,9 @@ enum cc1101_fhss_state {
 	CC1101_FHSS_DISABLED,
 	CC1101_FHSS_CONFIGURED,
 	CC1101_FHSS_SEARCHING,
+	/* 첫 SYNC는 받았지만 아직 3회 확인이 끝나지 않은 상태다.
+	 * 이때부터는 MASTER의 슬롯/채널을 따라가야 다음 SYNC도 받을 수 있다. */
+	CC1101_FHSS_ACQUIRING,
 	CC1101_FHSS_SYNCHRONIZED,
 	CC1101_FHSS_STOPPING,
 };

@@ -126,7 +126,8 @@ static void cc1101_fhss_hop_worker(struct kthread_work *work)
 	int ret;
 
 	mutex_lock(&fhss->config_lock);
-	if (fhss->state != CC1101_FHSS_SYNCHRONIZED) {
+	if (fhss->state != CC1101_FHSS_ACQUIRING &&
+	    fhss->state != CC1101_FHSS_SYNCHRONIZED) {
 		mutex_unlock(&fhss->config_lock);
 		return;
 	}
@@ -348,6 +349,7 @@ int cc1101_fhss_set_config(struct cc1101 *cc,
 
 	mutex_lock(&fhss->config_lock);
 	if (fhss->state == CC1101_FHSS_SEARCHING ||
+	    fhss->state == CC1101_FHSS_ACQUIRING ||
 	    fhss->state == CC1101_FHSS_SYNCHRONIZED ||
 	    fhss->state == CC1101_FHSS_STOPPING) {
 		ret = -EBUSY;
@@ -370,8 +372,6 @@ out:
 int cc1101_fhss_start(struct cc1101 *cc, u8 role)
 {
 	struct cc1101_fhss *fhss = cc->fhss;
-	u8 sync_packet[CC1101_FHSS_SYNC_PACKET_SIZE];
-	int i;
 	int ret;
 
 	if (!fhss)
@@ -424,20 +424,10 @@ int cc1101_fhss_start(struct cc1101 *cc, u8 role)
 		goto out;
 	}
 
-	/* SLAVE가 시작 명령을 조금 늦게 처리해도 잡을 수 있도록 MASTER는
-	 * 랑데부 채널에서 slot 0 SYNC를 세 번 먼저 보낸다. */
-	for (i = 0; i < CC1101_FHSS_SYNC_ACQUIRE_COUNT; i++) {
-		cc1101_fhss_encode_sync(fhss, 0, sync_packet);
-		ret = cc1101_transmit_packet(cc, sync_packet,
-					      sizeof(sync_packet));
-		if (ret)
-			goto out;
-		if (i != CC1101_FHSS_SYNC_ACQUIRE_COUNT - 1)
-			msleep(20);
-	}
-
-	/* slot 0의 실제 경계는 지금보다 guard만큼 뒤로 둔다. 바로 이어서
-	 * 보내는 SYNC를 받은 SLAVE도 같은 계산으로 이 경계를 복원한다. */
+	/* 기준 시각을 먼저 확정한 뒤 작업 스레드가 실제 slot 0 경계에서 첫
+	 * SYNC를 보낸다. 예전처럼 같은 slot 0을 20ms 간격으로 세 번 보내면
+	 * 첫 패킷으로 시계를 맞춘 ESP32가 뒤의 두 패킷을 시간 범위 밖으로
+	 * 판단한다. 이제 SYNC는 실제 슬롯마다 한 번씩만 전송한다. */
 	fhss->reference_time_ns = ktime_get_ns() +
 		(u64)fhss->config.hop.channel_switch_guard_us * NSEC_PER_USEC;
 	fhss->state = CC1101_FHSS_SYNCHRONIZED;
@@ -501,6 +491,7 @@ bool cc1101_fhss_is_sync_packet(struct cc1101 *cc,
 	state = READ_ONCE(fhss->state);
 	return READ_ONCE(fhss->role) == CC1101_FHSS_ROLE_SLAVE &&
 		(state == CC1101_FHSS_SEARCHING ||
+		 state == CC1101_FHSS_ACQUIRING ||
 		 state == CC1101_FHSS_SYNCHRONIZED);
 }
 
@@ -521,6 +512,7 @@ void cc1101_fhss_handle_sync(struct cc1101 *cc, const u8 *payload,
 	mutex_lock(&fhss->config_lock);
 	if (fhss->role != CC1101_FHSS_ROLE_SLAVE ||
 	    (fhss->state != CC1101_FHSS_SEARCHING &&
+	     fhss->state != CC1101_FHSS_ACQUIRING &&
 	     fhss->state != CC1101_FHSS_SYNCHRONIZED))
 		goto out;
 
@@ -542,7 +534,8 @@ void cc1101_fhss_handle_sync(struct cc1101 *cc, const u8 *payload,
 	expected_index = expected_channel - fhss->config.hop.first_channel;
 	if (sync.hop_index != expected_index)
 		goto out;
-	if (fhss->state == CC1101_FHSS_SYNCHRONIZED &&
+	if ((fhss->state == CC1101_FHSS_ACQUIRING ||
+	     fhss->state == CC1101_FHSS_SYNCHRONIZED) &&
 	    expected_channel != fhss->current_channel)
 		goto out;
 
@@ -552,6 +545,15 @@ void cc1101_fhss_handle_sync(struct cc1101 *cc, const u8 *payload,
 	if ((u64)sync.slot_number * slot_ns > rx_time_ns)
 		goto out;
 	candidate_reference = rx_time_ns - (u64)sync.slot_number * slot_ns;
+	/* 획득 중에는 연속된 실제 슬롯의 SYNC만 개수에 포함한다. 같은 슬롯을
+	 * 다시 보낸 패킷은 버리고, 중간 슬롯을 놓쳤다면 현재 패킷부터 다시
+	 * 세기 시작한다. 채널 추적 자체는 유지하므로 재탐색 비용은 없다. */
+	if (fhss->state == CC1101_FHSS_ACQUIRING) {
+		if (sync.slot_number <= fhss->last_sync_slot)
+			goto out;
+		if (sync.slot_number != fhss->last_sync_slot + 1)
+			fhss->acquire_progress = 0;
+	}
 	fhss->sync_packets++;
 	fhss->last_rx_sequence = sync.sequence;
 	fhss->have_last_rx_sequence = true;
@@ -559,15 +561,27 @@ void cc1101_fhss_handle_sync(struct cc1101 *cc, const u8 *payload,
 	fhss->sync_misses = 0;
 
 	if (fhss->state == CC1101_FHSS_SEARCHING) {
-		/* 우연히 한 번 잡힌 패킷으로 바로 호핑하지 않고 세 번 연속 같은
-		 * generation의 SYNC를 확인해 잘못된 동기 획득을 줄인다. */
-		fhss->acquire_progress++;
-		if (fhss->acquire_progress < CC1101_FHSS_SYNC_ACQUIRE_COUNT)
-			goto out;
-
+		/* 첫 SYNC만으로 동기 완료라고 표시하지는 않지만, 다음 SYNC는 이미
+		 * 다음 호핑 채널에서 오므로 여기서부터 MASTER의 채널을 따라간다. */
 		fhss->reference_time_ns = candidate_reference;
 		fhss->current_slot = sync.slot_number;
 		fhss->current_channel = expected_channel;
+		fhss->acquire_progress = 1;
+		fhss->state = CC1101_FHSS_ACQUIRING;
+		cc1101_fhss_schedule_next(fhss);
+		goto out;
+	}
+
+	if (fhss->state == CC1101_FHSS_ACQUIRING) {
+		/* 실제 슬롯마다 도착한 정상 SYNC 세 개를 확인해야 synchronized가
+		 * 된다. 같은 slot을 빠르게 반복해서 개수만 채우지 않는다. */
+		fhss->reference_time_ns = candidate_reference;
+		fhss->current_slot = sync.slot_number;
+		fhss->acquire_progress++;
+		cc1101_fhss_schedule_next(fhss);
+		if (fhss->acquire_progress < CC1101_FHSS_SYNC_ACQUIRE_COUNT)
+			goto out;
+
 		fhss->state = CC1101_FHSS_SYNCHRONIZED;
 		dev_info(&cc->spi->dev,
 			 "FHSS SYNC 획득: generation=%u slot=%u channel=%u\n",
@@ -606,6 +620,7 @@ void cc1101_fhss_get_status(struct cc1101 *cc,
 
 	mutex_lock(&fhss->config_lock);
 	status->enabled = fhss->state == CC1101_FHSS_SEARCHING ||
+		fhss->state == CC1101_FHSS_ACQUIRING ||
 		fhss->state == CC1101_FHSS_SYNCHRONIZED;
 	status->synchronized =
 		fhss->state == CC1101_FHSS_SYNCHRONIZED;
