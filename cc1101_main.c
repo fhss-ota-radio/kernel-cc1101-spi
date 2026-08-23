@@ -308,13 +308,23 @@ int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 	if (len > CC1101_MAX_PACKET_LEN)
 		return -EMSGSIZE;
 
-	ret = mutex_lock_interruptible(&cc->lock);
+	/* FHSS 작업 스레드의 SYNC와 사용자 write()가 겹치면 예전에는 나중에
+	 * 들어온 쪽이 -EBUSY로 즉시 실패했다. 파일 전송 중에는 이 충돌이 흔히
+	 * 생기므로, 앞 송신의 GDO0 완료까지 기다린 뒤 차례대로 송신한다. */
+	ret = mutex_lock_interruptible(&cc->tx_lock);
 	if (ret)
 		return ret;
 
+	ret = mutex_lock_interruptible(&cc->lock);
+	if (ret)
+		goto out_tx;
+
+	/* tx_lock을 사용하는 정상 경로에서는 TX가 겹치지 않는다. 이 검사는
+	 * 예상하지 못한 상태 손상을 방어하기 위해 남겨 둔다. */
 	if (cc->state == CC1101_STATE_TX) {
 		mutex_unlock(&cc->lock);
-		return -EBUSY;
+		ret = -EBUSY;
+		goto out_tx;
 	}
 
 	reinit_completion(&cc->tx_done);
@@ -326,7 +336,7 @@ int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 	if (ret) {
 		cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
-		return ret;
+		goto out_tx;
 	}
 
 	txbuf[0] = (u8)len;
@@ -335,7 +345,7 @@ int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 	if (ret) {
 		cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
-		return ret;
+		goto out_tx;
 	}
 
 	cc->state = CC1101_STATE_TX;
@@ -347,7 +357,7 @@ int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 	}
 	mutex_unlock(&cc->lock);
 	if (ret)
-		return ret;
+		goto out_tx;
 
 	timeout = wait_for_completion_timeout(&cc->tx_done,
 					       msecs_to_jiffies(CC1101_TX_TIMEOUT_MS));
@@ -360,7 +370,8 @@ int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 		 * 아니라 IDLE -> SFRX -> SRX 복구 순서를 사용한다. */
 		cc1101_enter_rx_recover(cc);
 		mutex_unlock(&cc->lock);
-		return -ETIMEDOUT;
+		ret = -ETIMEDOUT;
+		goto out_tx;
 	}
 
 	mutex_lock(&cc->lock);
@@ -371,10 +382,10 @@ int cc1101_transmit_packet(struct cc1101 *cc, const u8 *payload, size_t len)
 		cc1101_enter_rx_recover(cc);
 	}
 	mutex_unlock(&cc->lock);
-	if (ret)
-		return ret;
 
-	return 0;
+out_tx:
+	mutex_unlock(&cc->tx_lock);
+	return ret;
 }
 
 static ssize_t cc1101_write(struct file *filp, const char __user *buf,
@@ -638,6 +649,7 @@ static int cc1101_probe(struct spi_device *spi)
 
 	cc->spi = spi;
 	mutex_init(&cc->lock);
+	mutex_init(&cc->tx_lock);
 	init_completion(&cc->tx_done);
 	init_waitqueue_head(&cc->rx_wait);
 	atomic_set(&cc->open_count, 0);

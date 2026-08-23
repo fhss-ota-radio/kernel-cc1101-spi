@@ -146,6 +146,10 @@ struct cc1101 {
 	char			miscdev_name[16];
 
 	struct mutex		lock;		/* SPI 버스 + 칩 상태 보호 */
+	/* 사용자 write()와 FHSS SYNC가 동시에 송신을 시작하지 않도록 TX 한 건의
+	 * 시작부터 GDO0 완료까지 직렬화한다. lock은 IRQ가 상태를 갱신할 때도
+	 * 쓰므로 송신 완료를 기다리는 동안 유지할 수 없어 별도 mutex가 필요하다. */
+	struct mutex		tx_lock;
 	enum cc1101_state	state;
 
 	struct gpio_desc	*gdo0;		/* 필수: 패킷 수신/송신완료 알림 */
