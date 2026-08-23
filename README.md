@@ -43,6 +43,29 @@ gcc -o examples/cc1101_test examples/cc1101_test.c
 ./examples/cc1101_test tx "hello"
 ```
 
+## 라즈베리파이 2대 링크 테스트
+
+`cc1101_link_test`는 한쪽 MASTER가 PING을 보내고 다른 쪽 SLAVE가 PONG으로
+응답하게 해서 양방향 링크를 확인합니다. 먼저 고정 채널로 하드웨어와 기본 RF
+설정을 검증하고, 성공한 뒤 FHSS 모드로 넘어가면 문제 범위를 쉽게 나눌 수 있습니다.
+
+```sh
+gcc -std=c99 -Wall -Wextra -Werror -D_POSIX_C_SOURCE=200809L \
+    -o examples/cc1101_link_test examples/cc1101_link_test.c
+
+# 1단계: 고정 채널 0 (Pi B를 먼저 실행)
+sudo ./examples/cc1101_link_test fixed slave
+sudo ./examples/cc1101_link_test fixed master
+
+# 2단계: FHSS 채널 1~4 (Pi B를 먼저 실행)
+sudo ./examples/cc1101_link_test fhss slave
+sudo ./examples/cc1101_link_test fhss master
+```
+
+두 FHSS 프로세스의 `seed`, `generation`, `channels` 값은 반드시 같아야 합니다.
+기본 채널 1~4는 현재 433.92MHz/약 200kHz 간격 설정에서 국내 433MHz 대역
+상한을 넘지 않도록 제한한 테스트 범위입니다.
+
 > 기본 레지스터 값은 433.92MHz / 2-FSK / 38.4kbps 참고 설정입니다. 실제 RF 환경에는
 > SmartRF Studio 등으로 재계산한 값을 `cc1101_core.c`의 `cc1101_default_regs[]`에
 > 반영하거나 ioctl(`CC1101_IOC_WRITE_REG`, `CC1101_IOC_SET_FREQ`)로 런타임에 조정하세요.

@@ -60,8 +60,15 @@ static u32 cc1101_get_le32(const u8 *buf)
 static void cc1101_fhss_encode_sync(struct cc1101_fhss *fhss, u64 slot,
 				    u8 *packet)
 {
-	u64 slot_tmp = slot;
-	u32 hop_index = do_div(slot_tmp, fhss->config.hop.channel_count);
+	u8 channel = fhss->config.hop.first_channel;
+	u8 hop_index = 0;
+
+	/* ESP32의 hop_index는 단순한 slot % channel_count가 아니라, 셔플된
+	 * 순서에서 선택된 실제 채널의 0-based 인덱스다. 드라이버 채널 범위는
+	 * first_channel부터 연속이므로 실제 채널에서 first_channel을 빼면
+	 * ESP32 fhss_hop_sequence_get_index()와 같은 값이 된다. */
+	if (!fhss->algorithm->channel_for_slot(fhss, slot, &channel))
+		hop_index = channel - fhss->config.hop.first_channel;
 
 	packet[0] = CC1101_FHSS_SYNC_PACKET_TYPE;
 	packet[1] = CC1101_FHSS_SYNC_VERSION;
@@ -502,8 +509,8 @@ void cc1101_fhss_handle_sync(struct cc1101 *cc, const u8 *payload,
 {
 	struct cc1101_fhss *fhss = cc->fhss;
 	struct cc1101_fhss_sync sync;
-	u64 slot_tmp, slot_ns, candidate_reference;
-	u32 expected_index;
+	u64 slot_ns, candidate_reference;
+	u8 expected_index;
 	u8 expected_channel;
 	s64 error_ns;
 	int ret;
@@ -525,13 +532,15 @@ void cc1101_fhss_handle_sync(struct cc1101 *cc, const u8 *payload,
 	    sync.sequence == fhss->last_rx_sequence)
 		goto out;
 
-	slot_tmp = sync.slot_number;
-	expected_index = do_div(slot_tmp, fhss->config.hop.channel_count);
-	if (sync.hop_index != expected_index)
-		goto out;
 	ret = fhss->algorithm->channel_for_slot(fhss, sync.slot_number,
 						&expected_channel);
 	if (ret)
+		goto out;
+	/* 송신과 동일하게 셔플 결과의 실제 채널 인덱스를 검증한다. 이전의
+	 * slot % channel_count 검사는 ESP32가 만든 정상 SYNC를 슬롯 1부터
+	 * 거부할 수 있었다. */
+	expected_index = expected_channel - fhss->config.hop.first_channel;
+	if (sync.hop_index != expected_index)
 		goto out;
 	if (fhss->state == CC1101_FHSS_SYNCHRONIZED &&
 	    expected_channel != fhss->current_channel)
