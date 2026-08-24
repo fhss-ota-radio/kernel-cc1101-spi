@@ -299,6 +299,7 @@ static int cc1101_fhss_apply_profile(struct cc1101_fhss *fhss)
 		SAVE_REG(mdmcfg0, CC1101_MDMCFG0);
 		SAVE_REG(pktctrl1, CC1101_PKTCTRL1);
 		SAVE_REG(pktctrl0, CC1101_PKTCTRL0);
+		SAVE_REG(channr, CC1101_CHANNR);
 		saved->valid = true;
 	}
 
@@ -334,6 +335,7 @@ static int cc1101_fhss_apply_profile(struct cc1101_fhss *fhss)
 		RESTORE_REG(mdmcfg0, CC1101_MDMCFG0);
 		RESTORE_REG(pktctrl1, CC1101_PKTCTRL1);
 		RESTORE_REG(pktctrl0, CC1101_PKTCTRL0);
+		RESTORE_REG(channr, CC1101_CHANNR);
 	}
 out_rx:
 	rx_ret = cc1101_enter_rx_recover(cc);
@@ -357,12 +359,11 @@ static int cc1101_fhss_restore_profile(struct cc1101_fhss *fhss)
 	int ret = 0, write_ret, rx_ret;
 
 	mutex_lock(&cc->lock);
-	if (!saved->valid)
-		goto switch_channel;
-
 	ret = cc1101_enter_idle(cc);
 	if (ret)
 		goto out;
+	if (!saved->valid)
+		goto restart_rx;
 
 #define RESTORE_SAVED(_field, _reg) \
 	do { \
@@ -382,6 +383,7 @@ static int cc1101_fhss_restore_profile(struct cc1101_fhss *fhss)
 	RESTORE_SAVED(mdmcfg0, CC1101_MDMCFG0);
 	RESTORE_SAVED(pktctrl1, CC1101_PKTCTRL1);
 	RESTORE_SAVED(pktctrl0, CC1101_PKTCTRL0);
+	RESTORE_SAVED(channr, CC1101_CHANNR);
 
 #undef RESTORE_SAVED
 
@@ -390,12 +392,14 @@ static int cc1101_fhss_restore_profile(struct cc1101_fhss *fhss)
 	if (!ret)
 		saved->valid = false;
 
-switch_channel:
-	write_ret = cc1101_switch_channel(
-		cc, fhss->config.hop.reserved_channel);
+	restart_rx:
+	/* 프로파일을 복원한 시점에는 IDLE이다. 이전 FHSS 패킷과 overflow
+	 * 상태를 남기지 않도록 RX FIFO를 명시적으로 비운 뒤 고정 채널 RX로
+	 * 다시 들어간다. */
+	write_ret = cc1101_strobe(cc, CC1101_SFRX);
 	if (!ret)
 		ret = write_ret;
-	rx_ret = cc1101_enter_rx_recover(cc);
+	rx_ret = cc1101_enter_rx(cc);
 	if (!ret)
 		ret = rx_ret;
 out:
@@ -567,13 +571,15 @@ out:
 int cc1101_fhss_stop(struct cc1101 *cc)
 {
 	struct cc1101_fhss *fhss = cc->fhss;
+	u8 restored_channel;
 	int ret = 0;
 
 	if (!fhss)
 		return -ENODEV;
 
 	mutex_lock(&fhss->config_lock);
-	if (fhss->state == CC1101_FHSS_DISABLED) {
+	if (fhss->state == CC1101_FHSS_DISABLED &&
+	    !fhss->saved_rf.valid) {
 		mutex_unlock(&fhss->config_lock);
 		return 0;
 	}
@@ -587,15 +593,18 @@ int cc1101_fhss_stop(struct cc1101 *cc)
 	/* 호핑을 끝낸 뒤에는 OTA/초기 접속에 쓰는 예약 채널로 돌아간다.
 	 * 따라서 사용자 앱은 STOP 다음에 SET_CHANNEL을 따로 호출하지 않아도
 	 * 다시 펌웨어 업데이트 패킷을 주고받을 수 있다. */
+	restored_channel = fhss->saved_rf.valid ?
+		fhss->saved_rf.channr : fhss->config.hop.reserved_channel;
 	ret = cc1101_fhss_restore_profile(fhss);
 
 	mutex_lock(&fhss->config_lock);
 	if (!ret)
-		fhss->current_channel = fhss->config.hop.reserved_channel;
+		fhss->current_channel = restored_channel;
 	else
 		fhss->last_error = ret;
-	fhss->state = fhss->algorithm ? CC1101_FHSS_CONFIGURED :
-		CC1101_FHSS_DISABLED;
+	/* STOP 뒤에는 반드시 새 CONFIG부터 시작하게 한다. RF 하드웨어와
+	 * 소프트웨어 상태를 모두 고정 채널 기준으로 확정하기 위함이다. */
+	fhss->state = CC1101_FHSS_DISABLED;
 	mutex_unlock(&fhss->config_lock);
 	return ret;
 }

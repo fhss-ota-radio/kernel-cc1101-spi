@@ -11,10 +11,10 @@
 #     sudo make modules_install && sudo depmod -a
 #     make clean
 
-MODULE_NAME := cc1101
+MODULE_NAME := cc1101_FHSS
 
 obj-m := $(MODULE_NAME).o
-cc1101-objs := cc1101_core.o cc1101_main.o cc1101_fhss.o cc1101_hop.o
+cc1101_FHSS-objs := cc1101_core.o cc1101_main.o cc1101_fhss.o cc1101_hop.o
 
 KVERSION ?= $(shell uname -r)
 KDIR ?= /lib/modules/$(KVERSION)/build

@@ -30,6 +30,7 @@ struct cc1101_fhss_rf_backup {
 	u8 mdmcfg0;
 	u8 pktctrl1;
 	u8 pktctrl0;
+	u8 channr;
 	bool valid;
 };
 
