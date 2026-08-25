@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * cc1101-overlay.dts - 라즈베리파이 SPI0 CE0에 CC1101을 연결하는 오버레이
+ *
+ * 빌드:
+ *   dtc -@ -I dts -O dtb -o cc1101.dtbo cc1101-overlay.dts
+ *   sudo cp cc1101.dtbo /boot/overlays/   (또는 /boot/firmware/overlays/)
+ *
+ * /boot/config.txt (또는 /boot/firmware/config.txt) 에 추가:
+ *   dtparam=spi=on
+ *   dtoverlay=cc1101
+ *   # 필요 시 GPIO 핀 변경: dtoverlay=cc1101,gdo0_pin=24,gdo2_pin=25
+ *
+ * 기본 배선: GDO0 -> GPIO24, GDO2 -> GPIO25, SPI0 CE0 사용
+ */
+/dts-v1/;
+/plugin/;
+
+/*
+ * [2026-08-16] 원래 여기서 <dt-bindings/gpio/gpio.h>를 #include해서
+ * GPIO_ACTIVE_HIGH 상수를 썼는데, dtc(디바이스트리 컴파일러)는 C
+ * 전처리기가 아니라서 #include 구문 자체를 못 읽음 (라즈베리파이
+ * 실기기에서 "syntax error"로 확인됨). 그 헤더가 정의하는 값은
+ * GPIO_ACTIVE_HIGH=0 뿐이라서, include 없이 그냥 리터럴 0으로 직접 씀.
+ */
+
+/ {
+	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+	fragment@0 {
+		target = <&spi0>;
+		__overlay__ {
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			cc1101: cc1101@0 {
+				compatible = "ti,cc1101";
+				reg = <0>;
+				spi-max-frequency = <4000000>;
+				status = "okay";
+
+				gdo0-gpios = <&gpio 24 0>;    /* 0 = GPIO_ACTIVE_HIGH */
+				gdo2-gpios = <&gpio 25 0>;    /* 0 = GPIO_ACTIVE_HIGH */
+			};
+		};
+	};
+
+	/* SPI0 CE0에 기본 등록된 spidev와의 충돌 방지 */
+	fragment@1 {
+		target = <&spidev0>;
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	__overrides__ {
+		gdo0_pin = <&cc1101>, "gdo0-gpios:4";
+		gdo2_pin = <&cc1101>, "gdo2-gpios:4";
+		speed = <&cc1101>, "spi-max-frequency:0";
+	};
+};
