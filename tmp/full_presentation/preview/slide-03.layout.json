@@ -1,0 +1,1549 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/zhmcd7",
+    "id": "zhmcd7",
+    "slide": 3,
+    "layoutId": "985770a2-1185-491f-9ca6-440e50e36d16",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "b171dc0c-7033-4408-9654-91c359764b2d",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1440,
+      "height": 810
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "985770a2-1185-491f-9ca6-440e50e36d16",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "b171dc0c-7033-4408-9654-91c359764b2d",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "b171dc0c-7033-4408-9654-91c359764b2d",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/36tgj6pc",
+      "id": "1",
+      "name": "eyebrow",
+      "bbox": [
+        96,
+        42,
+        800,
+        30
+      ],
+      "geometry": "rect",
+      "text": "02 · SYSTEM ARCHITECTURE",
+      "textPreview": "02 · SYSTEM ARCHITECTURE",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02 · SYSTEM ARCHITECTURE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02 · SYSTEM ARCHITECTURE",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02 · SYSTEM ARCHITECTURE",
+              "fontSize": 16,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/472hsbqx",
+      "id": "2",
+      "name": "title",
+      "bbox": [
+        96,
+        82,
+        1248,
+        88
+      ],
+      "geometry": "rect",
+      "text": "다섯 파트가 한 개의 OTA·음성 경로를 완성",
+      "textPreview": "다섯 파트가 한 개의 OTA·음성 경로를 완성",
+      "resolvedFontSize": 48,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 48,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "다섯 파트가 한 개의 OTA·음성 경로를 완성"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "다섯 파트가 한 개의 OTA·음성 경로를 완성",
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "다섯 파트가 한 개의 OTA·음성 경로를 완성",
+              "fontSize": 48,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p8bylg7i",
+      "id": "3",
+      "name": "footer",
+      "bbox": [
+        96,
+        760,
+        500,
+        22
+      ],
+      "geometry": "rect",
+      "text": "FHSS-OTA Radio · Team Project",
+      "textPreview": "FHSS-OTA Radio · Team Project",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#9A948D",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FHSS-OTA Radio · Team Project"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FHSS-OTA Radio · Team Project",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#9A948D",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "FHSS-OTA Radio · Team Project",
+              "fontSize": 13,
+              "color": "#9A948D",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q9kzul83",
+      "id": "4",
+      "name": "page",
+      "bbox": [
+        1300,
+        760,
+        44,
+        22
+      ],
+      "geometry": "rect",
+      "text": "03",
+      "textPreview": "03",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#9A948D",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "03"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "03",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#9A948D",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "03",
+              "fontSize": 13,
+              "color": "#9A948D",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/radgnqpo",
+      "id": "5",
+      "name": "c0",
+      "bbox": [
+        96,
+        234,
+        260,
+        234
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#171412",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbmhwvq9",
+      "id": "6",
+      "name": "ct0",
+      "bbox": [
+        116,
+        258,
+        220,
+        50
+      ],
+      "geometry": "rect",
+      "text": "Gateway / Qt",
+      "textPreview": "Gateway / Qt",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gateway / Qt"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gateway / Qt",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gateway / Qt",
+              "fontSize": 23,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dcvyp07e",
+      "id": "7",
+      "name": "cb0",
+      "bbox": [
+        116,
+        350,
+        220,
+        76
+      ],
+      "geometry": "rect",
+      "text": "파일 선택 · 장치 탐색\nOTA 세션 · 진행 표시",
+      "textPreview": "파일 선택 · 장치 탐색 | OTA 세션 · 진행 표시",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "파일 선택 · 장치 탐색"
+          },
+          {
+            "index": 2,
+            "text": "OTA 세션 · 진행 표시"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "파일 선택 · 장치 탐색",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "파일 선택 · 장치 탐색",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "OTA 세션 · 진행 표시",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "OTA 세션 · 진행 표시",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ed4zyl8z",
+      "id": "8",
+      "name": "a0l",
+      "bbox": [
+        362,
+        342,
+        32,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zedgrqpk",
+      "id": "9",
+      "name": "a0h",
+      "bbox": [
+        388,
+        334,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/baxcnuto",
+      "id": "10",
+      "name": "c1",
+      "bbox": [
+        408,
+        234,
+        260,
+        234
+      ],
+      "geometry": "rect",
+      "fillColor": "#FBF2ED",
+      "lineColor": "#C84308",
+      "lineWidth": 2
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a9obeps3",
+      "id": "11",
+      "name": "ct1",
+      "bbox": [
+        428,
+        258,
+        220,
+        50
+      ],
+      "geometry": "rect",
+      "text": "Linux Driver",
+      "textPreview": "Linux Driver",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Linux Driver"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Linux Driver",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Linux Driver",
+              "fontSize": 23,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xcfup4bu",
+      "id": "12",
+      "name": "cb1",
+      "bbox": [
+        428,
+        350,
+        220,
+        76
+      ],
+      "geometry": "rect",
+      "text": "/dev/cc1101\nSPI · IRQ · FIFO · FHSS",
+      "textPreview": "/dev/cc1101 | SPI · IRQ · FIFO · FHSS",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "/dev/cc1101"
+          },
+          {
+            "index": 2,
+            "text": "SPI · IRQ · FIFO · FHSS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "/dev/cc1101",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "/dev/cc1101",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "SPI · IRQ · FIFO · FHSS",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SPI · IRQ · FIFO · FHSS",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wb6dgza9",
+      "id": "13",
+      "name": "a1l",
+      "bbox": [
+        674,
+        342,
+        32,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n6dcjats",
+      "id": "14",
+      "name": "a1h",
+      "bbox": [
+        700,
+        334,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m54ba5s7",
+      "id": "15",
+      "name": "c2",
+      "bbox": [
+        720,
+        234,
+        260,
+        234
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#171412",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/98fulkbi",
+      "id": "16",
+      "name": "ct2",
+      "bbox": [
+        740,
+        258,
+        220,
+        50
+      ],
+      "geometry": "rect",
+      "text": "RF Link",
+      "textPreview": "RF Link",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RF Link"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RF Link",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "RF Link",
+              "fontSize": 23,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o7mtcfad",
+      "id": "17",
+      "name": "cb2",
+      "bbox": [
+        740,
+        350,
+        220,
+        76
+      ],
+      "geometry": "rect",
+      "text": "CC1101 Sub-1GHz\nDATA · ACK · SYNC",
+      "textPreview": "CC1101 Sub-1GHz | DATA · ACK · SYNC",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CC1101 Sub-1GHz"
+          },
+          {
+            "index": 2,
+            "text": "DATA · ACK · SYNC"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CC1101 Sub-1GHz",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CC1101 Sub-1GHz",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "DATA · ACK · SYNC",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DATA · ACK · SYNC",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/72hcvetw",
+      "id": "18",
+      "name": "a2l",
+      "bbox": [
+        986,
+        342,
+        32,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/618vm9sb",
+      "id": "19",
+      "name": "a2h",
+      "bbox": [
+        1012,
+        334,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/29c7axgv",
+      "id": "20",
+      "name": "c3",
+      "bbox": [
+        1032,
+        234,
+        260,
+        234
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#171412",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3alo32hg",
+      "id": "21",
+      "name": "ct3",
+      "bbox": [
+        1052,
+        258,
+        220,
+        50
+      ],
+      "geometry": "rect",
+      "text": "ESP32 Firmware",
+      "textPreview": "ESP32 Firmware",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ESP32 Firmware"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ESP32 Firmware",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ESP32 Firmware",
+              "fontSize": 23,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/obupc7y1",
+      "id": "22",
+      "name": "cb3",
+      "bbox": [
+        1052,
+        350,
+        220,
+        76
+      ],
+      "geometry": "rect",
+      "text": "프로토콜 수신 · OTA write\nSpeex · PTT · UI",
+      "textPreview": "프로토콜 수신 · OTA write | Speex · PTT · UI",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "프로토콜 수신 · OTA write"
+          },
+          {
+            "index": 2,
+            "text": "Speex · PTT · UI"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "프로토콜 수신 · OTA write",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "프로토콜 수신 · OTA write",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "Speex · PTT · UI",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Speex · PTT · UI",
+              "fontSize": 18,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pcn65czm",
+      "id": "23",
+      "name": "lh0",
+      "bbox": [
+        96,
+        520,
+        92,
+        36
+      ],
+      "geometry": "rect",
+      "text": "제어",
+      "textPreview": "제어",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "제어"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "제어",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "제어",
+              "fontSize": 16,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qdw7ehgr",
+      "id": "24",
+      "name": "ll0",
+      "bbox": [
+        195,
+        537,
+        94,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/be5o7mhc",
+      "id": "25",
+      "name": "lb0",
+      "bbox": [
+        310,
+        520,
+        980,
+        36
+      ],
+      "geometry": "rect",
+      "text": "DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK",
+      "textPreview": "DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#171412",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK",
+              "fontSize": 18,
+              "color": "#171412",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cfepgryx",
+      "id": "26",
+      "name": "lh1",
+      "bbox": [
+        96,
+        578,
+        92,
+        36
+      ],
+      "geometry": "rect",
+      "text": "동기",
+      "textPreview": "동기",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "동기"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "동기",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "동기",
+              "fontSize": 16,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0n69wzi",
+      "id": "27",
+      "name": "ll1",
+      "bbox": [
+        195,
+        595,
+        94,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6hsn2dgn",
+      "id": "28",
+      "name": "lb1",
+      "bbox": [
+        310,
+        578,
+        980,
+        36
+      ],
+      "geometry": "rect",
+      "text": "seed · generation · slot · hop_index · FHSS_SYNC",
+      "textPreview": "seed · generation · slot · hop_index · FHSS_SYNC",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "seed · generation · slot · hop_index · FHSS_SYNC"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "seed · generation · slot · hop_index · FHSS_SYNC",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#171412",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "seed · generation · slot · hop_index · FHSS_SYNC",
+              "fontSize": 18,
+              "color": "#171412",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ri1ovih8",
+      "id": "29",
+      "name": "lh2",
+      "bbox": [
+        96,
+        636,
+        92,
+        36
+      ],
+      "geometry": "rect",
+      "text": "미디어",
+      "textPreview": "미디어",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "미디어"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "미디어",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "미디어",
+              "fontSize": 16,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9wrq1gjq",
+      "id": "30",
+      "name": "ll2",
+      "bbox": [
+        195,
+        653,
+        94,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8vi98vi5",
+      "id": "31",
+      "name": "lb2",
+      "bbox": [
+        310,
+        636,
+        980,
+        36
+      ],
+      "geometry": "rect",
+      "text": "I2S PCM · Speex · 무전 음성 패킷",
+      "textPreview": "I2S PCM · Speex · 무전 음성 패킷",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "I2S PCM · Speex · 무전 음성 패킷"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "I2S PCM · Speex · 무전 음성 패킷",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#171412",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "I2S PCM · Speex · 무전 음성 패킷",
+              "fontSize": 18,
+              "color": "#171412",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

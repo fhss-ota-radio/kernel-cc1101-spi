@@ -1,0 +1,1639 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/eq2fby",
+    "id": "eq2fby",
+    "slide": 3,
+    "layoutId": "1eea6635-9c4a-42ef-904f-7e0e3a89fbc6",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d95b2e94-461b-4a2b-a974-27bbee60dd9b",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1440,
+      "height": 810
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "1eea6635-9c4a-42ef-904f-7e0e3a89fbc6",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d95b2e94-461b-4a2b-a974-27bbee60dd9b",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d95b2e94-461b-4a2b-a974-27bbee60dd9b",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b6pobehg",
+      "id": "1",
+      "name": "eyebrow",
+      "bbox": [
+        96,
+        48,
+        620,
+        32
+      ],
+      "geometry": "rect",
+      "text": "DEVICE DRIVER · TROUBLESHOOTING",
+      "textPreview": "DEVICE DRIVER · TROUBLESHOOTING",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "DEVICE DRIVER · TROUBLESHOOTING"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "DEVICE DRIVER · TROUBLESHOOTING",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DEVICE DRIVER · TROUBLESHOOTING",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c7y54ji1",
+      "id": "2",
+      "name": "title",
+      "bbox": [
+        96,
+        90,
+        1248,
+        92
+      ],
+      "geometry": "rect",
+      "text": "실기기 오류를 상태·동시성 문제로 좁혔다",
+      "textPreview": "실기기 오류를 상태·동시성 문제로 좁혔다",
+      "resolvedFontSize": 53,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 53,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "실기기 오류를 상태·동시성 문제로 좁혔다"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "실기기 오류를 상태·동시성 문제로 좁혔다",
+          "resolvedTextStyle": {
+            "fontSize": 53,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "실기기 오류를 상태·동시성 문제로 좁혔다",
+              "fontSize": 53,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x876doz6",
+      "id": "3",
+      "name": "footer",
+      "bbox": [
+        96,
+        758,
+        520,
+        24
+      ],
+      "geometry": "rect",
+      "text": "FHSS-OTA Radio · Device Driver",
+      "textPreview": "FHSS-OTA Radio · Device Driver",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#9A948D",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FHSS-OTA Radio · Device Driver"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FHSS-OTA Radio · Device Driver",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#9A948D",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "FHSS-OTA Radio · Device Driver",
+              "fontSize": 14,
+              "color": "#9A948D",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/21wny90j",
+      "id": "4",
+      "name": "page",
+      "bbox": [
+        1320,
+        758,
+        28,
+        24
+      ],
+      "geometry": "rect",
+      "text": "3",
+      "textPreview": "3",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#9A948D",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "3"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "3",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#9A948D",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "3",
+              "fontSize": 14,
+              "color": "#9A948D",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n2547uh4",
+      "id": "5",
+      "name": "th-problem",
+      "bbox": [
+        96,
+        218,
+        300,
+        35
+      ],
+      "geometry": "rect",
+      "text": "문제",
+      "textPreview": "문제",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "문제"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "문제",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "문제",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o3e50zip",
+      "id": "6",
+      "name": "th-cause",
+      "bbox": [
+        450,
+        218,
+        350,
+        35
+      ],
+      "geometry": "rect",
+      "text": "원인",
+      "textPreview": "원인",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "원인"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "원인",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "원인",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p4n694za",
+      "id": "7",
+      "name": "th-solution",
+      "bbox": [
+        855,
+        218,
+        480,
+        35
+      ],
+      "geometry": "rect",
+      "text": "해결",
+      "textPreview": "해결",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "해결"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "해결",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "해결",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/edwnup0n",
+      "id": "8",
+      "name": "th-line",
+      "bbox": [
+        96,
+        260,
+        1248,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#171412",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fy543uh8",
+      "id": "9",
+      "name": "problem-0",
+      "bbox": [
+        96,
+        282,
+        320,
+        60
+      ],
+      "geometry": "rect",
+      "text": "수신이 완전히 멎음",
+      "textPreview": "수신이 완전히 멎음",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "수신이 완전히 멎음"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "수신이 완전히 멎음",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "수신이 완전히 멎음",
+              "fontSize": 19,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3y98z298",
+      "id": "10",
+      "name": "cause-0",
+      "bbox": [
+        450,
+        282,
+        350,
+        60
+      ],
+      "geometry": "rect",
+      "text": "RX FIFO overflow\nMARCSTATE=0x11",
+      "textPreview": "RX FIFO overflow | MARCSTATE=0x11",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RX FIFO overflow"
+          },
+          {
+            "index": 2,
+            "text": "MARCSTATE=0x11"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RX FIFO overflow",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "RX FIFO overflow",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "MARCSTATE=0x11",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "MARCSTATE=0x11",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2x0r6xsn",
+      "id": "11",
+      "name": "solution-0",
+      "bbox": [
+        855,
+        282,
+        440,
+        60
+      ],
+      "geometry": "rect",
+      "text": "IDLE → SFRX → SRX\n자동 복구",
+      "textPreview": "IDLE → SFRX → SRX | 자동 복구",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IDLE → SFRX → SRX"
+          },
+          {
+            "index": 2,
+            "text": "자동 복구"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IDLE → SFRX → SRX",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IDLE → SFRX → SRX",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "자동 복구",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "자동 복구",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p0ra1sre",
+      "id": "12",
+      "name": "row-bg-1",
+      "bbox": [
+        76,
+        370,
+        1288,
+        90
+      ],
+      "geometry": "rect",
+      "fillColor": "#FBF2ED",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4zi987at",
+      "id": "13",
+      "name": "problem-1",
+      "bbox": [
+        96,
+        380,
+        320,
+        60
+      ],
+      "geometry": "rect",
+      "text": "슬롯 1부터 SYNC 거부",
+      "textPreview": "슬롯 1부터 SYNC 거부",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "슬롯 1부터 SYNC 거부"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "슬롯 1부터 SYNC 거부",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "슬롯 1부터 SYNC 거부",
+              "fontSize": 19,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r2ts3294",
+      "id": "14",
+      "name": "cause-1",
+      "bbox": [
+        450,
+        380,
+        350,
+        60
+      ],
+      "geometry": "rect",
+      "text": "hop_index 의미 불일치",
+      "textPreview": "hop_index 의미 불일치",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "hop_index 의미 불일치"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "hop_index 의미 불일치",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "hop_index 의미 불일치",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q10raxsz",
+      "id": "15",
+      "name": "solution-1",
+      "bbox": [
+        855,
+        380,
+        440,
+        60
+      ],
+      "geometry": "rect",
+      "text": "실제 셔플 채널의\n0-based index로 통일",
+      "textPreview": "실제 셔플 채널의 | 0-based index로 통일",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "실제 셔플 채널의"
+          },
+          {
+            "index": 2,
+            "text": "0-based index로 통일"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "실제 셔플 채널의",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "실제 셔플 채널의",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "0-based index로 통일",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "0-based index로 통일",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/doba5cra",
+      "id": "16",
+      "name": "problem-2",
+      "bbox": [
+        96,
+        478,
+        320,
+        60
+      ],
+      "geometry": "rect",
+      "text": "초기 동기 획득 실패",
+      "textPreview": "초기 동기 획득 실패",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "초기 동기 획득 실패"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "초기 동기 획득 실패",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "초기 동기 획득 실패",
+              "fontSize": 19,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c329c7ap",
+      "id": "17",
+      "name": "cause-2",
+      "bbox": [
+        450,
+        478,
+        350,
+        60
+      ],
+      "geometry": "rect",
+      "text": "같은 slot 0을\n20ms 간격으로 3회 송신",
+      "textPreview": "같은 slot 0을 | 20ms 간격으로 3회 송신",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "같은 slot 0을"
+          },
+          {
+            "index": 2,
+            "text": "20ms 간격으로 3회 송신"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "같은 slot 0을",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "같은 slot 0을",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "20ms 간격으로 3회 송신",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "20ms 간격으로 3회 송신",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/76p8ri90",
+      "id": "18",
+      "name": "solution-2",
+      "bbox": [
+        855,
+        478,
+        440,
+        60
+      ],
+      "geometry": "rect",
+      "text": "실제 슬롯마다\nSYNC 한 번 송신",
+      "textPreview": "실제 슬롯마다 | SYNC 한 번 송신",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "실제 슬롯마다"
+          },
+          {
+            "index": 2,
+            "text": "SYNC 한 번 송신"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "실제 슬롯마다",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "실제 슬롯마다",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "SYNC 한 번 송신",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SYNC 한 번 송신",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/65grydsf",
+      "id": "19",
+      "name": "row-bg-3",
+      "bbox": [
+        76,
+        566,
+        1288,
+        90
+      ],
+      "geometry": "rect",
+      "fillColor": "#FBF2ED",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/al4b6lc3",
+      "id": "20",
+      "name": "problem-3",
+      "bbox": [
+        96,
+        576,
+        320,
+        60
+      ],
+      "geometry": "rect",
+      "text": "OTA_DATA write 실패",
+      "textPreview": "OTA_DATA write 실패",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "OTA_DATA write 실패"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "OTA_DATA write 실패",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "OTA_DATA write 실패",
+              "fontSize": 19,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vmxczqto",
+      "id": "21",
+      "name": "cause-3",
+      "bbox": [
+        450,
+        576,
+        350,
+        60
+      ],
+      "geometry": "rect",
+      "text": "사용자 DATA와 내부\nSYNC TX 충돌",
+      "textPreview": "사용자 DATA와 내부 | SYNC TX 충돌",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "사용자 DATA와 내부"
+          },
+          {
+            "index": 2,
+            "text": "SYNC TX 충돌"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "사용자 DATA와 내부",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "사용자 DATA와 내부",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "SYNC TX 충돌",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SYNC TX 충돌",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wn6d8bu9",
+      "id": "22",
+      "name": "solution-3",
+      "bbox": [
+        855,
+        576,
+        440,
+        60
+      ],
+      "geometry": "rect",
+      "text": "tx_lock으로 송신 직렬화",
+      "textPreview": "tx_lock으로 송신 직렬화",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "tx_lock으로 송신 직렬화"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "tx_lock으로 송신 직렬화",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "tx_lock으로 송신 직렬화",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xofu1gbu",
+      "id": "23",
+      "name": "result-accent",
+      "bbox": [
+        96,
+        688,
+        6,
+        42
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mx4b21c7",
+      "id": "24",
+      "name": "result-label",
+      "bbox": [
+        120,
+        684,
+        130,
+        40
+      ],
+      "geometry": "rect",
+      "text": "실기기 확인",
+      "textPreview": "실기기 확인",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "실기기 확인"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "실기기 확인",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "실기기 확인",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nidcv6tc",
+      "id": "25",
+      "name": "result-copy",
+      "bbox": [
+        260,
+        684,
+        1060,
+        40
+      ],
+      "geometry": "rect",
+      "text": "SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4",
+      "textPreview": "SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4",
+              "fontSize": 19,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

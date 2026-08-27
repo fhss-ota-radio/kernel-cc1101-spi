@@ -1,0 +1,1597 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/y5ytut",
+    "id": "y5ytut",
+    "slide": 8,
+    "layoutId": "985770a2-1185-491f-9ca6-440e50e36d16",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "b171dc0c-7033-4408-9654-91c359764b2d",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1440,
+      "height": 810
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "985770a2-1185-491f-9ca6-440e50e36d16",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "b171dc0c-7033-4408-9654-91c359764b2d",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "b171dc0c-7033-4408-9654-91c359764b2d",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/43eh4by5",
+      "id": "1",
+      "name": "eyebrow",
+      "bbox": [
+        96,
+        42,
+        800,
+        30
+      ],
+      "geometry": "rect",
+      "text": "07 · SYNCHRONIZATION",
+      "textPreview": "07 · SYNCHRONIZATION",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "07 · SYNCHRONIZATION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "07 · SYNCHRONIZATION",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "07 · SYNCHRONIZATION",
+              "fontSize": 16,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/325gb6h0",
+      "id": "2",
+      "name": "title",
+      "bbox": [
+        96,
+        82,
+        1248,
+        88
+      ],
+      "geometry": "rect",
+      "text": "MASTER의 SYNC로 시간 오차를 보정하고 다시 합류",
+      "textPreview": "MASTER의 SYNC로 시간 오차를 보정하고 다시 합류",
+      "resolvedFontSize": 48,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 48,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "MASTER의 SYNC로 시간 오차를 보정하고 다시 합류"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "MASTER의 SYNC로 시간 오차를 보정하고 다시 합류",
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "MASTER의 SYNC로 시간 오차를 보정하고 다시 합류",
+              "fontSize": 48,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/21wz21gf",
+      "id": "3",
+      "name": "footer",
+      "bbox": [
+        96,
+        760,
+        500,
+        22
+      ],
+      "geometry": "rect",
+      "text": "FHSS-OTA Radio · Team Project",
+      "textPreview": "FHSS-OTA Radio · Team Project",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#9A948D",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FHSS-OTA Radio · Team Project"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FHSS-OTA Radio · Team Project",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#9A948D",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "FHSS-OTA Radio · Team Project",
+              "fontSize": 13,
+              "color": "#9A948D",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d87yhgz2",
+      "id": "4",
+      "name": "page",
+      "bbox": [
+        1300,
+        760,
+        44,
+        22
+      ],
+      "geometry": "rect",
+      "text": "08",
+      "textPreview": "08",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#9A948D",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "08"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "08",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#9A948D",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "08",
+              "fontSize": 13,
+              "color": "#9A948D",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c7yh8vyh",
+      "id": "5",
+      "name": "st0",
+      "bbox": [
+        76,
+        235,
+        220,
+        185
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#171412",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r65gfqhw",
+      "id": "6",
+      "name": "sth0",
+      "bbox": [
+        91,
+        255,
+        190,
+        42
+      ],
+      "geometry": "rect",
+      "text": "CONFIG",
+      "textPreview": "CONFIG",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CONFIG"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CONFIG",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CONFIG",
+              "fontSize": 18,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5wz6lgb",
+      "id": "7",
+      "name": "stb0",
+      "bbox": [
+        91,
+        330,
+        190,
+        58
+      ],
+      "geometry": "rect",
+      "text": "seed · generation\nslot_us 저장",
+      "textPreview": "seed · generation | slot_us 저장",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "seed · generation"
+          },
+          {
+            "index": 2,
+            "text": "slot_us 저장"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "seed · generation",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "seed · generation",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "slot_us 저장",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "slot_us 저장",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tc3y5wzi",
+      "id": "8",
+      "name": "sta0l",
+      "bbox": [
+        298,
+        327,
+        31,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sbuxwryx",
+      "id": "9",
+      "name": "sta0h",
+      "bbox": [
+        323,
+        319,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qtozapwr",
+      "id": "10",
+      "name": "st1",
+      "bbox": [
+        343,
+        235,
+        220,
+        185
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#171412",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ruh03uxc",
+      "id": "11",
+      "name": "sth1",
+      "bbox": [
+        358,
+        255,
+        190,
+        42
+      ],
+      "geometry": "rect",
+      "text": "ACTIVATE",
+      "textPreview": "ACTIVATE",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ACTIVATE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ACTIVATE",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ACTIVATE",
+              "fontSize": 18,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sfqhczeh",
+      "id": "12",
+      "name": "stb1",
+      "bbox": [
+        358,
+        330,
+        190,
+        58
+      ],
+      "geometry": "rect",
+      "text": "대기 설정을\n활성 설정으로 전환",
+      "textPreview": "대기 설정을 | 활성 설정으로 전환",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "대기 설정을"
+          },
+          {
+            "index": 2,
+            "text": "활성 설정으로 전환"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "대기 설정을",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "대기 설정을",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "활성 설정으로 전환",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "활성 설정으로 전환",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dgzi54f2",
+      "id": "13",
+      "name": "sta1l",
+      "bbox": [
+        565,
+        327,
+        31,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/eh8ze9wn",
+      "id": "14",
+      "name": "sta1h",
+      "bbox": [
+        590,
+        319,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fih07ux8",
+      "id": "15",
+      "name": "st2",
+      "bbox": [
+        610,
+        235,
+        220,
+        185
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#171412",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0jqhgzet",
+      "id": "16",
+      "name": "sth2",
+      "bbox": [
+        625,
+        255,
+        190,
+        42
+      ],
+      "geometry": "rect",
+      "text": "SYNC ACQUIRED",
+      "textPreview": "SYNC ACQUIRED",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SYNC ACQUIRED"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SYNC ACQUIRED",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SYNC ACQUIRED",
+              "fontSize": 18,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1kzi94fe",
+      "id": "17",
+      "name": "stb2",
+      "bbox": [
+        625,
+        330,
+        190,
+        58
+      ],
+      "geometry": "rect",
+      "text": "CH 1에서 SYNC 수신\nslot 기준 계산",
+      "textPreview": "CH 1에서 SYNC 수신 | slot 기준 계산",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CH 1에서 SYNC 수신"
+          },
+          {
+            "index": 2,
+            "text": "slot 기준 계산"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CH 1에서 SYNC 수신",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CH 1에서 SYNC 수신",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "slot 기준 계산",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "slot 기준 계산",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2l8zi9wz",
+      "id": "18",
+      "name": "sta2l",
+      "bbox": [
+        832,
+        327,
+        31,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nm10bexk",
+      "id": "19",
+      "name": "sta2h",
+      "bbox": [
+        857,
+        319,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zq1gzetc",
+      "id": "20",
+      "name": "st3",
+      "bbox": [
+        877,
+        235,
+        220,
+        185
+      ],
+      "geometry": "rect",
+      "fillColor": "#EEF7F2",
+      "lineColor": "#237A57",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ypsz69cr",
+      "id": "21",
+      "name": "sth3",
+      "bbox": [
+        892,
+        255,
+        190,
+        42
+      ],
+      "geometry": "rect",
+      "text": "TRACKING",
+      "textPreview": "TRACKING",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#237A57",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TRACKING"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TRACKING",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#237A57",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "TRACKING",
+              "fontSize": 18,
+              "color": "#237A57",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lsjy1obi",
+      "id": "22",
+      "name": "stb3",
+      "bbox": [
+        892,
+        330,
+        190,
+        58
+      ],
+      "geometry": "rect",
+      "text": "매 슬롯 SYNC로\n시간 오차 보정",
+      "textPreview": "매 슬롯 SYNC로 | 시간 오차 보정",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "매 슬롯 SYNC로"
+          },
+          {
+            "index": 2,
+            "text": "시간 오차 보정"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "매 슬롯 SYNC로",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "매 슬롯 SYNC로",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "시간 오차 보정",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "시간 오차 보정",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/krah8jux",
+      "id": "23",
+      "name": "sta3l",
+      "bbox": [
+        1099,
+        327,
+        31,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bm1gvetg",
+      "id": "24",
+      "name": "sta3h",
+      "bbox": [
+        1124,
+        319,
+        18,
+        20
+      ],
+      "geometry": "chevron",
+      "fillColor": "#C84308",
+      "lineColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/al8f29cv",
+      "id": "25",
+      "name": "st4",
+      "bbox": [
+        1144,
+        235,
+        220,
+        185
+      ],
+      "geometry": "rect",
+      "fillColor": "#FBF2ED",
+      "lineColor": "#C84308",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xojyx4bm",
+      "id": "26",
+      "name": "sth4",
+      "bbox": [
+        1159,
+        255,
+        190,
+        42
+      ],
+      "geometry": "rect",
+      "text": "RECOVERY",
+      "textPreview": "RECOVERY",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RECOVERY"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RECOVERY",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "RECOVERY",
+              "fontSize": 18,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cnah4zu1",
+      "id": "27",
+      "name": "stb4",
+      "bbox": [
+        1159,
+        330,
+        190,
+        58
+      ],
+      "geometry": "rect",
+      "text": "miss 누적 시 CH 1\n세션 유지 후 재동기",
+      "textPreview": "miss 누적 시 CH 1 | 세션 유지 후 재동기",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "miss 누적 시 CH 1"
+          },
+          {
+            "index": 2,
+            "text": "세션 유지 후 재동기"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "miss 누적 시 CH 1",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "miss 누적 시 CH 1",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "세션 유지 후 재동기",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#6F6A65",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "세션 유지 후 재동기",
+              "fontSize": 16,
+              "color": "#6F6A65",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nihgrud4",
+      "id": "28",
+      "name": "master",
+      "bbox": [
+        96,
+        496,
+        520,
+        44
+      ],
+      "geometry": "rect",
+      "text": "Raspberry Pi / Driver  ·  MASTER",
+      "textPreview": "Raspberry Pi / Driver  ·  MASTER",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Raspberry Pi / Driver  ·  MASTER"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Raspberry Pi / Driver  ·  MASTER",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Raspberry Pi / Driver  ·  MASTER",
+              "fontSize": 23,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2h8fypcz",
+      "id": "29",
+      "name": "slave",
+      "bbox": [
+        824,
+        496,
+        520,
+        44
+      ],
+      "geometry": "rect",
+      "text": "ESP32 Firmware  ·  SLAVE",
+      "textPreview": "ESP32 Firmware  ·  SLAVE",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ESP32 Firmware  ·  SLAVE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ESP32 Firmware  ·  SLAVE",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ESP32 Firmware  ·  SLAVE",
+              "fontSize": 23,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sn6d8vah",
+      "id": "30",
+      "name": "sync-line",
+      "bbox": [
+        280,
+        575,
+        880,
+        4
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dofe10r2",
+      "id": "31",
+      "name": "sync-pkt",
+      "bbox": [
+        390,
+        548,
+        660,
+        42
+      ],
+      "geometry": "rect",
+      "text": "FHSS_SYNC  |  generation · slot · hop_index · timestamp",
+      "textPreview": "FHSS_SYNC  |  generation · slot · hop_index · timestamp",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FHSS_SYNC  |  generation · slot · hop_index · timestamp"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FHSS_SYNC  |  generation · slot · hop_index · timestamp",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "FHSS_SYNC  |  generation · slot · hop_index · timestamp",
+              "fontSize": 18,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q14v6lsr",
+      "id": "32",
+      "name": "metric",
+      "bbox": [
+        96,
+        660,
+        1248,
+        46
+      ],
+      "geometry": "rect",
+      "text": "실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs",
+      "textPreview": "실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#237A57",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#237A57",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs",
+              "fontSize": 22,
+              "color": "#237A57",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

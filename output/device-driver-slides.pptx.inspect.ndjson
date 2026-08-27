@@ -1,0 +1,111 @@
+{"kind":"deck","id":"pr/vtpmfu","name":"Deck"}
+{"kind":"layout","layoutId":"d95b2e94-461b-4a2b-a974-27bbee60dd9b","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"1eea6635-9c4a-42ef-904f-7e0e3a89fbc6","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/gh3p8u","slide":1,"title":"DEVICE DRIVER · ARCHITECTURE","textShapes":16}
+{"kind":"textbox","id":"sh/3utwvat0","slide":1,"name":"eyebrow","text":"DEVICE DRIVER · ARCHITECTURE","textPreview":"DEVICE DRIVER · ARCHITECTURE","textChars":28,"textLines":1,"bbox":[96,48,620,32]}
+{"kind":"textbox","id":"sh/ov2x4fal","slide":1,"name":"title","text":"사용자 앱과 CC1101을 하나의 장치로 연결","textPreview":"사용자 앱과 CC1101을 하나의 장치로 연결","textChars":25,"textLines":1,"bbox":[96,90,1248,92]}
+{"kind":"textbox","id":"sh/pwbexkr6","slide":1,"name":"footer","text":"FHSS-OTA Radio · Device Driver","textPreview":"FHSS-OTA Radio · Device Driver","textChars":30,"textLines":1,"bbox":[96,758,520,24]}
+{"kind":"textbox","id":"sh/e50vy5sj","slide":1,"name":"page","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[1320,758,28,24]}
+{"kind":"shape","id":"sh/f6twrqt4","slide":1,"name":"arch-box-0","bbox":[96,238,220,250]}
+{"kind":"textbox","id":"sh/g72d0vap","slide":1,"name":"arch-title-0","text":"Gateway App","textPreview":"Gateway App","textChars":11,"textLines":1,"bbox":[116,262,180,54]}
+{"kind":"textbox","id":"sh/18bet0ba","slide":1,"name":"arch-body-0","text":"open · read · write\nioctl · poll","textPreview":"open · read · write | ioctl · poll","textChars":32,"textLines":2,"bbox":[116,370,180,78]}
+{"kind":"shape","id":"sh/610vulsn","slide":1,"name":"arch-arrow-0-line","bbox":[324,358,34,3]}
+{"kind":"shape","id":"sh/r29wnqt8","slide":1,"name":"arch-arrow-0-head","bbox":[352,350,18,20]}
+{"kind":"shape","id":"sh/z69s3ql4","slide":1,"name":"arch-box-1","bbox":[370,238,220,250]}
+{"kind":"textbox","id":"sh/y50ra5kj","slide":1,"name":"arch-title-1","text":"/dev/cc1101","textPreview":"/dev/cc1101","textChars":11,"textLines":1,"bbox":[390,262,180,54]}
+{"kind":"textbox","id":"sh/l8ra503a","slide":1,"name":"arch-body-1","text":"misc device\n사용자/커널 경계","textPreview":"misc device | 사용자/커널 경계","textChars":21,"textLines":2,"bbox":[390,370,180,78]}
+{"kind":"shape","id":"sh/07i9cv2p","slide":1,"name":"arch-arrow-1-line","bbox":[598,358,34,3]}
+{"kind":"shape","id":"sh/nats7a10","slide":1,"name":"arch-arrow-1-head","bbox":[626,350,18,20]}
+{"kind":"shape","id":"sh/m90re5kf","slide":1,"name":"arch-box-2","bbox":[644,238,220,250]}
+{"kind":"textbox","id":"sh/9wba9kj6","slide":1,"name":"arch-title-2","text":"cc1101_main.c","textPreview":"cc1101_main.c","textChars":13,"textLines":1,"bbox":[664,262,180,54]}
+{"kind":"textbox","id":"sh/8b29gf2l","slide":1,"name":"arch-body-2","text":"file_operations · IRQ\nTX completion · RX FIFO","textPreview":"file_operations · IRQ | TX completion · RX FIFO","textChars":45,"textLines":2,"bbox":[664,370,180,78]}
+{"kind":"shape","id":"sh/3ep8v6lw","slide":1,"name":"arch-arrow-2-line","bbox":[872,358,34,3]}
+{"kind":"shape","id":"sh/2dgr2lkb","slide":1,"name":"arch-arrow-2-head","bbox":[900,350,18,20]}
+{"kind":"shape","id":"sh/6tova94z","slide":1,"name":"arch-box-3","bbox":[918,238,220,250]}
+{"kind":"textbox","id":"sh/7uxcjelk","slide":1,"name":"arch-title-3","text":"cc1101_core.c","textPreview":"cc1101_core.c","textChars":13,"textLines":1,"bbox":[938,262,180,54]}
+{"kind":"textbox","id":"sh/sv6dcjm5","slide":1,"name":"arch-body-3","text":"SPI · register · strobe\nIDLE / RX / TX","textPreview":"SPI · register · strobe | IDLE / RX / TX","textChars":38,"textLines":2,"bbox":[938,370,180,78]}
+{"kind":"shape","id":"sh/twfulo3a","slide":1,"name":"arch-arrow-3-line","bbox":[1146,358,34,3]}
+{"kind":"shape","id":"sh/i54b694n","slide":1,"name":"arch-arrow-3-head","bbox":[1174,350,18,20]}
+{"kind":"shape","id":"sh/jqdcfe58","slide":1,"name":"arch-box-4","bbox":[1192,238,220,250]}
+{"kind":"textbox","id":"sh/krmt8jmt","slide":1,"name":"arch-title-4","text":"CC1101","textPreview":"CC1101","textChars":6,"textLines":1,"bbox":[1212,262,180,54]}
+{"kind":"textbox","id":"sh/5svuho3e","slide":1,"name":"arch-body-4","text":"Sub-1GHz RF\nGDO0 · GDO2","textPreview":"Sub-1GHz RF | GDO0 · GDO2","textChars":23,"textLines":2,"bbox":[1212,370,180,78]}
+{"kind":"shape","id":"sh/a1kb2p4r","slide":1,"name":"principle-accent","bbox":[96,570,6,92]}
+{"kind":"textbox","id":"sh/v2dcbu5c","slide":1,"name":"principle-label","text":"설계 원칙","textPreview":"설계 원칙","textChars":5,"textLines":1,"bbox":[126,568,150,32]}
+{"kind":"textbox","id":"sh/xs36xwr6","slide":1,"name":"principle-copy","text":"앱은 패킷만 read/write하고, SPI·FIFO·채널 전환·SYNC는 드라이버가 담당한다.","textPreview":"앱은 패킷만 read/write하고, SPI·FIFO·채널 전환·SYNC는 드라이버가 담당한다.","textChars":53,"textLines":1,"bbox":[126,604,1210,48]}
+{"kind":"notes","id":"nt/gh3p8u","slide":1,"text":""}
+{"kind":"slide","id":"sl/fskyz7","slide":2,"title":"DEVICE DRIVER · FHSS","textShapes":29}
+{"kind":"textbox","id":"sh/ehojulsf","slide":2,"name":"eyebrow","text":"DEVICE DRIVER · FHSS","textPreview":"DEVICE DRIVER · FHSS","textChars":20,"textLines":1,"bbox":[96,48,620,32]}
+{"kind":"textbox","id":"sh/1kz250bq","slide":2,"name":"title","text":"커널이 300 ms마다 채널과 SYNC를 제어한다","textPreview":"커널이 300 ms마다 채널과 SYNC를 제어한다","textChars":27,"textLines":1,"bbox":[96,90,1248,92]}
+{"kind":"textbox","id":"sh/0j61wva5","slide":2,"name":"footer","text":"FHSS-OTA Radio · Device Driver","textPreview":"FHSS-OTA Radio · Device Driver","textChars":30,"textLines":1,"bbox":[96,758,520,24]}
+{"kind":"textbox","id":"sh/rux0zqto","slide":2,"name":"page","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[1320,758,28,24]}
+{"kind":"shape","id":"sh/6tojqls3","slide":2,"name":"slot-0","bbox":[96,250,390,170]}
+{"kind":"textbox","id":"sh/dgfi1gbu","slide":2,"name":"slot-label-0","text":"slot 0 · CH 1","textPreview":"slot 0 · CH 1","textChars":13,"textLines":1,"bbox":[118,272,250,35]}
+{"kind":"shape","id":"sh/sv61sba9","slide":2,"name":"guard-0","bbox":[118,333,32,42]}
+{"kind":"textbox","id":"sh/bqhkba9s","slide":2,"name":"guard-label-0","text":"5ms\n전환","textPreview":"5ms | 전환","textChars":6,"textLines":2,"bbox":[157,329,72,52]}
+{"kind":"shape","id":"sh/ap8j25s7","slide":2,"name":"sync-0","bbox":[234,333,54,42]}
+{"kind":"textbox","id":"sh/knilonmp","slide":2,"name":"sync-label-0","text":"SYNC","textPreview":"SYNC","textChars":4,"textLines":1,"bbox":[233,379,60,25]}
+{"kind":"shape","id":"sh/lor2hs3a","slide":2,"name":"data-0","bbox":[314,333,145,42]}
+{"kind":"textbox","id":"sh/ylg3md4j","slide":2,"name":"data-label-0","text":"DATA / ACK","textPreview":"DATA / ACK","textChars":10,"textLines":1,"bbox":[314,379,145,25]}
+{"kind":"shape","id":"sh/zmpkfil4","slide":2,"name":"slot-1","bbox":[504,250,390,170]}
+{"kind":"textbox","id":"sh/cjylk3mt","slide":2,"name":"slot-label-1","text":"slot 1 · CH 7","textPreview":"slot 1 · CH 7","textChars":13,"textLines":1,"bbox":[526,272,250,35]}
+{"kind":"shape","id":"sh/xk72d83e","slide":2,"name":"guard-1","bbox":[526,333,32,42]}
+{"kind":"textbox","id":"sh/ahgjit4n","slide":2,"name":"guard-label-1","text":"5ms\n전환","textPreview":"5ms | 전환","textChars":6,"textLines":2,"bbox":[565,329,72,52]}
+{"kind":"shape","id":"sh/bipkbyl8","slide":2,"name":"sync-1","bbox":[642,333,54,42]}
+{"kind":"textbox","id":"sh/ove1g3mh","slide":2,"name":"sync-label-1","text":"SYNC","textPreview":"SYNC","textChars":4,"textLines":1,"bbox":[641,379,60,25]}
+{"kind":"shape","id":"sh/pw729on2","slide":2,"name":"data-1","bbox":[722,333,145,42]}
+{"kind":"textbox","id":"sh/50fax0bu","slide":2,"name":"data-label-1","text":"DATA / ACK","textPreview":"DATA / ACK","textChars":10,"textLines":1,"bbox":[722,379,145,25]}
+{"kind":"shape","id":"sh/4z69ova9","slide":2,"name":"slot-2","bbox":[912,250,390,170]}
+{"kind":"textbox","id":"sh/jed8vqto","slide":2,"name":"slot-label-2","text":"slot 2 · CH 6","textPreview":"slot 2 · CH 6","textChars":13,"textLines":1,"bbox":[934,272,250,35]}
+{"kind":"shape","id":"sh/id4rmls3","slide":2,"name":"guard-2","bbox":[934,333,32,42]}
+{"kind":"textbox","id":"sh/hcvqtgbi","slide":2,"name":"guard-label-2","text":"5ms\n전환","textPreview":"5ms | 전환","textChars":6,"textLines":2,"bbox":[973,329,72,52]}
+{"kind":"shape","id":"sh/wbm9kbax","slide":2,"name":"sync-2","bbox":[1050,333,54,42]}
+{"kind":"textbox","id":"sh/vad8r6ts","slide":2,"name":"sync-label-2","text":"SYNC","textPreview":"SYNC","textChars":4,"textLines":1,"bbox":[1049,379,60,25]}
+{"kind":"shape","id":"sh/u94rils7","slide":2,"name":"data-2","bbox":[1130,333,145,42]}
+{"kind":"textbox","id":"sh/18za5kb2","slide":2,"name":"data-label-2","text":"DATA / ACK","textPreview":"DATA / ACK","textChars":10,"textLines":1,"bbox":[1130,379,145,25]}
+{"kind":"textbox","id":"sh/g7q9wfah","slide":2,"name":"timeline-caption","text":"같은 generation + seed + slot → 양쪽이 같은 채널을 독립 계산","textPreview":"같은 generation + seed + slot → 양쪽이 같은 채널을 독립 계산","textChars":46,"textLines":1,"bbox":[96,446,1248,42]}
+{"kind":"textbox","id":"sh/yd07qh8z","slide":2,"name":"step-no-0","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[96,535,54,35]}
+{"kind":"textbox","id":"sh/ze9ojm9k","slide":2,"name":"step-title-0","text":"SET_CONFIG","textPreview":"SET_CONFIG","textChars":10,"textLines":1,"bbox":[168,532,200,38]}
+{"kind":"textbox","id":"sh/kf2ps7qp","slide":2,"name":"step-body-0","text":"generation · seed\n채널 수 · 슬롯 시간","textPreview":"generation · seed | 채널 수 · 슬롯 시간","textChars":30,"textLines":2,"bbox":[168,578,198,66]}
+{"kind":"shape","id":"sh/lgb6lcra","slide":2,"name":"step-arrow-0-line","bbox":[366,582,30,3]}
+{"kind":"shape","id":"sh/a90nmx8n","slide":2,"name":"step-arrow-0-head","bbox":[390,574,18,20]}
+{"kind":"textbox","id":"sh/ba9of298","slide":2,"name":"step-no-1","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[412,535,54,35]}
+{"kind":"textbox","id":"sh/cbi5o7qt","slide":2,"name":"step-title-1","text":"hop_sequence","textPreview":"hop_sequence","textChars":12,"textLines":1,"bbox":[484,532,200,38]}
+{"kind":"textbox","id":"sh/xcr6hcre","slide":2,"name":"step-body-1","text":"xorshift32로\n채널 permutation 생성","textPreview":"xorshift32로 | 채널 permutation 생성","textChars":29,"textLines":2,"bbox":[484,578,198,66]}
+{"kind":"shape","id":"sh/u5k7y187","slide":2,"name":"step-arrow-1-line","bbox":[682,582,30,3]}
+{"kind":"shape","id":"sh/v6tor69c","slide":2,"name":"step-arrow-1-head","bbox":[706,574,18,20]}
+{"kind":"textbox","id":"sh/fy9knyds","slide":2,"name":"step-no-2","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[728,535,54,35]}
+{"kind":"textbox","id":"sh/ux03utc7","slide":2,"name":"step-title-2","text":"hrtimer","textPreview":"hrtimer","textChars":7,"textLines":1,"bbox":[800,532,200,38]}
+{"kind":"textbox","id":"sh/h0r2p8vy","slide":2,"name":"step-body-2","text":"다음 슬롯 경계\n5ms 전에 worker 호출","textPreview":"다음 슬롯 경계 | 5ms 전에 worker 호출","textChars":25,"textLines":2,"bbox":[800,578,198,66]}
+{"kind":"shape","id":"sh/gzilw3ud","slide":2,"name":"step-arrow-2-line","bbox":[998,582,30,3]}
+{"kind":"shape","id":"sh/7a9kjedw","slide":2,"name":"step-arrow-2-head","bbox":[1022,574,18,20]}
+{"kind":"textbox","id":"sh/6903qtcb","slide":2,"name":"step-no-3","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1044,535,54,35]}
+{"kind":"textbox","id":"sh/tcr2lov2","slide":2,"name":"step-title-3","text":"kthread worker","textPreview":"kthread worker","textChars":14,"textLines":1,"bbox":[1116,532,200,38]}
+{"kind":"textbox","id":"sh/sbilsjuh","slide":2,"name":"step-body-3","text":"CHANNR 변경 후\n13-byte SYNC 송신","textPreview":"CHANNR 변경 후 | 13-byte SYNC 송신","textChars":27,"textLines":2,"bbox":[1116,578,198,66]}
+{"kind":"notes","id":"nt/fskyz7","slide":2,"text":""}
+{"kind":"slide","id":"sl/eq2fby","slide":3,"title":"DEVICE DRIVER · TROUBLESHOOTING","textShapes":21}
+{"kind":"textbox","id":"sh/b6pobehg","slide":3,"name":"eyebrow","text":"DEVICE DRIVER · TROUBLESHOOTING","textPreview":"DEVICE DRIVER · TROUBLESHOOTING","textChars":31,"textLines":1,"bbox":[96,48,620,32]}
+{"kind":"textbox","id":"sh/c7y54ji1","slide":3,"name":"title","text":"실기기 오류를 상태·동시성 문제로 좁혔다","textPreview":"실기기 오류를 상태·동시성 문제로 좁혔다","textChars":22,"textLines":1,"bbox":[96,90,1248,92]}
+{"kind":"textbox","id":"sh/x876doz6","slide":3,"name":"footer","text":"FHSS-OTA Radio · Device Driver","textPreview":"FHSS-OTA Radio · Device Driver","textChars":30,"textLines":1,"bbox":[96,758,520,24]}
+{"kind":"textbox","id":"sh/21wny90j","slide":3,"name":"page","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1320,758,28,24]}
+{"kind":"textbox","id":"sh/n2547uh4","slide":3,"name":"th-problem","text":"문제","textPreview":"문제","textChars":2,"textLines":1,"bbox":[96,218,300,35]}
+{"kind":"textbox","id":"sh/o3e50zip","slide":3,"name":"th-cause","text":"원인","textPreview":"원인","textChars":2,"textLines":1,"bbox":[450,218,350,35]}
+{"kind":"textbox","id":"sh/p4n694za","slide":3,"name":"th-solution","text":"해결","textPreview":"해결","textChars":2,"textLines":1,"bbox":[855,218,480,35]}
+{"kind":"shape","id":"sh/edwnup0n","slide":3,"name":"th-line","bbox":[96,260,1248,2]}
+{"kind":"textbox","id":"sh/fy543uh8","slide":3,"name":"problem-0","text":"수신이 완전히 멎음","textPreview":"수신이 완전히 멎음","textChars":10,"textLines":1,"bbox":[96,282,320,60]}
+{"kind":"textbox","id":"sh/3y98z298","slide":3,"name":"cause-0","text":"RX FIFO overflow\nMARCSTATE=0x11","textPreview":"RX FIFO overflow | MARCSTATE=0x11","textChars":31,"textLines":2,"bbox":[450,282,350,60]}
+{"kind":"textbox","id":"sh/2x0r6xsn","slide":3,"name":"solution-0","text":"IDLE → SFRX → SRX\n자동 복구","textPreview":"IDLE → SFRX → SRX | 자동 복구","textChars":23,"textLines":2,"bbox":[855,282,440,60]}
+{"kind":"shape","id":"sh/p0ra1sre","slide":3,"name":"row-bg-1","bbox":[76,370,1288,90]}
+{"kind":"textbox","id":"sh/4zi987at","slide":3,"name":"problem-1","text":"슬롯 1부터 SYNC 거부","textPreview":"슬롯 1부터 SYNC 거부","textChars":14,"textLines":1,"bbox":[96,380,320,60]}
+{"kind":"textbox","id":"sh/r2ts3294","slide":3,"name":"cause-1","text":"hop_index 의미 불일치","textPreview":"hop_index 의미 불일치","textChars":16,"textLines":1,"bbox":[450,380,350,60]}
+{"kind":"textbox","id":"sh/q10raxsz","slide":3,"name":"solution-1","text":"실제 셔플 채널의\n0-based index로 통일","textPreview":"실제 셔플 채널의 | 0-based index로 통일","textChars":27,"textLines":2,"bbox":[855,380,440,60]}
+{"kind":"textbox","id":"sh/doba5cra","slide":3,"name":"problem-2","text":"초기 동기 획득 실패","textPreview":"초기 동기 획득 실패","textChars":11,"textLines":1,"bbox":[96,478,320,60]}
+{"kind":"textbox","id":"sh/c329c7ap","slide":3,"name":"cause-2","text":"같은 slot 0을\n20ms 간격으로 3회 송신","textPreview":"같은 slot 0을 | 20ms 간격으로 3회 송신","textChars":26,"textLines":2,"bbox":[450,478,350,60]}
+{"kind":"textbox","id":"sh/76p8ri90","slide":3,"name":"solution-2","text":"실제 슬롯마다\nSYNC 한 번 송신","textPreview":"실제 슬롯마다 | SYNC 한 번 송신","textChars":19,"textLines":2,"bbox":[855,478,440,60]}
+{"kind":"shape","id":"sh/65grydsf","slide":3,"name":"row-bg-3","bbox":[76,566,1288,90]}
+{"kind":"textbox","id":"sh/al4b6lc3","slide":3,"name":"problem-3","text":"OTA_DATA write 실패","textPreview":"OTA_DATA write 실패","textChars":17,"textLines":1,"bbox":[96,576,320,60]}
+{"kind":"textbox","id":"sh/vmxczqto","slide":3,"name":"cause-3","text":"사용자 DATA와 내부\nSYNC TX 충돌","textPreview":"사용자 DATA와 내부 | SYNC TX 충돌","textChars":23,"textLines":2,"bbox":[450,576,350,60]}
+{"kind":"textbox","id":"sh/wn6d8bu9","slide":3,"name":"solution-3","text":"tx_lock으로 송신 직렬화","textPreview":"tx_lock으로 송신 직렬화","textChars":16,"textLines":1,"bbox":[855,576,440,60]}
+{"kind":"shape","id":"sh/xofu1gbu","slide":3,"name":"result-accent","bbox":[96,688,6,42]}
+{"kind":"textbox","id":"sh/mx4b21c7","slide":3,"name":"result-label","text":"실기기 확인","textPreview":"실기기 확인","textChars":6,"textLines":1,"bbox":[120,684,130,40]}
+{"kind":"textbox","id":"sh/nidcv6tc","slide":3,"name":"result-copy","text":"SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4","textPreview":"SYNC_ACQUIRED → TRACKING · 시간 오차 -22 ~ +18 us · 채널 1→7→6→5→3→2→8→4","textChars":66,"textLines":1,"bbox":[260,684,1060,40]}
+{"kind":"notes","id":"nt/eq2fby","slide":3,"text":""}

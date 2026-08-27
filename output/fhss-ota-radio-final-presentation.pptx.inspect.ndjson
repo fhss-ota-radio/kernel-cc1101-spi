@@ -1,0 +1,415 @@
+{"kind":"deck","id":"pr/9yid9e","name":"Deck"}
+{"kind":"layout","layoutId":"b171dc0c-7033-4408-9654-91c359764b2d","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"985770a2-1185-491f-9ca6-440e50e36d16","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/g762ux","slide":1,"title":"KERNEL · OTA · FHSS · AUDIO · ESP32","textShapes":5}
+{"kind":"shape","id":"sh/fylk3mdw","slide":1,"name":"accent","bbox":[96,92,10,530]}
+{"kind":"textbox","id":"sh/0zelc7eh","slide":1,"name":"kicker","text":"KERNEL · OTA · FHSS · AUDIO · ESP32","textPreview":"KERNEL · OTA · FHSS · AUDIO · ESP32","textChars":35,"textLines":1,"bbox":[138,96,900,34]}
+{"kind":"textbox","id":"sh/10n25cv2","slide":1,"name":"title","text":"주파수 호핑 기반\n무전기 OTA 시스템","textPreview":"주파수 호핑 기반 | 무전기 OTA 시스템","textChars":21,"textLines":2,"bbox":[138,178,1100,190]}
+{"kind":"textbox","id":"sh/qtc36xwf","slide":1,"name":"sub","text":"라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결","textPreview":"라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결","textChars":40,"textLines":1,"bbox":[138,390,1110,72]}
+{"kind":"textbox","id":"sh/rulkz2d0","slide":1,"name":"meta","text":"Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF","textPreview":"Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF","textChars":54,"textLines":1,"bbox":[138,548,1040,36]}
+{"kind":"textbox","id":"sh/svul87el","slide":1,"name":"date","text":"팀 프로젝트 최종 발표","textPreview":"팀 프로젝트 최종 발표","textChars":12,"textLines":1,"bbox":[138,650,500,30]}
+{"kind":"notes","id":"nt/g762ux","slide":1,"text":"안녕하세요. 저희는 라즈베리파이 게이트웨이에서 여러 ESP32 무전기로 펌웨어를 무선 배포하고, 같은 장치가 음성 통신까지 수행하도록 만든 FHSS OTA Radio 프로젝트를 소개하겠습니다. 발표에서는 전체 구조를 먼저 보고, 드라이버와 Yocto, Gateway와 Qt, 공통 프로토콜, FHSS, 음성 펌웨어, ESP32 OTA 순서로 설명하겠습니다. 마지막에는 실제 통합 과정에서 어떤 문제가 있었고 어디까지 검증했는지 말씀드리겠습니다.\n\n[Sources]\n- https://github.com/orgs/fhss-ota-radio/repositories\n[/Sources]"}
+{"kind":"slide","id":"sl/l62kue","slide":2,"title":"01 · PROJECT GOAL","textShapes":17}
+{"kind":"textbox","id":"sh/7qpcrex8","slide":2,"name":"eyebrow","text":"01 · PROJECT GOAL","textPreview":"01 · PROJECT GOAL","textChars":17,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/srit0zet","slide":2,"name":"title","text":"업데이트와 음성 통신을 하나의 무선 시스템으로 통합","textPreview":"업데이트와 음성 통신을 하나의 무선 시스템으로 통합","textChars":28,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/tcrut4fe","slide":2,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/ud0b29wz","slide":2,"name":"page","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"textbox","id":"sh/fe9cvexk","slide":2,"name":"n0","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[96,220,60,44]}
+{"kind":"textbox","id":"sh/gfit4je5","slide":2,"name":"h0","text":"관리","textPreview":"관리","textChars":2,"textLines":1,"bbox":[178,220,150,44]}
+{"kind":"textbox","id":"sh/hgruxofa","slide":2,"name":"b0","text":"Gateway에서 장치 탐색·파일 선택·진행 상태 표시","textPreview":"Gateway에서 장치 탐색·파일 선택·진행 상태 표시","textChars":30,"textLines":1,"bbox":[354,220,900,44]}
+{"kind":"shape","id":"sh/2h0bqtwv","slide":2,"name":"ln0","bbox":[178,295,1070,1]}
+{"kind":"textbox","id":"sh/3itczyxg","slide":2,"name":"n1","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[96,332,60,44]}
+{"kind":"textbox","id":"sh/7ytkfu18","slide":2,"name":"h1","text":"전송","textPreview":"전송","textChars":2,"textLines":1,"bbox":[178,332,150,44]}
+{"kind":"textbox","id":"sh/6dk3mp0n","slide":2,"name":"b1","text":"CC1101 링크로 START·DATA·END와 ACK/NACK 교환","textPreview":"CC1101 링크로 START·DATA·END와 ACK/NACK 교환","textChars":38,"textLines":1,"bbox":[354,332,900,44]}
+{"kind":"shape","id":"sh/t0b2hkje","slide":2,"name":"ln1","bbox":[178,407,1070,1]}
+{"kind":"textbox","id":"sh/8z2lozit","slide":2,"name":"n2","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[96,444,60,44]}
+{"kind":"textbox","id":"sh/jatkba1c","slide":2,"name":"h2","text":"생존성","textPreview":"생존성","textChars":3,"textLines":1,"bbox":[178,444,150,44]}
+{"kind":"textbox","id":"sh/y9k3i50r","slide":2,"name":"b2","text":"주파수 간섭을 피하도록 동일 순서로 채널 호핑","textPreview":"주파수 간섭을 피하도록 동일 순서로 채널 호핑","textChars":25,"textLines":1,"bbox":[354,444,900,44]}
+{"kind":"shape","id":"sh/lcb2dkji","slide":2,"name":"ln2","bbox":[178,519,1070,1]}
+{"kind":"textbox","id":"sh/kb2lkfix","slide":2,"name":"n3","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[96,556,60,44]}
+{"kind":"textbox","id":"sh/36d4ne1g","slide":2,"name":"h3","text":"적용","textPreview":"적용","textChars":2,"textLines":1,"bbox":[178,556,150,44]}
+{"kind":"textbox","id":"sh/i543u90v","slide":2,"name":"b3","text":"ESP32가 검증된 이미지만 다음 부팅 파티션에 반영","textPreview":"ESP32가 검증된 이미지만 다음 부팅 파티션에 반영","textChars":29,"textLines":1,"bbox":[354,556,900,44]}
+{"kind":"shape","id":"sh/ydsf2xof","slide":2,"name":"take","bbox":[96,690,1248,48]}
+{"kind":"textbox","id":"sh/ze1wb2p0","slide":2,"name":"take-t","text":"핵심 목표  |  앱·커널·펌웨어가 같은 프로토콜과 같은 시간 기준으로 동작하게 만들기","textPreview":"핵심 목표  |  앱·커널·펌웨어가 같은 프로토콜과 같은 시간 기준으로 동작하게 만들기","textChars":48,"textLines":1,"bbox":[120,690,1200,48]}
+{"kind":"notes","id":"nt/l62kue","slide":2,"text":"프로젝트의 목표는 단순히 파일을 무선으로 보내는 것이 아닙니다. 첫째, Gateway가 여러 무전기를 찾고 업데이트를 관리해야 합니다. 둘째, 손실이 있는 무선 링크에서도 ACK와 NACK로 필요한 패킷만 다시 보내야 합니다. 셋째, 간섭을 피하기 위해 Gateway와 무전기가 같은 채널 순서로 이동해야 합니다. 마지막으로 ESP32는 받은 파일의 해시를 검증한 뒤 안전한 OTA 파티션으로 부팅해야 합니다. 즉 핵심은 서로 다른 계층이 하나의 규칙과 시간 기준으로 움직이게 만드는 것입니다."}
+{"kind":"slide","id":"sl/zhmcd7","slide":3,"title":"02 · SYSTEM ARCHITECTURE","textShapes":18}
+{"kind":"textbox","id":"sh/36tgj6pc","slide":3,"name":"eyebrow","text":"02 · SYSTEM ARCHITECTURE","textPreview":"02 · SYSTEM ARCHITECTURE","textChars":24,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/472hsbqx","slide":3,"name":"title","text":"다섯 파트가 한 개의 OTA·음성 경로를 완성","textPreview":"다섯 파트가 한 개의 OTA·음성 경로를 완성","textChars":25,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/p8bylg7i","slide":3,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/q9kzul83","slide":3,"name":"page","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/radgnqpo","slide":3,"name":"c0","bbox":[96,234,260,234]}
+{"kind":"textbox","id":"sh/cbmhwvq9","slide":3,"name":"ct0","text":"Gateway / Qt","textPreview":"Gateway / Qt","textChars":12,"textLines":1,"bbox":[116,258,220,50]}
+{"kind":"textbox","id":"sh/dcvyp07e","slide":3,"name":"cb0","text":"파일 선택 · 장치 탐색\nOTA 세션 · 진행 표시","textPreview":"파일 선택 · 장치 탐색 | OTA 세션 · 진행 표시","textChars":28,"textLines":2,"bbox":[116,350,220,76]}
+{"kind":"shape","id":"sh/ed4zyl8z","slide":3,"name":"a0l","bbox":[362,342,32,3]}
+{"kind":"shape","id":"sh/zedgrqpk","slide":3,"name":"a0h","bbox":[388,334,18,20]}
+{"kind":"shape","id":"sh/baxcnuto","slide":3,"name":"c1","bbox":[408,234,260,234]}
+{"kind":"textbox","id":"sh/a9obeps3","slide":3,"name":"ct1","text":"Linux Driver","textPreview":"Linux Driver","textChars":12,"textLines":1,"bbox":[428,258,220,50]}
+{"kind":"textbox","id":"sh/xcfup4bu","slide":3,"name":"cb1","text":"/dev/cc1101\nSPI · IRQ · FIFO · FHSS","textPreview":"/dev/cc1101 | SPI · IRQ · FIFO · FHSS","textChars":35,"textLines":2,"bbox":[428,350,220,76]}
+{"kind":"shape","id":"sh/wb6dgza9","slide":3,"name":"a1l","bbox":[674,342,32,3]}
+{"kind":"shape","id":"sh/n6dcjats","slide":3,"name":"a1h","bbox":[700,334,18,20]}
+{"kind":"shape","id":"sh/m54ba5s7","slide":3,"name":"c2","bbox":[720,234,260,234]}
+{"kind":"textbox","id":"sh/98fulkbi","slide":3,"name":"ct2","text":"RF Link","textPreview":"RF Link","textChars":7,"textLines":1,"bbox":[740,258,220,50]}
+{"kind":"textbox","id":"sh/o7mtcfad","slide":3,"name":"cb2","text":"CC1101 Sub-1GHz\nDATA · ACK · SYNC","textPreview":"CC1101 Sub-1GHz | DATA · ACK · SYNC","textChars":33,"textLines":2,"bbox":[740,350,220,76]}
+{"kind":"shape","id":"sh/72hcvetw","slide":3,"name":"a2l","bbox":[986,342,32,3]}
+{"kind":"shape","id":"sh/618vm9sb","slide":3,"name":"a2h","bbox":[1012,334,18,20]}
+{"kind":"shape","id":"sh/29c7axgv","slide":3,"name":"c3","bbox":[1032,234,260,234]}
+{"kind":"textbox","id":"sh/3alo32hg","slide":3,"name":"ct3","text":"ESP32 Firmware","textPreview":"ESP32 Firmware","textChars":14,"textLines":1,"bbox":[1052,258,220,50]}
+{"kind":"textbox","id":"sh/obupc7y1","slide":3,"name":"cb3","text":"프로토콜 수신 · OTA write\nSpeex · PTT · UI","textPreview":"프로토콜 수신 · OTA write | Speex · PTT · UI","textChars":36,"textLines":2,"bbox":[1052,350,220,76]}
+{"kind":"textbox","id":"sh/pcn65czm","slide":3,"name":"lh0","text":"제어","textPreview":"제어","textChars":2,"textLines":1,"bbox":[96,520,92,36]}
+{"kind":"shape","id":"sh/qdw7ehgr","slide":3,"name":"ll0","bbox":[195,537,94,3]}
+{"kind":"textbox","id":"sh/be5o7mhc","slide":3,"name":"lb0","text":"DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK","textPreview":"DISCOVER · CONFIG · ACTIVATE · START · ACK/NACK","textChars":47,"textLines":1,"bbox":[310,520,980,36]}
+{"kind":"textbox","id":"sh/cfepgryx","slide":3,"name":"lh1","text":"동기","textPreview":"동기","textChars":2,"textLines":1,"bbox":[96,578,92,36]}
+{"kind":"shape","id":"sh/d0n69wzi","slide":3,"name":"ll1","bbox":[195,595,94,3]}
+{"kind":"textbox","id":"sh/6hsn2dgn","slide":3,"name":"lb1","text":"seed · generation · slot · hop_index · FHSS_SYNC","textPreview":"seed · generation · slot · hop_index · FHSS_SYNC","textChars":48,"textLines":1,"bbox":[310,578,980,36]}
+{"kind":"textbox","id":"sh/ri1ovih8","slide":3,"name":"lh2","text":"미디어","textPreview":"미디어","textChars":3,"textLines":1,"bbox":[96,636,92,36]}
+{"kind":"shape","id":"sh/9wrq1gjq","slide":3,"name":"ll2","bbox":[195,653,94,3]}
+{"kind":"textbox","id":"sh/8vi98vi5","slide":3,"name":"lb2","text":"I2S PCM · Speex · 무전 음성 패킷","textPreview":"I2S PCM · Speex · 무전 음성 패킷","textChars":26,"textLines":1,"bbox":[310,636,980,36]}
+{"kind":"notes","id":"nt/zhmcd7","slide":3,"text":"전체 구조를 보면 왼쪽의 Gateway 앱이 업데이트 파일과 대상 장치를 관리합니다. 앱은 /dev/cc1101에 기본적인 read, write, ioctl을 요청하고, Linux 드라이버가 SPI 레지스터, FIFO, 인터럽트와 FHSS 시간을 담당합니다. 무선 구간에서는 데이터 패킷뿐 아니라 ACK와 동기 패킷이 오갑니다. ESP32 펌웨어는 OTA 데이터를 플래시에 쓰는 동시에 음성 코덱과 사용자 인터페이스도 담당합니다. 이 구조에서 공통 프로토콜은 제어 규칙을, FHSS는 시간과 채널 규칙을 연결합니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/gateway-ota\n- https://github.com/fhss-ota-radio/kernel-cc1101-spi\n- https://github.com/fhss-ota-radio/firmware-esp32\n[/Sources]"}
+{"kind":"slide","id":"sl/pvup3p","slide":4,"title":"03 · DEVICE DRIVER + YOCTO","textShapes":20}
+{"kind":"textbox","id":"sh/2t03mt8r","slide":4,"name":"eyebrow","text":"03 · DEVICE DRIVER + YOCTO","textPreview":"03 · DEVICE DRIVER + YOCTO","textChars":26,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/pwrmx8r2","slide":4,"name":"title","text":"앱에는 단순한 장치 API, 커널에는 무선 복잡성","textPreview":"앱에는 단순한 장치 API, 커널에는 무선 복잡성","textChars":27,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/ovilo3qh","slide":4,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/fq9kry90","slide":4,"name":"page","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/ep03it8f","slide":4,"name":"d0","bbox":[96,224,208,205]}
+{"kind":"textbox","id":"sh/1sr2tor6","slide":4,"name":"dt0","text":"Gateway App","textPreview":"Gateway App","textChars":11,"textLines":1,"bbox":[112,246,176,42]}
+{"kind":"textbox","id":"sh/grilkjql","slide":4,"name":"db0","text":"open · read · write\nioctl · poll","textPreview":"open · read · write | ioctl · poll","textChars":32,"textLines":2,"bbox":[112,327,176,66]}
+{"kind":"shape","id":"sh/r2pkne94","slide":4,"name":"da0l","bbox":[307,325,26,3]}
+{"kind":"shape","id":"sh/61g3e98j","slide":4,"name":"da0h","bbox":[327,317,18,20]}
+{"kind":"shape","id":"sh/83e9wvul","slide":4,"name":"d1","bbox":[346,224,208,205]}
+{"kind":"textbox","id":"sh/94na50b6","slide":4,"name":"dt1","text":"/dev/cc1101","textPreview":"/dev/cc1101","textChars":11,"textLines":1,"bbox":[362,246,176,42]}
+{"kind":"textbox","id":"sh/m1wrulcf","slide":4,"name":"db1","text":"misc device\nUAPI 경계","textPreview":"misc device | UAPI 경계","textChars":19,"textLines":2,"bbox":[362,327,176,66]}
+{"kind":"shape","id":"sh/72583qt0","slide":4,"name":"da1l","bbox":[557,325,26,3]}
+{"kind":"shape","id":"sh/kzu9svu9","slide":4,"name":"da1h","bbox":[577,317,18,20]}
+{"kind":"shape","id":"sh/l03q10bu","slide":4,"name":"d2","bbox":[596,224,208,205]}
+{"kind":"textbox","id":"sh/ydcrqlcj","slide":4,"name":"dt2","text":"Driver Core","textPreview":"Driver Core","textChars":11,"textLines":1,"bbox":[612,246,176,42]}
+{"kind":"textbox","id":"sh/zyl8zqt4","slide":4,"name":"db2","text":"SPI · FIFO · IRQ\n상태 복구","textPreview":"SPI · FIFO · IRQ | 상태 복구","textChars":22,"textLines":2,"bbox":[612,327,176,66]}
+{"kind":"shape","id":"sh/4vy94fut","slide":4,"name":"da2l","bbox":[807,325,26,3]}
+{"kind":"shape","id":"sh/5w7adkbe","slide":4,"name":"da2h","bbox":[827,317,18,20]}
+{"kind":"shape","id":"sh/ds3qxk3i","slide":4,"name":"d3","bbox":[846,224,208,205]}
+{"kind":"textbox","id":"sh/sru9ofmx","slide":4,"name":"dt3","text":"FHSS Engine","textPreview":"FHSS Engine","textChars":11,"textLines":1,"bbox":[862,246,176,42]}
+{"kind":"textbox","id":"sh/rql8valc","slide":4,"name":"db3","text":"hrtimer · worker\nSYNC · tx_lock","textPreview":"hrtimer · worker | SYNC · tx_lock","textChars":31,"textLines":2,"bbox":[862,327,176,66]}
+{"kind":"shape","id":"sh/qpcrm54r","slide":4,"name":"da3l","bbox":[1057,325,26,3]}
+{"kind":"shape","id":"sh/5o3qt036","slide":4,"name":"da3h","bbox":[1077,317,18,20]}
+{"kind":"shape","id":"sh/4na9kfml","slide":4,"name":"d4","bbox":[1096,224,208,205]}
+{"kind":"textbox","id":"sh/3m18ralg","slide":4,"name":"dt4","text":"CC1101","textPreview":"CC1101","textChars":6,"textLines":1,"bbox":[1112,246,176,42]}
+{"kind":"textbox","id":"sh/ilsri54v","slide":4,"name":"db4","text":"GDO0/GDO2\nSub-1GHz RF","textPreview":"GDO0/GDO2 | Sub-1GHz RF","textChars":21,"textLines":2,"bbox":[1112,327,176,66]}
+{"kind":"textbox","id":"sh/hkjqp03a","slide":4,"name":"yocto-h","text":"Yocto 이미지에 재현 가능한 형태로 포함","textPreview":"Yocto 이미지에 재현 가능한 형태로 포함","textChars":24,"textLines":1,"bbox":[96,500,540,42]}
+{"kind":"shape","id":"sh/gja9gvmp","slide":4,"name":"chip0b","bbox":[96,566,250,34]}
+{"kind":"textbox","id":"sh/6p8nq1kn","slide":4,"name":"chip0t","text":"커널 모듈 recipe","textPreview":"커널 모듈 recipe","textChars":12,"textLines":1,"bbox":[96,566,250,34]}
+{"kind":"shape","id":"sh/7qhoj618","slide":4,"name":"chip1b","bbox":[386,566,250,34]}
+{"kind":"textbox","id":"sh/8rqpsb2d","slide":4,"name":"chip1t","text":"Device Tree overlay","textPreview":"Device Tree overlay","textChars":19,"textLines":1,"bbox":[386,566,250,34]}
+{"kind":"shape","id":"sh/tsz6lwjy","slide":4,"name":"chip2b","bbox":[676,566,250,34]}
+{"kind":"textbox","id":"sh/y1onmhkb","slide":4,"name":"chip2t","text":"cc1101-test","textPreview":"cc1101-test","textChars":11,"textLines":1,"bbox":[676,566,250,34]}
+{"kind":"shape","id":"sh/j2xofm1w","slide":4,"name":"chip3b","bbox":[966,566,250,34]}
+{"kind":"textbox","id":"sh/k365or2h","slide":4,"name":"chip3t","text":"USB HID gadget","textPreview":"USB HID gadget","textChars":14,"textLines":1,"bbox":[966,566,250,34]}
+{"kind":"shape","id":"sh/lof6hwj2","slide":4,"name":"fix","bbox":[96,654,1248,65]}
+{"kind":"textbox","id":"sh/axonihkf","slide":4,"name":"fix-t","text":"안정성 보강  |  RX overflow 자동 복구 · DATA/SYNC 송신 직렬화 · Linux 5.15.92 대상 빌드","textPreview":"안정성 보강  |  RX overflow 자동 복구 · DATA/SYNC 송신 직렬화 · Linux 5.15.92 대상 빌드","textChars":69,"textLines":1,"bbox":[120,654,1200,65]}
+{"kind":"notes","id":"nt/pvup3p","slide":4,"text":"드라이버 파트의 설계 원칙은 앱을 단순하게 만드는 것입니다. 앱은 일반 파일처럼 장치를 열고 read, write, ioctl, poll만 사용합니다. 커널 내부에서 SPI 레지스터 접근, RX와 TX FIFO, GDO 인터럽트, 채널 전환과 SYNC 송신을 처리합니다. 특히 RX FIFO overflow 상태에서는 IDLE, SFRX, SRX 순서로 자동 복구하도록 했고, 사용자 데이터와 내부 SYNC가 동시에 송신되지 않도록 tx_lock으로 직렬화했습니다. Yocto에는 모듈과 Device Tree overlay, 시험 도구를 recipe로 묶어 같은 이미지를 반복 빌드할 수 있게 했습니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/kernel-cc1101-spi/commit/90a9d5e\n- https://github.com/fhss-ota-radio/meta-walkie-talkie\n[/Sources]"}
+{"kind":"slide","id":"sl/dgddi5","slide":5,"title":"04 · GATEWAY + QT","textShapes":19}
+{"kind":"textbox","id":"sh/jmdojyp8","slide":5,"name":"eyebrow","text":"04 · GATEWAY + QT","textPreview":"04 · GATEWAY + QT","textChars":17,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/4n6ps3qt","slide":5,"name":"title","text":"OTA를 사용자 작업과 재전송 상태 기계로 분리","textPreview":"OTA를 사용자 작업과 재전송 상태 기계로 분리","textChars":26,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/5of6l87e","slide":5,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/6po7ud8z","slide":5,"name":"page","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"textbox","id":"sh/rqxonip4","slide":5,"name":"ui-h","text":"Qt 사용자 화면","textPreview":"Qt 사용자 화면","textChars":9,"textLines":1,"bbox":[96,224,330,42]}
+{"kind":"shape","id":"sh/sr6pwnqp","slide":5,"name":"ui","bbox":[96,282,330,292]}
+{"kind":"textbox","id":"sh/tsf6ps7a","slide":5,"name":"ui1","text":"BIN 파일 선택","textPreview":"BIN 파일 선택","textChars":9,"textLines":1,"bbox":[126,305,270,42]}
+{"kind":"textbox","id":"sh/eto7yx8v","slide":5,"name":"ui2","text":"장치 Discovery","textPreview":"장치 Discovery","textChars":12,"textLines":1,"bbox":[126,370,270,42]}
+{"kind":"textbox","id":"sh/fux8ripg","slide":5,"name":"ui3","text":"대상 선택 · 진행률","textPreview":"대상 선택 · 진행률","textChars":11,"textLines":1,"bbox":[126,435,270,42]}
+{"kind":"textbox","id":"sh/jut4jmtg","slide":5,"name":"ui4","text":"성공/실패 로그","textPreview":"성공/실패 로그","textChars":8,"textLines":1,"bbox":[126,500,270,42]}
+{"kind":"textbox","id":"sh/itknahsv","slide":5,"name":"fsm-h","text":"OtaSession 상태 흐름","textPreview":"OtaSession 상태 흐름","textChars":16,"textLines":1,"bbox":[505,224,700,42]}
+{"kind":"shape","id":"sh/5wbmlwbm","slide":5,"name":"g0","bbox":[505,282,340,48]}
+{"kind":"textbox","id":"sh/4v25cra1","slide":5,"name":"gt0","text":"Handshaking","textPreview":"Handshaking","textChars":11,"textLines":1,"bbox":[525,282,300,48]}
+{"kind":"shape","id":"sh/v6t4fmtk","slide":5,"name":"ga0l","bbox":[862,305,30,3]}
+{"kind":"shape","id":"sh/a5kn6hsz","slide":5,"name":"ga0h","bbox":[886,297,18,20]}
+{"kind":"shape","id":"sh/xsbmhcbq","slide":5,"name":"g1","bbox":[505,352,340,48]}
+{"kind":"textbox","id":"sh/w72587a5","slide":5,"name":"gt1","text":"Sending Batch","textPreview":"Sending Batch","textChars":13,"textLines":1,"bbox":[525,352,300,48]}
+{"kind":"shape","id":"sh/f2dor6to","slide":5,"name":"ga1l","bbox":[862,375,30,3]}
+{"kind":"shape","id":"sh/e14ni1s3","slide":5,"name":"ga1h","bbox":[886,367,18,20]}
+{"kind":"shape","id":"sh/qx87a5cb","slide":5,"name":"g2","bbox":[505,422,340,48]}
+{"kind":"textbox","id":"sh/bih8jadw","slide":5,"name":"gt2","text":"Wait ACK/NACK","textPreview":"Wait ACK/NACK","textChars":13,"textLines":1,"bbox":[525,422,300,48]}
+{"kind":"shape","id":"sh/cjqpcfuh","slide":5,"name":"ga2l","bbox":[862,445,30,3]}
+{"kind":"shape","id":"sh/dkzqlkv2","slide":5,"name":"ga2h","bbox":[886,437,18,20]}
+{"kind":"shape","id":"sh/yl87epcn","slide":5,"name":"g3","bbox":[505,492,340,48]}
+{"kind":"textbox","id":"sh/zmh8nud8","slide":5,"name":"gt3","text":"Selective Retry","textPreview":"Selective Retry","textChars":15,"textLines":1,"bbox":[525,492,300,48]}
+{"kind":"shape","id":"sh/0napgfud","slide":5,"name":"ga3l","bbox":[862,515,30,3]}
+{"kind":"shape","id":"sh/lojqpkvy","slide":5,"name":"ga3h","bbox":[886,507,18,20]}
+{"kind":"shape","id":"sh/epo72lc3","slide":5,"name":"g4","bbox":[505,562,340,48]}
+{"kind":"textbox","id":"sh/fqx8bqdo","slide":5,"name":"gt4","text":"Verify / Done","textPreview":"Verify / Done","textChars":13,"textLines":1,"bbox":[525,562,300,48]}
+{"kind":"textbox","id":"sh/xk3ahof6","slide":5,"name":"proto","text":"START → DATA(seq) → END","textPreview":"START → DATA(seq) → END","textChars":23,"textLines":1,"bbox":[930,285,330,42]}
+{"kind":"textbox","id":"sh/wjut8jel","slide":5,"name":"retry","text":"배치 ACK/NACK로\n누락 seq만 재전송","textPreview":"배치 ACK/NACK로 | 누락 seq만 재전송","textChars":24,"textLines":2,"bbox":[930,370,330,82]}
+{"kind":"textbox","id":"sh/vilsfexg","slide":5,"name":"hash","text":"파일 분할 + SHA-256","textPreview":"파일 분할 + SHA-256","textChars":15,"textLines":1,"bbox":[930,500,330,42]}
+{"kind":"shape","id":"sh/ahcb6twv","slide":5,"name":"status","bbox":[96,654,1248,65]}
+{"kind":"textbox","id":"sh/58nal8fi","slide":5,"name":"status-t","text":"현재  |  고정 채널 OTA 성공 · FHSS 슬롯 경계에 맞춘 전송 속도 최적화 진행","textPreview":"현재  |  고정 채널 OTA 성공 · FHSS 슬롯 경계에 맞춘 전송 속도 최적화 진행","textChars":49,"textLines":1,"bbox":[120,654,1200,65]}
+{"kind":"notes","id":"nt/dgddi5","slide":5,"text":"Gateway 쪽에서는 사용자가 보는 Qt 화면과 실제 전송 상태 기계를 분리했습니다. 사용자는 파일을 선택하고 장치를 탐색한 뒤 진행률과 로그를 확인합니다. 내부 OtaSession은 START로 세션을 열고, 데이터를 배치로 보내며, ACK와 NACK를 보고 빠진 sequence만 재전송한 뒤 END와 해시 검증으로 종료합니다. 고정 채널에서는 전체 파일 전송과 SHA-256 일치를 확인했습니다. FHSS에서는 패킷을 슬롯 경계와 guard time에 맞추는 작업이 남아 있어, 현재는 기능 통합은 됐지만 처리량은 최적화 중이라고 구분해서 말씀드리는 것이 정확합니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/gateway-ota/tree/fix/fhss-ota-slot-safe\n[/Sources]"}
+{"kind":"slide","id":"sl/h2ng6a","slide":6,"title":"05 · COMMON PROTOCOL","textShapes":25}
+{"kind":"textbox","id":"sh/2h0f6p0r","slide":6,"name":"eyebrow","text":"05 · COMMON PROTOCOL","textPreview":"05 · COMMON PROTOCOL","textChars":20,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/pkbyhkzi","slide":6,"name":"title","text":"같은 wire format이 Gateway와 ESP32의 계약","textPreview":"같은 wire format이 Gateway와 ESP32의 계약","textChars":34,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/oj2x8fix","slide":6,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/b6tgjuh8","slide":6,"name":"page","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/q5kfap03","slide":6,"name":"p0","bbox":[96,226,270,180]}
+{"kind":"textbox","id":"sh/d8byl4ze","slide":6,"name":"ph0","text":"탐색","textPreview":"탐색","textChars":2,"textLines":1,"bbox":[114,248,234,38]}
+{"kind":"textbox","id":"sh/c72hczit","slide":6,"name":"pb0","text":"DISCOVER_REQ\nDISCOVER_RESP","textPreview":"DISCOVER_REQ | DISCOVER_RESP","textChars":26,"textLines":2,"bbox":[114,320,234,55]}
+{"kind":"shape","id":"sh/7apg7qh4","slide":6,"name":"p1","bbox":[408,226,270,180]}
+{"kind":"textbox","id":"sh/69gfyl0j","slide":6,"name":"ph1","text":"OTA","textPreview":"OTA","textChars":3,"textLines":1,"bbox":[426,248,234,38]}
+{"kind":"textbox","id":"sh/srq1cneh","slide":6,"name":"pb1","text":"START · DATA\nACK/NACK · END","textPreview":"START · DATA | ACK/NACK · END","textChars":27,"textLines":2,"bbox":[426,320,234,55]}
+{"kind":"shape","id":"sh/dszilsv2","slide":6,"name":"p2","bbox":[720,226,270,180]}
+{"kind":"textbox","id":"sh/qp8jaxwb","slide":6,"name":"ph2","text":"FHSS 제어","textPreview":"FHSS 제어","textChars":7,"textLines":1,"bbox":[738,248,234,38]}
+{"kind":"textbox","id":"sh/rqh0jidw","slide":6,"name":"pb2","text":"FHSS_CONFIG\nFHSS_ACTIVATE","textPreview":"FHSS_CONFIG | FHSS_ACTIVATE","textChars":25,"textLines":2,"bbox":[738,320,234,55]}
+{"kind":"shape","id":"sh/0vq1g7ed","slide":6,"name":"p3","bbox":[1032,226,270,180]}
+{"kind":"textbox","id":"sh/1wj2pcvy","slide":6,"name":"ph3","text":"FHSS 동기","textPreview":"FHSS 동기","textChars":7,"textLines":1,"bbox":[1050,248,234,38]}
+{"kind":"textbox","id":"sh/et8jexwn","slide":6,"name":"pb3","text":"FHSS_SYNC\n13-byte fixed format","textPreview":"FHSS_SYNC | 13-byte fixed format","textChars":30,"textLines":2,"bbox":[1050,320,234,55]}
+{"kind":"textbox","id":"sh/fuhkn2ds","slide":6,"name":"wire-h","text":"FHSS 설정에 포함되는 공통 의미","textPreview":"FHSS 설정에 포함되는 공통 의미","textChars":19,"textLines":1,"bbox":[96,470,520,42]}
+{"kind":"textbox","id":"sh/gz6143e9","slide":6,"name":"f10","text":"generation","textPreview":"generation","textChars":10,"textLines":1,"bbox":[96,528,250,32]}
+{"kind":"textbox","id":"sh/h0fid8vu","slide":6,"name":"f20","text":"설정 세대 번호","textPreview":"설정 세대 번호","textChars":8,"textLines":1,"bbox":[350,528,330,32]}
+{"kind":"textbox","id":"sh/xg7yh47i","slide":6,"name":"f11","text":"seed","textPreview":"seed","textChars":4,"textLines":1,"bbox":[96,566,250,32]}
+{"kind":"textbox","id":"sh/wfyh8z6x","slide":6,"name":"f21","text":"채널 순서를 만드는 값","textPreview":"채널 순서를 만드는 값","textChars":12,"textLines":1,"bbox":[350,566,330,32]}
+{"kind":"textbox","id":"sh/vupgfupc","slide":6,"name":"f12","text":"channel_count","textPreview":"channel_count","textChars":13,"textLines":1,"bbox":[96,604,250,32]}
+{"kind":"textbox","id":"sh/atgz6po7","slide":6,"name":"f22","text":"사용 채널 개수","textPreview":"사용 채널 개수","textChars":8,"textLines":1,"bbox":[350,604,330,32]}
+{"kind":"textbox","id":"sh/5kryl47u","slide":6,"name":"f13","text":"slot_us","textPreview":"slot_us","textChars":7,"textLines":1,"bbox":[96,642,250,32]}
+{"kind":"textbox","id":"sh/kjyhcj69","slide":6,"name":"f23","text":"채널 유지 시간","textPreview":"채널 유지 시간","textChars":8,"textLines":1,"bbox":[350,642,330,32]}
+{"kind":"textbox","id":"sh/jipgjepo","slide":6,"name":"f14","text":"algorithm_version","textPreview":"algorithm_version","textChars":17,"textLines":1,"bbox":[96,680,250,32]}
+{"kind":"textbox","id":"sh/ihgza9o3","slide":6,"name":"f24","text":"셔플 규칙 버전","textPreview":"셔플 규칙 버전","textChars":8,"textLines":1,"bbox":[350,680,330,32]}
+{"kind":"shape","id":"sh/toripo7q","slide":6,"name":"gold","bbox":[760,486,584,190]}
+{"kind":"textbox","id":"sh/snihgj65","slide":6,"name":"gold-h","text":"Golden test vector","textPreview":"Golden test vector","textChars":18,"textLines":1,"bbox":[792,510,520,40]}
+{"kind":"textbox","id":"sh/qhsnuh0b","slide":6,"name":"gold-b","text":"같은 입력 → 같은 바이트열\n같은 seed → 같은 채널 순서\n버전 불일치 → 즉시 거부","textPreview":"같은 입력 → 같은 바이트열 | 같은 seed → 같은 채널 순서 | 버전 불일치 → 즉시 거부","textChars":49,"textLines":3,"bbox":[792,570,500,84]}
+{"kind":"notes","id":"nt/h2ng6a","slide":6,"text":"서로 다른 저장소가 함께 동작하려면 패킷 구조를 한 곳에서 정의해야 합니다. ota-protocol 저장소에는 탐색, OTA, FHSS 설정과 동기 패킷의 wire format을 정의했습니다. FHSS 설정에는 generation, seed, 채널 수, 슬롯 시간, 알고리즘 버전이 들어갑니다. 여기서 seed는 실제 채널 목록 자체가 아니라 양쪽이 같은 순서를 계산하기 위한 입력입니다. Golden test vector를 두어 같은 입력이 같은 바이트열과 같은 채널 순서를 만드는지 확인하고, 알고리즘 버전이 다르면 조용히 틀어지는 대신 명확하게 거부하도록 했습니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/ota-protocol/tree/test/protocol_header\n[/Sources]"}
+{"kind":"slide","id":"sl/rgvlc3","slide":7,"title":"06 · FHSS","textShapes":28}
+{"kind":"textbox","id":"sh/3qp4fm1g","slide":7,"name":"eyebrow","text":"06 · FHSS","textPreview":"06 · FHSS","textChars":9,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/oryl8721","slide":7,"name":"title","text":"seed와 슬롯 번호로 양쪽이 같은 채널을 계산","textPreview":"seed와 슬롯 번호로 양쪽이 같은 채널을 계산","textChars":26,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/ps7mhcjm","slide":7,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/qtg3ahk7","slide":7,"name":"page","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/bu943m1c","slide":7,"name":"sq0","bbox":[96,248,118,95]}
+{"kind":"textbox","id":"sh/cvi5cr2x","slide":7,"name":"sn0","text":"S0","textPreview":"S0","textChars":2,"textLines":1,"bbox":[96,254,118,28]}
+{"kind":"textbox","id":"sh/dwrm5wji","slide":7,"name":"sv0","text":"CH 1","textPreview":"CH 1","textChars":4,"textLines":1,"bbox":[96,286,118,44]}
+{"kind":"shape","id":"sh/yx0ne1k3","slide":7,"name":"sa0l","bbox":[216,294,16,3]}
+{"kind":"shape","id":"sh/zy94761o","slide":7,"name":"sa0h","bbox":[226,286,18,20]}
+{"kind":"shape","id":"sh/jypkb2lo","slide":7,"name":"sq1","bbox":[247,248,118,95]}
+{"kind":"textbox","id":"sh/yxgjixk3","slide":7,"name":"sn1","text":"S1","textPreview":"S1","textChars":2,"textLines":1,"bbox":[247,254,118,28]}
+{"kind":"textbox","id":"sh/lk72ds3e","slide":7,"name":"sv1","text":"CH 7","textPreview":"CH 7","textChars":4,"textLines":1,"bbox":[247,286,118,44]}
+{"kind":"shape","id":"sh/kzy1k729","slide":7,"name":"sa1l","bbox":[367,294,16,3]}
+{"kind":"shape","id":"sh/bu5k7ilc","slide":7,"name":"sa1h","bbox":[377,286,18,20]}
+{"kind":"shape","id":"sh/atwjed4r","slide":7,"name":"sq2","bbox":[398,248,118,95]}
+{"kind":"textbox","id":"sh/xwn29s3i","slide":7,"name":"sn2","text":"S2","textPreview":"S2","textChars":2,"textLines":1,"bbox":[398,254,118,28]}
+{"kind":"textbox","id":"sh/wve1gn2x","slide":7,"name":"sv2","text":"CH 6","textPreview":"CH 6","textChars":4,"textLines":1,"bbox":[398,286,118,44]}
+{"kind":"shape","id":"sh/vq9kjmlw","slide":7,"name":"sa2l","bbox":[518,294,16,3]}
+{"kind":"shape","id":"sh/up0jqhkb","slide":7,"name":"sa2h","bbox":[528,286,18,20]}
+{"kind":"shape","id":"sh/qlknil4j","slide":7,"name":"sq3","bbox":[549,248,118,95]}
+{"kind":"textbox","id":"sh/rmt4rq54","slide":7,"name":"sn3","text":"S3","textPreview":"S3","textChars":2,"textLines":1,"bbox":[549,254,118,28]}
+{"kind":"textbox","id":"sh/sn25kvm9","slide":7,"name":"sv3","text":"CH 5","textPreview":"CH 5","textChars":4,"textLines":1,"bbox":[549,286,118,44]}
+{"kind":"shape","id":"sh/dovmtgnu","slide":7,"name":"sa3l","bbox":[669,294,16,3]}
+{"kind":"shape","id":"sh/ep4nml4f","slide":7,"name":"sa3h","bbox":[679,286,18,20]}
+{"kind":"shape","id":"sh/fad4vq50","slide":7,"name":"sq4","bbox":[700,248,118,95]}
+{"kind":"textbox","id":"sh/0bm5ovml","slide":7,"name":"sn4","text":"S4","textPreview":"S4","textChars":2,"textLines":1,"bbox":[700,254,118,28]}
+{"kind":"textbox","id":"sh/1cvmx0n6","slide":7,"name":"sv4","text":"CH 3","textPreview":"CH 3","textChars":4,"textLines":1,"bbox":[700,286,118,44]}
+{"kind":"shape","id":"sh/ut03a14b","slide":7,"name":"sa4l","bbox":[820,294,16,3]}
+{"kind":"shape","id":"sh/ve94j65w","slide":7,"name":"sa4h","bbox":[830,286,18,20]}
+{"kind":"shape","id":"sh/xkzy5oba","slide":7,"name":"sq5","bbox":[851,248,118,95]}
+{"kind":"textbox","id":"sh/wjqhcja5","slide":7,"name":"sn5","text":"S5","textPreview":"S5","textChars":2,"textLines":1,"bbox":[851,254,118,28]}
+{"kind":"textbox","id":"sh/vihg3ytk","slide":7,"name":"sv5","text":"CH 2","textPreview":"CH 2","textChars":4,"textLines":1,"bbox":[851,286,118,44]}
+{"kind":"shape","id":"sh/ah8zatsz","slide":7,"name":"sa5l","bbox":[971,294,16,3]}
+{"kind":"shape","id":"sh/5ojy98bm","slide":7,"name":"sa5h","bbox":[981,286,18,20]}
+{"kind":"shape","id":"sh/knahg3a1","slide":7,"name":"sq6","bbox":[1002,248,118,95]}
+{"kind":"textbox","id":"sh/jm1g7ytg","slide":7,"name":"sn6","text":"S6","textPreview":"S6","textChars":2,"textLines":1,"bbox":[1002,254,118,28]}
+{"kind":"textbox","id":"sh/ilszetsv","slide":7,"name":"sv6","text":"CH 8","textPreview":"CH 8","textChars":4,"textLines":1,"bbox":[1002,286,118,44]}
+{"kind":"shape","id":"sh/1sfyx4bi","slide":7,"name":"sa6l","bbox":[1122,294,16,3]}
+{"kind":"shape","id":"sh/0r6x4zax","slide":7,"name":"sa6h","bbox":[1132,286,18,20]}
+{"kind":"shape","id":"sh/47e1c7ul","slide":7,"name":"sq7","bbox":[1153,248,118,95]}
+{"kind":"textbox","id":"sh/p8n25cvq","slide":7,"name":"sn7","text":"S7","textPreview":"S7","textChars":2,"textLines":1,"bbox":[1153,254,118,28]}
+{"kind":"textbox","id":"sh/25wjahcf","slide":7,"name":"sv7","text":"CH 4","textPreview":"CH 4","textChars":4,"textLines":1,"bbox":[1153,286,118,44]}
+{"kind":"textbox","id":"sh/365k3md0","slide":7,"name":"eq","text":"hop_sequence = permutation(channel 1..N, xorshift32(seed))","textPreview":"hop_sequence = permutation(channel 1..N, xorshift32(seed))","textChars":58,"textLines":1,"bbox":[96,412,1248,55]}
+{"kind":"textbox","id":"sh/gju187u9","slide":7,"name":"vh0","text":"300 ms","textPreview":"300 ms","textChars":6,"textLines":1,"bbox":[96,520,370,55]}
+{"kind":"textbox","id":"sh/hkn21cvu","slide":7,"name":"vb0","text":"한 채널을 유지하는 슬롯","textPreview":"한 채널을 유지하는 슬롯","textChars":13,"textLines":1,"bbox":[96,582,370,52]}
+{"kind":"textbox","id":"sh/uhcj6xc3","slide":7,"name":"vh1","text":"5 ms","textPreview":"5 ms","textChars":4,"textLines":1,"bbox":[512,520,370,55]}
+{"kind":"textbox","id":"sh/filkz2do","slide":7,"name":"vb1","text":"채널 전환 guard time","textPreview":"채널 전환 guard time","textChars":16,"textLines":1,"bbox":[512,582,370,52]}
+{"kind":"textbox","id":"sh/sfu14nud","slide":7,"name":"vh2","text":"CH 1","textPreview":"CH 1","textChars":4,"textLines":1,"bbox":[928,520,370,55]}
+{"kind":"textbox","id":"sh/tg3ixsvi","slide":7,"name":"vb2","text":"초기 접속·동기 상실 시 rendezvous","textPreview":"초기 접속·동기 상실 시 rendezvous","textChars":24,"textLines":1,"bbox":[928,582,370,52]}
+{"kind":"shape","id":"sh/va1k7ixk","slide":7,"name":"warn","bbox":[96,674,1248,50]}
+{"kind":"textbox","id":"sh/a9s3edgz","slide":7,"name":"warn-t","text":"xorshift32는 암호화가 아니라, 양쪽의 결정적 채널 순서를 맞추기 위한 알고리즘","textPreview":"xorshift32는 암호화가 아니라, 양쪽의 결정적 채널 순서를 맞추기 위한 알고리즘","textChars":48,"textLines":1,"bbox":[120,674,1200,50]}
+{"kind":"notes","id":"nt/rgvlc3","slide":7,"text":"FHSS에서는 seed로 xorshift32 기반 permutation을 만들고, 현재 슬롯 번호를 이용해 채널을 선택합니다. 예를 들어 확인한 순서는 1, 7, 6, 5, 3, 2, 8, 4였습니다. 한 슬롯은 300밀리초이고, 슬롯 시작 전후 5밀리초는 채널을 바꾸는 guard time으로 둡니다. 채널 1은 최초 접속과 동기 상실 때 다시 만나는 rendezvous 채널입니다. 중요한 점은 xorshift32가 보안을 위한 암호 난수가 아니라는 것입니다. 같은 seed와 버전을 받은 모든 장치가 같은 순서를 독립적으로 재현하기 위한 결정적 알고리즘입니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/kernel-cc1101-spi\n- https://github.com/fhss-ota-radio/firmware-esp32\n[/Sources]"}
+{"kind":"slide","id":"sl/y5ytut","slide":8,"title":"07 · SYNCHRONIZATION","textShapes":18}
+{"kind":"textbox","id":"sh/43eh4by5","slide":8,"name":"eyebrow","text":"07 · SYNCHRONIZATION","textPreview":"07 · SYNCHRONIZATION","textChars":20,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/325gb6h0","slide":8,"name":"title","text":"MASTER의 SYNC로 시간 오차를 보정하고 다시 합류","textPreview":"MASTER의 SYNC로 시간 오차를 보정하고 다시 합류","textChars":31,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/21wz21gf","slide":8,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/d87yhgz2","slide":8,"name":"page","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/c7yh8vyh","slide":8,"name":"st0","bbox":[76,235,220,185]}
+{"kind":"textbox","id":"sh/r65gfqhw","slide":8,"name":"sth0","text":"CONFIG","textPreview":"CONFIG","textChars":6,"textLines":1,"bbox":[91,255,190,42]}
+{"kind":"textbox","id":"sh/q5wz6lgb","slide":8,"name":"stb0","text":"seed · generation\nslot_us 저장","textPreview":"seed · generation | slot_us 저장","textChars":28,"textLines":2,"bbox":[91,330,190,58]}
+{"kind":"shape","id":"sh/tc3y5wzi","slide":8,"name":"sta0l","bbox":[298,327,31,3]}
+{"kind":"shape","id":"sh/sbuxwryx","slide":8,"name":"sta0h","bbox":[323,319,18,20]}
+{"kind":"shape","id":"sh/qtozapwr","slide":8,"name":"st1","bbox":[343,235,220,185]}
+{"kind":"textbox","id":"sh/ruh03uxc","slide":8,"name":"sth1","text":"ACTIVATE","textPreview":"ACTIVATE","textChars":8,"textLines":1,"bbox":[358,255,190,42]}
+{"kind":"textbox","id":"sh/sfqhczeh","slide":8,"name":"stb1","text":"대기 설정을\n활성 설정으로 전환","textPreview":"대기 설정을 | 활성 설정으로 전환","textChars":17,"textLines":2,"bbox":[358,330,190,58]}
+{"kind":"shape","id":"sh/dgzi54f2","slide":8,"name":"sta1l","bbox":[565,327,31,3]}
+{"kind":"shape","id":"sh/eh8ze9wn","slide":8,"name":"sta1h","bbox":[590,319,18,20]}
+{"kind":"shape","id":"sh/fih07ux8","slide":8,"name":"st2","bbox":[610,235,220,185]}
+{"kind":"textbox","id":"sh/0jqhgzet","slide":8,"name":"sth2","text":"SYNC ACQUIRED","textPreview":"SYNC ACQUIRED","textChars":13,"textLines":1,"bbox":[625,255,190,42]}
+{"kind":"textbox","id":"sh/1kzi94fe","slide":8,"name":"stb2","text":"CH 1에서 SYNC 수신\nslot 기준 계산","textPreview":"CH 1에서 SYNC 수신 | slot 기준 계산","textChars":25,"textLines":2,"bbox":[625,330,190,58]}
+{"kind":"shape","id":"sh/2l8zi9wz","slide":8,"name":"sta2l","bbox":[832,327,31,3]}
+{"kind":"shape","id":"sh/nm10bexk","slide":8,"name":"sta2h","bbox":[857,319,18,20]}
+{"kind":"shape","id":"sh/zq1gzetc","slide":8,"name":"st3","bbox":[877,235,220,185]}
+{"kind":"textbox","id":"sh/ypsz69cr","slide":8,"name":"sth3","text":"TRACKING","textPreview":"TRACKING","textChars":8,"textLines":1,"bbox":[892,255,190,42]}
+{"kind":"textbox","id":"sh/lsjy1obi","slide":8,"name":"stb3","text":"매 슬롯 SYNC로\n시간 오차 보정","textPreview":"매 슬롯 SYNC로 | 시간 오차 보정","textChars":19,"textLines":2,"bbox":[892,330,190,58]}
+{"kind":"shape","id":"sh/krah8jux","slide":8,"name":"sta3l","bbox":[1099,327,31,3]}
+{"kind":"shape","id":"sh/bm1gvetg","slide":8,"name":"sta3h","bbox":[1124,319,18,20]}
+{"kind":"shape","id":"sh/al8f29cv","slide":8,"name":"st4","bbox":[1144,235,220,185]}
+{"kind":"textbox","id":"sh/xojyx4bm","slide":8,"name":"sth4","text":"RECOVERY","textPreview":"RECOVERY","textChars":8,"textLines":1,"bbox":[1159,255,190,42]}
+{"kind":"textbox","id":"sh/cnah4zu1","slide":8,"name":"stb4","text":"miss 누적 시 CH 1\n세션 유지 후 재동기","textPreview":"miss 누적 시 CH 1 | 세션 유지 후 재동기","textChars":26,"textLines":2,"bbox":[1159,330,190,58]}
+{"kind":"textbox","id":"sh/nihgrud4","slide":8,"name":"master","text":"Raspberry Pi / Driver  ·  MASTER","textPreview":"Raspberry Pi / Driver  ·  MASTER","textChars":32,"textLines":1,"bbox":[96,496,520,44]}
+{"kind":"textbox","id":"sh/2h8fypcz","slide":8,"name":"slave","text":"ESP32 Firmware  ·  SLAVE","textPreview":"ESP32 Firmware  ·  SLAVE","textChars":24,"textLines":1,"bbox":[824,496,520,44]}
+{"kind":"shape","id":"sh/sn6d8vah","slide":8,"name":"sync-line","bbox":[280,575,880,4]}
+{"kind":"textbox","id":"sh/dofe10r2","slide":8,"name":"sync-pkt","text":"FHSS_SYNC  |  generation · slot · hop_index · timestamp","textPreview":"FHSS_SYNC  |  generation · slot · hop_index · timestamp","textChars":55,"textLines":1,"bbox":[390,548,660,42]}
+{"kind":"textbox","id":"sh/q14v6lsr","slide":8,"name":"metric","text":"실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs","textPreview":"실기기 확인: SYNC_ACQUIRED → TRACKING · 시간 오차 약 -22 ~ +18 μs","textChars":55,"textLines":1,"bbox":[96,660,1248,46]}
+{"kind":"notes","id":"nt/y5ytut","slide":8,"text":"동기화는 세 단계의 제어로 시작합니다. Gateway가 CONFIG를 보내면 ESP32는 seed와 generation을 대기 설정으로 저장합니다. ACTIVATE를 받으면 호핑 준비 상태로 전환하고, 채널 1에서 MASTER의 SYNC를 받아 현재 슬롯과 시간 기준을 계산합니다. 이후 TRACKING 상태에서는 매 슬롯의 SYNC로 오차를 조금씩 보정합니다. SYNC를 연속으로 놓치면 무작정 다른 채널을 찾지 않고 채널 1로 돌아와 같은 세션을 유지한 채 재동기합니다. 실기기 로그에서는 SYNC_ACQUIRED에서 TRACKING으로 이동했고 시간 오차는 약 마이너스 22에서 플러스 18마이크로초 범위였습니다."}
+{"kind":"slide","id":"sl/4rw757","slide":9,"title":"08 · AUDIO + DEVICE FIRMWARE","textShapes":22}
+{"kind":"textbox","id":"sh/2l07q9sj","slide":9,"name":"eyebrow","text":"08 · AUDIO + DEVICE FIRMWARE","textPreview":"08 · AUDIO + DEVICE FIRMWARE","textChars":28,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/pobqloba","slide":9,"name":"title","text":"음성은 캡처·압축·전송·재생의 실시간 파이프라인","textPreview":"음성은 캡처·압축·전송·재생의 실시간 파이프라인","textChars":26,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/on2psjap","slide":9,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/bqt8net0","slide":9,"name":"page","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/qpk7utsf","slide":9,"name":"au0","bbox":[96,232,208,174]}
+{"kind":"textbox","id":"sh/dcbqpob6","slide":9,"name":"auh0","text":"INMP441","textPreview":"INMP441","textChars":7,"textLines":1,"bbox":[110,251,180,42]}
+{"kind":"textbox","id":"sh/cr2pwjal","slide":9,"name":"aub0","text":"I2S PCM\n8 kHz","textPreview":"I2S PCM | 8 kHz","textChars":13,"textLines":2,"bbox":[110,323,180,50]}
+{"kind":"shape","id":"sh/rupobutw","slide":9,"name":"aua0l","bbox":[307,311,26,3]}
+{"kind":"shape","id":"sh/6tg7ipsb","slide":9,"name":"aua0h","bbox":[327,303,18,20]}
+{"kind":"shape","id":"sh/8r6xkji9","slide":9,"name":"au1","bbox":[346,232,208,174]}
+{"kind":"textbox","id":"sh/9szytozu","slide":9,"name":"auh1","text":"Speex NB","textPreview":"Speex NB","textChars":8,"textLines":1,"bbox":[360,251,180,42]}
+{"kind":"textbox","id":"sh/mpofi90j","slide":9,"name":"aub1","text":"프레임 압축\n2-frame packet","textPreview":"프레임 압축 | 2-frame packet","textChars":21,"textLines":2,"bbox":[360,323,180,50]}
+{"kind":"shape","id":"sh/nqxgreh4","slide":9,"name":"aua1l","bbox":[557,311,26,3]}
+{"kind":"shape","id":"sh/wfqxo3il","slide":9,"name":"aua1h","bbox":[577,303,18,20]}
+{"kind":"shape","id":"sh/xgzyxoz6","slide":9,"name":"au2","bbox":[596,232,208,174]}
+{"kind":"textbox","id":"sh/at8fmt0f","slide":9,"name":"auh2","text":"CC1101","textPreview":"CC1101","textChars":6,"textLines":1,"bbox":[610,251,180,42]}
+{"kind":"textbox","id":"sh/vehgvyh0","slide":9,"name":"aub2","text":"음성 패킷\nPTT control","textPreview":"음성 패킷 | PTT control","textChars":17,"textLines":2,"bbox":[610,323,180,50]}
+{"kind":"shape","id":"sh/cjmxczih","slide":9,"name":"aua2l","bbox":[807,311,26,3]}
+{"kind":"shape","id":"sh/dkvel4zm","slide":9,"name":"aua2h","bbox":[827,303,18,20]}
+{"kind":"shape","id":"sh/t4nmtwne","slide":9,"name":"au3","bbox":[846,232,208,174]}
+{"kind":"textbox","id":"sh/s3u50r6t","slide":9,"name":"auh3","text":"RX Queue","textPreview":"RX Queue","textChars":8,"textLines":1,"bbox":[860,251,180,42]}
+{"kind":"textbox","id":"sh/72l4rm58","slide":9,"name":"aub3","text":"jitter 흡수\nEND 처리","textPreview":"jitter 흡수 | END 처리","textChars":16,"textLines":2,"bbox":[860,323,180,50]}
+{"kind":"shape","id":"sh/61c3yhon","slide":9,"name":"aua3l","bbox":[1057,311,26,3]}
+{"kind":"shape","id":"sh/h8nmxgna","slide":9,"name":"aua3h","bbox":[1077,303,18,20]}
+{"kind":"shape","id":"sh/g7e54b65","slide":9,"name":"au4","bbox":[1096,232,208,174]}
+{"kind":"textbox","id":"sh/f654v65k","slide":9,"name":"auh4","text":"MAX98357A","textPreview":"MAX98357A","textChars":9,"textLines":1,"bbox":[1110,251,180,42]}
+{"kind":"textbox","id":"sh/u5wn21oz","slide":9,"name":"aub4","text":"I2S 출력\n스피커 재생","textPreview":"I2S 출력 | 스피커 재생","textChars":13,"textLines":2,"bbox":[1110,323,180,50]}
+{"kind":"textbox","id":"sh/pw7m1gnm","slide":9,"name":"exh0","text":"입력","textPreview":"입력","textChars":2,"textLines":1,"bbox":[96,490,115,42]}
+{"kind":"shape","id":"sh/4by58b61","slide":9,"name":"exl0","bbox":[225,510,80,3]}
+{"kind":"textbox","id":"sh/mh8j2d4j","slide":9,"name":"exb0","text":"회전 인코더 · PTT 버튼","textPreview":"회전 인코더 · PTT 버튼","textChars":15,"textLines":1,"bbox":[330,490,800,42]}
+{"kind":"textbox","id":"sh/nihkvil4","slide":9,"name":"exh1","text":"표시","textPreview":"표시","textChars":2,"textLines":1,"bbox":[96,560,115,42]}
+{"kind":"shape","id":"sh/8jq14nmp","slide":9,"name":"exl1","bbox":[225,580,80,3]}
+{"kind":"textbox","id":"sh/9kj2xs3a","slide":9,"name":"exb1","text":"OLED · 상태 LED · OTA 진행률","textPreview":"OLED · 상태 LED · OTA 진행률","textChars":23,"textLines":1,"bbox":[330,560,800,42]}
+{"kind":"textbox","id":"sh/alsj6x4f","slide":9,"name":"exh2","text":"안정성","textPreview":"안정성","textChars":3,"textLines":1,"bbox":[96,630,115,42]}
+{"kind":"shape","id":"sh/vm1kzil0","slide":9,"name":"exl2","bbox":[225,650,80,3]}
+{"kind":"textbox","id":"sh/w7a18nml","slide":9,"name":"exb2","text":"RX queue · silence tail · DMA lifecycle","textPreview":"RX queue · silence tail · DMA lifecycle","textChars":39,"textLines":1,"bbox":[330,630,800,42]}
+{"kind":"shape","id":"sh/x8j21s36","slide":9,"name":"dual","bbox":[1040,490,304,180]}
+{"kind":"textbox","id":"sh/i9sjax4r","slide":9,"name":"dual-h","text":"한 장치의 두 역할","textPreview":"한 장치의 두 역할","textChars":10,"textLines":1,"bbox":[1065,510,254,38]}
+{"kind":"textbox","id":"sh/ja1k32lc","slide":9,"name":"dual-b","text":"평상시: 무전 음성\n업데이트 시: OTA client\n공통 RF/FHSS 계층 공유","textPreview":"평상시: 무전 음성 | 업데이트 시: OTA client | 공통 RF/FHSS 계층 공유","textChars":46,"textLines":3,"bbox":[1065,565,254,84]}
+{"kind":"notes","id":"nt/4rw757","slide":9,"text":"ESP32의 음성 경로는 마이크 입력, 압축, 무선 전송, 수신 큐, 스피커 출력으로 이어집니다. INMP441에서 8킬로헤르츠 PCM을 받고 Speex narrowband로 압축해 두 프레임 단위의 패킷으로 보냅니다. 수신 쪽은 큐로 순간적인 지연을 흡수하고 END 제어와 silence tail을 처리한 뒤 MAX98357A로 재생합니다. 사용자는 PTT와 회전 인코더를 조작하고 OLED와 LED로 상태를 확인합니다. 이 펌웨어는 평상시에는 무전기이지만 업데이트 모드에서는 OTA client가 되며, 두 기능이 동일한 RF와 FHSS 계층을 공유합니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/firmware-esp32\n[/Sources]"}
+{"kind":"slide","id":"sl/cam9bl","slide":10,"title":"09 · ESP32 OTA","textShapes":23}
+{"kind":"textbox","id":"sh/ih4f6903","slide":10,"name":"eyebrow","text":"09 · ESP32 OTA","textPreview":"09 · ESP32 OTA","textChars":14,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/5kvy1oju","slide":10,"name":"title","text":"받은 이미지는 검증을 통과해야 다음 부팅에 적용","textPreview":"받은 이미지는 검증을 통과해야 다음 부팅에 적용","textChars":26,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/4jmx8ji9","slide":10,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/vedgvu1s","slide":10,"name":"page","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"textbox","id":"sh/ud4f29k7","slide":10,"name":"en0","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,216,44,44]}
+{"kind":"textbox","id":"sh/hgvyx4ji","slide":10,"name":"eh0","text":"Discover","textPreview":"Discover","textChars":8,"textLines":1,"bbox":[168,216,180,44]}
+{"kind":"textbox","id":"sh/wfmx4zix","slide":10,"name":"eb0","text":"device_id · version 응답","textPreview":"device_id · version 응답","textChars":22,"textLines":1,"bbox":[380,216,760,44]}
+{"kind":"shape","id":"sh/faxg7y1w","slide":10,"name":"el0","bbox":[118,265,2,42]}
+{"kind":"textbox","id":"sh/e9ofet0b","slide":10,"name":"en1","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[96,307,44,44]}
+{"kind":"textbox","id":"sh/gb2pgjyt","slide":10,"name":"eh1","text":"START","textPreview":"START","textChars":5,"textLines":1,"bbox":[168,307,180,44]}
+{"kind":"textbox","id":"sh/1cb6p4ze","slide":10,"name":"eb1","text":"크기 · SHA-256 · session 확인","textPreview":"크기 · SHA-256 · session 확인","textChars":25,"textLines":1,"bbox":[380,307,760,44]}
+{"kind":"shape","id":"sh/epk7e9g3","slide":10,"name":"el1","bbox":[118,356,2,42]}
+{"kind":"textbox","id":"sh/fqtoneh8","slide":10,"name":"en2","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[96,398,44,44]}
+{"kind":"textbox","id":"sh/snipczix","slide":10,"name":"eh2","text":"DATA","textPreview":"DATA","textChars":4,"textLines":1,"bbox":[168,398,180,44]}
+{"kind":"textbox","id":"sh/tor6l4zi","slide":10,"name":"eb2","text":"sequence 확인 후 OTA partition write","textPreview":"sequence 확인 후 OTA partition write","textChars":33,"textLines":1,"bbox":[380,398,760,44]}
+{"kind":"shape","id":"sh/6l07ap0r","slide":10,"name":"el2","bbox":[118,447,2,42]}
+{"kind":"textbox","id":"sh/rm9ojuhc","slide":10,"name":"en3","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[96,489,44,44]}
+{"kind":"textbox","id":"sh/4jip8zil","slide":10,"name":"eh3","text":"ACK/NACK","textPreview":"ACK/NACK","textChars":8,"textLines":1,"bbox":[168,489,180,44]}
+{"kind":"textbox","id":"sh/5kr6hkz6","slide":10,"name":"eb3","text":"배치 누락 목록 응답","textPreview":"배치 누락 목록 응답","textChars":11,"textLines":1,"bbox":[380,489,760,44]}
+{"kind":"shape","id":"sh/l4zepwny","slide":10,"name":"el3","bbox":[118,538,2,42]}
+{"kind":"textbox","id":"sh/03qdwr6d","slide":10,"name":"en4","text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[96,580,44,44]}
+{"kind":"textbox","id":"sh/z2hwnm5s","slide":10,"name":"eh4","text":"END","textPreview":"END","textChars":3,"textLines":1,"bbox":[168,580,180,44]}
+{"kind":"textbox","id":"sh/y18vuho7","slide":10,"name":"eb4","text":"전체 SHA-256 검증 · boot partition 변경","textPreview":"전체 SHA-256 검증 · boot partition 변경","textChars":33,"textLines":1,"bbox":[380,580,760,44]}
+{"kind":"shape","id":"sh/d0felcnm","slide":10,"name":"part","bbox":[1020,235,324,330]}
+{"kind":"textbox","id":"sh/cz6ds76h","slide":10,"name":"part-h","text":"Dual OTA Partition","textPreview":"Dual OTA Partition","textChars":18,"textLines":1,"bbox":[1045,258,274,40]}
+{"kind":"shape","id":"sh/byxcj25w","slide":10,"name":"run","bbox":[1062,332,240,65]}
+{"kind":"textbox","id":"sh/qxovqxob","slide":10,"name":"run-t","text":"현재 실행 이미지","textPreview":"현재 실행 이미지","textChars":9,"textLines":1,"bbox":[1062,332,240,65]}
+{"kind":"shape","id":"sh/hwjexgn6","slide":10,"name":"next","bbox":[1062,435,240,65]}
+{"kind":"textbox","id":"sh/wvad4b6l","slide":10,"name":"next-t","text":"검증 후 다음 부팅","textPreview":"검증 후 다음 부팅","textChars":10,"textLines":1,"bbox":[1062,435,240,65]}
+{"kind":"shape","id":"sh/eh4byd43","slide":10,"name":"pal","bbox":[1161,412,30,3]}
+{"kind":"shape","id":"sh/fidsrylo","slide":10,"name":"pah","bbox":[1185,404,18,20]}
+{"kind":"shape","id":"sh/g3mt03m9","slide":10,"name":"nvs","bbox":[96,688,1248,42]}
+{"kind":"textbox","id":"sh/14vat83e","slide":10,"name":"nvs-t","text":"FHSS CONFIG은 pending, ACTIVATE 이후 active로 관리하고 재부팅에도 필요한 설정을 NVS에 보존","textPreview":"FHSS CONFIG은 pending, ACTIVATE 이후 active로 관리하고 재부팅에도 필요한 설정을 NVS에 보존","textChars":68,"textLines":1,"bbox":[120,688,1200,42]}
+{"kind":"notes","id":"nt/cam9bl","slide":10,"text":"ESP32 OTA는 실행 중인 파티션을 바로 덮어쓰지 않습니다. Discovery에서 장치 ID와 버전을 알리고, START에서 파일 크기와 SHA-256, session을 확인합니다. DATA는 sequence를 검사하면서 비활성 OTA 파티션에 쓰고, 배치 단위 ACK와 NACK로 누락 정보를 보냅니다. END에서 전체 SHA-256이 일치해야만 다음 부팅 파티션을 변경합니다. FHSS 설정도 CONFIG 단계에서는 pending으로 저장하고 ACTIVATE 이후 active로 전환해, 불완전한 설정이 즉시 적용되지 않도록 했습니다.\n\n[Sources]\n- https://github.com/fhss-ota-radio/firmware-esp32/tree/fix/fhss-ota-sync-recovery\n[/Sources]"}
+{"kind":"slide","id":"sl/hsp4t2","slide":11,"title":"10 · INTEGRATION TROUBLESHOOTING","textShapes":23}
+{"kind":"textbox","id":"sh/f2p4361w","slide":11,"name":"eyebrow","text":"10 · INTEGRATION TROUBLESHOOTING","textPreview":"10 · INTEGRATION TROUBLESHOOTING","textChars":32,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/g3y5wbih","slide":11,"name":"title","text":"문제는 RF보다 상태 의미와 타이밍 경계에서 발생","textPreview":"문제는 RF보다 상태 의미와 타이밍 경계에서 발생","textChars":27,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/147m5gj2","slide":11,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/6xwnq10f","slide":11,"name":"page","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"textbox","id":"sh/7yp4z610","slide":11,"name":"p","text":"현상","textPreview":"현상","textChars":2,"textLines":1,"bbox":[96,205,300,32]}
+{"kind":"textbox","id":"sh/szy5sril","slide":11,"name":"c","text":"원인","textPreview":"원인","textChars":2,"textLines":1,"bbox":[430,205,350,32]}
+{"kind":"textbox","id":"sh/t07m1wjq","slide":11,"name":"f","text":"조치","textPreview":"조치","textChars":2,"textLines":1,"bbox":[835,205,500,32]}
+{"kind":"shape","id":"sh/i9wnmh03","slide":11,"name":"hl","bbox":[96,245,1248,2]}
+{"kind":"textbox","id":"sh/ja54vm1o","slide":11,"name":"r10","text":"RX가 완전히 멎음","textPreview":"RX가 완전히 멎음","textChars":10,"textLines":1,"bbox":[96,264,310,60]}
+{"kind":"textbox","id":"sh/f6x8bylk","slide":11,"name":"r20","text":"RXFIFO_OVERFLOW 0x11","textPreview":"RXFIFO_OVERFLOW 0x11","textChars":20,"textLines":1,"bbox":[430,264,360,60]}
+{"kind":"textbox","id":"sh/e5or2t4f","slide":11,"name":"r30","text":"IDLE → SFRX → SRX 자동 복구","textPreview":"IDLE → SFRX → SRX 자동 복구","textChars":23,"textLines":1,"bbox":[835,264,500,60]}
+{"kind":"shape","id":"sh/1sfad83q","slide":11,"name":"rb1","bbox":[76,343,1288,75]}
+{"kind":"textbox","id":"sh/g76943m5","slide":11,"name":"r11","text":"슬롯 1부터 SYNC 거부","textPreview":"슬롯 1부터 SYNC 거부","textChars":14,"textLines":1,"bbox":[96,348,310,60]}
+{"kind":"textbox","id":"sh/3uxsfilw","slide":11,"name":"r21","text":"hop_index 의미 불일치","textPreview":"hop_index 의미 불일치","textChars":16,"textLines":1,"bbox":[430,348,360,60]}
+{"kind":"textbox","id":"sh/2tor6d4b","slide":11,"name":"r31","text":"셔플 결과의 0-based index로 통일","textPreview":"셔플 결과의 0-based index로 통일","textChars":24,"textLines":1,"bbox":[835,348,500,60]}
+{"kind":"textbox","id":"sh/pwzah832","slide":11,"name":"r12","text":"초기 SYNC 획득 실패","textPreview":"초기 SYNC 획득 실패","textChars":13,"textLines":1,"bbox":[96,432,310,60]}
+{"kind":"textbox","id":"sh/ovq9832h","slide":11,"name":"r22","text":"같은 slot을 여러 번 송신","textPreview":"같은 slot을 여러 번 송신","textChars":16,"textLines":1,"bbox":[430,432,360,60]}
+{"kind":"textbox","id":"sh/jyd83elc","slide":11,"name":"r32","text":"실제 슬롯마다 SYNC 한 번만 송신","textPreview":"실제 슬롯마다 SYNC 한 번만 송신","textChars":20,"textLines":1,"bbox":[835,432,500,60]}
+{"kind":"shape","id":"sh/ix4ru947","slide":11,"name":"rb3","bbox":[76,511,1288,75]}
+{"kind":"textbox","id":"sh/mtsb2hof","slide":11,"name":"r13","text":"OTA_DATA write 실패","textPreview":"OTA_DATA write 실패","textChars":17,"textLines":1,"bbox":[96,516,310,60]}
+{"kind":"textbox","id":"sh/nulcbm50","slide":11,"name":"r23","text":"DATA와 내부 SYNC TX 충돌","textPreview":"DATA와 내부 SYNC TX 충돌","textChars":19,"textLines":1,"bbox":[430,516,360,60]}
+{"kind":"textbox","id":"sh/8vud4rml","slide":11,"name":"r33","text":"tx_lock으로 송신 직렬화","textPreview":"tx_lock으로 송신 직렬화","textChars":16,"textLines":1,"bbox":[835,516,500,60]}
+{"kind":"textbox","id":"sh/9w3udwn6","slide":11,"name":"r14","text":"FHSS OTA가 매우 느림","textPreview":"FHSS OTA가 매우 느림","textChars":15,"textLines":1,"bbox":[96,600,310,60]}
+{"kind":"textbox","id":"sh/ypsbyhoj","slide":11,"name":"r24","text":"300ms 슬롯당 1패킷 제한","textPreview":"300ms 슬롯당 1패킷 제한","textChars":16,"textLines":1,"bbox":[430,600,360,60]}
+{"kind":"textbox","id":"sh/zq1c7m54","slide":11,"name":"r34","text":"guard-aware 배치 전송 최적화 진행","textPreview":"guard-aware 배치 전송 최적화 진행","textChars":24,"textLines":1,"bbox":[835,600,500,60]}
+{"kind":"shape","id":"sh/0rat076p","slide":11,"name":"lesson","bbox":[96,696,1248,38]}
+{"kind":"textbox","id":"sh/lsju9cna","slide":11,"name":"lesson-t","text":"교훈  |  패킷 포맷뿐 아니라 state, index, slot 경계의 의미까지 저장소 간에 동일해야 한다","textPreview":"교훈  |  패킷 포맷뿐 아니라 state, index, slot 경계의 의미까지 저장소 간에 동일해야 한다","textChars":60,"textLines":1,"bbox":[118,696,1204,38]}
+{"kind":"notes","id":"nt/hsp4t2","slide":11,"text":"통합 과정에서 가장 많이 배운 부분입니다. 수신이 완전히 멎는 문제는 RF 감도가 아니라 RX FIFO overflow 상태 복구 누락이었습니다. 슬롯 1부터 SYNC가 거부된 문제는 hop_index를 한쪽은 셔플 인덱스, 다른 쪽은 단순 슬롯 나머지로 해석한 것이 원인이었습니다. 초기 획득 실패는 같은 슬롯 번호의 SYNC를 짧게 반복 송신한 문제였고, OTA_DATA write 실패는 내부 SYNC와 사용자 데이터가 TX 경로에서 충돌했기 때문입니다. 이를 각각 상태 복구, 의미 통일, 슬롯당 1회 송신, tx_lock으로 해결했습니다. 현재 남은 성능 문제는 300밀리초 슬롯당 한 패킷만 보내는 보수적인 정책을 개선하는 것입니다."}
+{"kind":"slide","id":"sl/gadvhj","slide":12,"title":"11 · VERIFIED RESULTS","textShapes":15}
+{"kind":"textbox","id":"sh/axkb250z","slide":12,"name":"eyebrow","text":"11 · VERIFIED RESULTS","textPreview":"11 · VERIFIED RESULTS","textChars":21,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/x0vuxkzq","slide":12,"name":"title","text":"기능 성공과 성능 최적화 단계를 구분해 검증","textPreview":"기능 성공과 성능 최적화 단계를 구분해 검증","textChars":24,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/cz2t4fi5","slide":12,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/nutcraho","slide":12,"name":"page","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"shape","id":"sh/2tkby503","slide":12,"name":"ok0","bbox":[96,222,560,135]}
+{"kind":"textbox","id":"sh/pwbut0ze","slide":12,"name":"okh0","text":"고정 채널 OTA","textPreview":"고정 채널 OTA","textChars":9,"textLines":1,"bbox":[120,240,220,38]}
+{"kind":"textbox","id":"sh/ov2t0vit","slide":12,"name":"okb0","text":"7,829 / 7,829 packet\nSHA-256 일치","textPreview":"7,829 / 7,829 packet | SHA-256 일치","textChars":31,"textLines":2,"bbox":[356,240,270,76]}
+{"kind":"shape","id":"sh/fq9cnqhc","slide":12,"name":"ok1","bbox":[720,222,560,135]}
+{"kind":"textbox","id":"sh/ep0bul0r","slide":12,"name":"okh1","text":"FHSS 배포","textPreview":"FHSS 배포","textChars":7,"textLines":1,"bbox":[744,240,220,38]}
+{"kind":"textbox","id":"sh/kvi9832x","slide":12,"name":"okb1","text":"CONFIG · ACTIVATE\n대상 ACK 확인","textPreview":"CONFIG · ACTIVATE | 대상 ACK 확인","textChars":27,"textLines":2,"bbox":[980,240,270,76]}
+{"kind":"shape","id":"sh/5wrq18ji","slide":12,"name":"ok2","bbox":[96,392,560,135]}
+{"kind":"textbox","id":"sh/it0r6tkr","slide":12,"name":"okh2","text":"동기 추적","textPreview":"동기 추적","textChars":5,"textLines":1,"bbox":[120,410,220,38]}
+{"kind":"textbox","id":"sh/ju98zy1c","slide":12,"name":"okb2","text":"SYNC_ACQUIRED → TRACKING\n-22 ~ +18 μs","textPreview":"SYNC_ACQUIRED → TRACKING | -22 ~ +18 μs","textChars":37,"textLines":2,"bbox":[356,410,270,76]}
+{"kind":"shape","id":"sh/w7ip4j2l","slide":12,"name":"ok3","bbox":[720,392,560,135]}
+{"kind":"textbox","id":"sh/x8rqxoj6","slide":12,"name":"okh3","text":"RF 상태","textPreview":"RF 상태","textChars":5,"textLines":1,"bbox":[744,410,220,38]}
+{"kind":"textbox","id":"sh/a50729kv","slide":12,"name":"okb3","text":"RSSI 약 -48 / -49 dBm\nCRC 정상","textPreview":"RSSI 약 -48 / -49 dBm | CRC 정상","textChars":27,"textLines":2,"bbox":[980,410,270,76]}
+{"kind":"textbox","id":"sh/v698ve10","slide":12,"name":"now-h","text":"현재 판단","textPreview":"현재 판단","textChars":5,"textLines":1,"bbox":[96,600,180,40]}
+{"kind":"textbox","id":"sh/g329gn25","slide":12,"name":"now-b","text":"FHSS 제어·동기화는 실기기에서 확인했으며, 호핑 중 대용량 OTA 처리량은 계속 최적화 중","textPreview":"FHSS 제어·동기화는 실기기에서 확인했으며, 호핑 중 대용량 OTA 처리량은 계속 최적화 중","textChars":52,"textLines":1,"bbox":[300,594,1044,54]}
+{"kind":"shape","id":"sh/1ovq9sja","slide":12,"name":"truth","bbox":[96,678,1248,48]}
+{"kind":"textbox","id":"sh/p87ido7i","slide":12,"name":"truth-t","text":"발표 원칙  |  ‘구현됨’, ‘실기기 검증됨’, ‘최적화 중’을 분리해 설명","textPreview":"발표 원칙  |  ‘구현됨’, ‘실기기 검증됨’, ‘최적화 중’을 분리해 설명","textChars":43,"textLines":1,"bbox":[120,678,1200,48]}
+{"kind":"notes","id":"nt/gadvhj","slide":12,"text":"검증 결과는 완료 수준을 나누어 말씀드리겠습니다. 고정 채널 OTA에서는 7,829개 패킷 전체 수신과 SHA-256 일치를 확인했습니다. FHSS 제어에서는 CONFIG와 ACTIVATE에 대한 대상 ACK를 확인했고, ESP32가 SYNC_ACQUIRED에서 TRACKING으로 이동했습니다. 시간 오차는 약 마이너스 22에서 플러스 18마이크로초였고 RSSI와 CRC도 정상 범위였습니다. 다만 호핑 중 대용량 파일을 보내는 기능은 통합돼 있지만 현재 슬롯당 전송량이 보수적이어서 처리량 최적화가 필요합니다. 따라서 구현, 실기기 검증, 최적화 중인 항목을 명확히 구분하겠습니다."}
+{"kind":"slide","id":"sl/ufdja8","slide":13,"title":"12 · CONCLUSION","textShapes":19}
+{"kind":"textbox","id":"sh/yx032psj","slide":13,"name":"eyebrow","text":"12 · CONCLUSION","textPreview":"12 · CONCLUSION","textChars":15,"textLines":1,"bbox":[96,42,800,30]}
+{"kind":"textbox","id":"sh/lkbmx4ru","slide":13,"name":"title","text":"계층별 책임을 분리해 하나의 무선 업데이트 시스템을 만들었다","textPreview":"계층별 책임을 분리해 하나의 무선 업데이트 시스템을 만들었다","textChars":33,"textLines":1,"bbox":[96,82,1248,88]}
+{"kind":"textbox","id":"sh/0j2l4zap","slide":13,"name":"footer","text":"FHSS-OTA Radio · Team Project","textPreview":"FHSS-OTA Radio · Team Project","textChars":29,"textLines":1,"bbox":[96,760,500,22]}
+{"kind":"textbox","id":"sh/bu94rats","slide":13,"name":"page","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1300,760,44,22]}
+{"kind":"textbox","id":"sh/qt03yps7","slide":13,"name":"cn0","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,215,44,44]}
+{"kind":"shape","id":"sh/dwrmtkry","slide":13,"name":"cbg0","bbox":[96,215,44,44]}
+{"kind":"textbox","id":"sh/cvil0fad","slide":13,"name":"ch0","text":"공통 규칙","textPreview":"공통 규칙","textChars":5,"textLines":1,"bbox":[170,215,260,44]}
+{"kind":"textbox","id":"sh/vqt43e9c","slide":13,"name":"cc0","text":"ota-protocol로 wire format과 알고리즘 버전 통일","textPreview":"ota-protocol로 wire format과 알고리즘 버전 통일","textChars":37,"textLines":1,"bbox":[455,215,820,44]}
+{"kind":"textbox","id":"sh/apkna9sr","slide":13,"name":"cn1","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[96,307,44,44]}
+{"kind":"shape","id":"sh/s3al0ry5","slide":13,"name":"cbg1","bbox":[96,307,44,44]}
+{"kind":"textbox","id":"sh/t4j29wfq","slide":13,"name":"ch1","text":"커널 시간 제어","textPreview":"커널 시간 제어","textChars":8,"textLines":1,"bbox":[170,307,260,44]}
+{"kind":"textbox","id":"sh/6hs3y1gz","slide":13,"name":"cc1","text":"드라이버가 채널 전환·SYNC·복구·송신 충돌 관리","textPreview":"드라이버가 채널 전환·SYNC·복구·송신 충돌 관리","textChars":28,"textLines":1,"bbox":[455,307,820,44]}
+{"kind":"textbox","id":"sh/ri1k7mhk","slide":13,"name":"cn2","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[96,399,44,44]}
+{"kind":"shape","id":"sh/4falwryt","slide":13,"name":"cbg2","bbox":[96,399,44,44]}
+{"kind":"textbox","id":"sh/5gj25wze","slide":13,"name":"ch2","text":"안전한 적용","textPreview":"안전한 적용","textChars":6,"textLines":1,"bbox":[170,399,260,44]}
+{"kind":"textbox","id":"sh/id83uhg3","slide":13,"name":"cc2","text":"Gateway 재전송 FSM과 ESP32 dual-partition 검증","textPreview":"Gateway 재전송 FSM과 ESP32 dual-partition 검증","textChars":40,"textLines":1,"bbox":[455,399,820,44]}
+{"kind":"textbox","id":"sh/jehk3mho","slide":13,"name":"cn3","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[96,491,44,44]}
+{"kind":"shape","id":"sh/wbq1s7yx","slide":13,"name":"cbg3","bbox":[96,491,44,44]}
+{"kind":"textbox","id":"sh/hcz21czi","slide":13,"name":"ch3","text":"제품 기능 통합","textPreview":"제품 기능 통합","textChars":8,"textLines":1,"bbox":[170,491,260,44]}
+{"kind":"textbox","id":"sh/xw7a94nu","slide":13,"name":"cc3","text":"음성·UI·OTA가 동일한 CC1101/FHSS 기반을 공유","textPreview":"음성·UI·OTA가 동일한 CC1101/FHSS 기반을 공유","textChars":33,"textLines":1,"bbox":[455,491,820,44]}
+{"kind":"shape","id":"sh/cvy9gjmp","slide":13,"name":"nextline","bbox":[96,612,1248,2]}
+{"kind":"textbox","id":"sh/bups7e54","slide":13,"name":"next-h","text":"다음 단계","textPreview":"다음 단계","textChars":5,"textLines":1,"bbox":[96,638,180,42]}
+{"kind":"textbox","id":"sh/atgre94j","slide":13,"name":"next-b","text":"슬롯 내부 다중 패킷 전송 검증 → 장시간 재동기 시험 → 다중 무전기 동시 OTA","textPreview":"슬롯 내부 다중 패킷 전송 검증 → 장시간 재동기 시험 → 다중 무전기 동시 OTA","textChars":46,"textLines":1,"bbox":[300,633,1044,52]}
+{"kind":"textbox","id":"sh/ps7q54ny","slide":13,"name":"end","text":"질문 부탁드립니다","textPreview":"질문 부탁드립니다","textChars":9,"textLines":1,"bbox":[96,706,1248,38]}
+{"kind":"notes","id":"nt/ufdja8","slide":13,"text":"정리하면 저희는 공통 프로토콜로 저장소 사이의 계약을 만들고, Linux 드라이버가 채널 전환과 동기화처럼 시간에 민감한 일을 맡도록 했습니다. Gateway는 재전송 상태 기계와 사용자 인터페이스를, ESP32는 안전한 dual-partition OTA와 음성 기능을 담당합니다. 그 결과 CONFIG와 ACTIVATE, FHSS 동기 추적, 고정 채널 OTA 전체 검증까지 연결했습니다. 다음 단계는 한 슬롯 안에서 여러 데이터 패킷과 ACK를 안전하게 처리해 속도를 높이고, 장시간 재동기와 여러 무전기 동시 업데이트를 시험하는 것입니다. 이상으로 발표를 마치겠습니다. 감사합니다."}

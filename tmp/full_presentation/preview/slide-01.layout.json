@@ -1,0 +1,431 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/g762ux",
+    "id": "g762ux",
+    "slide": 1,
+    "layoutId": "985770a2-1185-491f-9ca6-440e50e36d16",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "b171dc0c-7033-4408-9654-91c359764b2d",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1440,
+      "height": 810
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "985770a2-1185-491f-9ca6-440e50e36d16",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "b171dc0c-7033-4408-9654-91c359764b2d",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "b171dc0c-7033-4408-9654-91c359764b2d",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fylk3mdw",
+      "id": "1",
+      "name": "accent",
+      "bbox": [
+        96,
+        92,
+        10,
+        530
+      ],
+      "geometry": "rect",
+      "fillColor": "#C84308",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0zelc7eh",
+      "id": "2",
+      "name": "kicker",
+      "bbox": [
+        138,
+        96,
+        900,
+        34
+      ],
+      "geometry": "rect",
+      "text": "KERNEL · OTA · FHSS · AUDIO · ESP32",
+      "textPreview": "KERNEL · OTA · FHSS · AUDIO · ESP32",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#C84308",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "KERNEL · OTA · FHSS · AUDIO · ESP32"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "KERNEL · OTA · FHSS · AUDIO · ESP32",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#C84308",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "KERNEL · OTA · FHSS · AUDIO · ESP32",
+              "fontSize": 17,
+              "color": "#C84308",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/10n25cv2",
+      "id": "3",
+      "name": "title",
+      "bbox": [
+        138,
+        178,
+        1100,
+        190
+      ],
+      "geometry": "rect",
+      "text": "주파수 호핑 기반\n무전기 OTA 시스템",
+      "textPreview": "주파수 호핑 기반 | 무전기 OTA 시스템",
+      "resolvedFontSize": 64,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 64,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "주파수 호핑 기반"
+          },
+          {
+            "index": 2,
+            "text": "무전기 OTA 시스템"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "주파수 호핑 기반",
+          "resolvedTextStyle": {
+            "fontSize": 64,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "주파수 호핑 기반",
+              "fontSize": 64,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "무전기 OTA 시스템",
+          "resolvedTextStyle": {
+            "fontSize": 64,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "무전기 OTA 시스템",
+              "fontSize": 64,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qtc36xwf",
+      "id": "4",
+      "name": "sub",
+      "bbox": [
+        138,
+        390,
+        1110,
+        72
+      ],
+      "geometry": "rect",
+      "text": "라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결",
+      "textPreview": "라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 27,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "라즈베리파이 게이트웨이와 ESP32 무전기를 하나의 업데이트 경로로 연결",
+              "fontSize": 27,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rulkz2d0",
+      "id": "5",
+      "name": "meta",
+      "bbox": [
+        138,
+        548,
+        1040,
+        36
+      ],
+      "geometry": "rect",
+      "text": "Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF",
+      "textPreview": "Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#171412",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#171412",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Linux 5.15.92 · CC1101 Sub-1GHz · Qt · Yocto · ESP-IDF",
+              "fontSize": 19,
+              "color": "#171412",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/svul87el",
+      "id": "6",
+      "name": "date",
+      "bbox": [
+        138,
+        650,
+        500,
+        30
+      ],
+      "geometry": "rect",
+      "text": "팀 프로젝트 최종 발표",
+      "textPreview": "팀 프로젝트 최종 발표",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#6F6A65",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "팀 프로젝트 최종 발표"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "팀 프로젝트 최종 발표",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#6F6A65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "팀 프로젝트 최종 발표",
+              "fontSize": 17,
+              "color": "#6F6A65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
